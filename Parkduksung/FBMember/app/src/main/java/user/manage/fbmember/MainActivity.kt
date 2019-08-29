@@ -1,10 +1,11 @@
 package user.manage.fbmember
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,58 +13,42 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val accountManager = AccountManager.getInstance()
+        val user = FirebaseAuth.getInstance().currentUser
 
-        accountManager.createUser("wos94@naver.com", "784512", "원우석", object : AccountManager.CallBack {
-            override fun onSuccess(user: FirebaseUser?) {
-                Log.d(TAG, "create : ${user?.email}")
-                Log.d(TAG, "create : ${user?.displayName}")
-                Log.d(TAG, "create : ${user?.uid}")
-                accountManager.loginUser("wos94@naver.com", "784512", object : AccountManager.CallBack{
-                    override fun onSuccess(user: FirebaseUser?) {
-                        Log.d(TAG, "login : ${user?.email}")
-                        Log.d(TAG, "login : ${user?.displayName}")
-                        Log.d(TAG, "login : ${user?.uid}")
+        var user_email = user?.email
+        var user_uid = user?.uid
+        var user_displayName = user?.displayName
 
-                        accountManager.updateUser("784512", "우석", object : AccountManager.CallBack{
-                            override fun onSuccess(user: FirebaseUser?) {
-                                Log.d(TAG, "update : ${user?.email}")
-                                Log.d(TAG, "update : ${user?.displayName}")
-                                Log.d(TAG, "update : ${user?.uid}")
+        Inform_id.setText(user_email)
+        Inform_uid.setText(user_uid)
+        Inform_name.setText(user_displayName)
 
-                                accountManager.deleteUser(object : AccountManager.CallBack{
-                                    override fun onSuccess(user: FirebaseUser?) {
-                                        Log.d(TAG, "delete success")
-                                    }
+        Main_modify.setOnClickListener {
+            val nextIntent = Intent(this, ModifyActivity::class.java)
+            nextIntent.putExtra("Name", user_displayName)
+            startActivityForResult(nextIntent, 1)
+        }
 
-                                    override fun onFailure(message: String) {
-                                        Log.d(TAG, "delete failure")
-                                    }
-                                })
-                            }
-
-                            override fun onFailure(message: String) {
-                                Log.d(TAG, "update : $message")
-                            }
-                        })
-                    }
-                    override fun onFailure(message: String) {
-                        Log.d(TAG, message)
-                    }
-                })
-            }
-
-            override fun onFailure(message: String) {
-                Log.d(TAG, message)
-            }
-        })
-
-
-
+        Main_back.setOnClickListener {
+            val nextIntent = Intent(this, LoginActivity::class.java)
+            startActivity(nextIntent)
+            finish()
+        }
+        Main_exit.setOnClickListener {
+            finish()
+        }
 
     }
 
-    companion object{
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1) {
+            when (resultCode) {
+                0 -> Inform_name.setText(FirebaseAuth.getInstance().currentUser?.displayName)
+            }
+        }
+    }
+
+    companion object {
         private const val TAG = "MainActivity"
     }
 }

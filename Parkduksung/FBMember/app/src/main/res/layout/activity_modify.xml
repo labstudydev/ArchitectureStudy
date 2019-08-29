@@ -18,7 +18,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Main"
+                android:text="Modify"
                 android:textSize="50dp"
                 android:layout_gravity="center"
         />
@@ -41,11 +41,9 @@
                     android:layout_marginLeft="90dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Inform_id"
+                    android:id="@+id/Modify_id"
                     android:textSize="20dp"
                     android:inputType="text"
-
-
             />
         </LinearLayout>
 
@@ -63,11 +61,12 @@
                     android:textSize="30dp"
             />
 
-            <TextView
+            <EditText
                     android:layout_marginLeft="70dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Inform_uid"
+                    android:id="@+id/Modify_pw"
+                    android:password="true"
                     android:textSize="20dp"
                     android:inputType="text"
 
@@ -88,18 +87,42 @@
                     android:textSize="30dp"
             />
 
-            <TextView
+            <EditText
                     android:layout_marginLeft="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Inform_name"
+                    android:id="@+id/Modify_name"
                     android:textSize="20dp"
                     android:inputType="text"
 
             />
         </LinearLayout>
 
+        <LinearLayout
+                android:layout_marginTop="45dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+
+            <!--<TextView-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Age"-->
+                    <!--android:textSize="30dp"-->
+            <!--/>-->
+
+            <!--<EditText-->
+                    <!--android:layout_marginLeft="60dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/Modify_age"-->
+                    <!--android:password="true"-->
+                    <!--android:textSize="20dp"-->
+                    <!--android:inputType="text"-->
+
+            <!--/>-->
+        </LinearLayout>
 
 
         <LinearLayout
@@ -112,21 +135,21 @@
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Main_modify"
+                    android:id="@+id/Modify_inform"
                     android:textSize="20dp"
                     android:text="정보수정"
             />
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Main_back"
+                    android:id="@+id/Modify_back"
                     android:textSize="20dp"
                     android:text="이전"
             />
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Main_exit"
+                    android:id="@+id/Modify_exit"
                     android:textSize="20dp"
                     android:text="종료"
             />
