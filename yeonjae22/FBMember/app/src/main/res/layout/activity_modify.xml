@@ -8,25 +8,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="회원가입"
+            android:text="회원 정보 수정"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"></TextView>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
-
-        <EditText
-                android:id="@+id/joinEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"></EditText>
-    </LinearLayout>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -39,10 +22,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
 
         <EditText
-                android:id="@+id/joinPassword"
+                android:id="@+id/modify_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"></EditText>
+                android:layout_height="wrap_content"></EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -56,10 +38,9 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
 
         <EditText
-                android:id="@+id/joinName"
+                android:id="@+id/modify_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"></EditText>
+                android:layout_height="wrap_content"></EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -68,12 +49,11 @@
             android:gravity="center">
 
         <Button
-                android:id="@+id/registerBtn"
+                android:id="@+id/modify_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="가입"
+                android:text="수정"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"></Button>
     </LinearLayout>
-
 </LinearLayout>

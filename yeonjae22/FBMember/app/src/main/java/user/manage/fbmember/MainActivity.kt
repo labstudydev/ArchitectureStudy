@@ -60,24 +60,27 @@ class MainActivity : AppCompatActivity() {
 //        })
 
         login.setOnClickListener {
-            accountManager.loginUser(edtEmail.text.toString(), edtPassword.text.toString(), object : AccountManager.CallBack {
-                override fun onSuccess(user: FirebaseUser?) {
-                    val intent = Intent(getApplicationContext(),MypageActivity::class.java)
-//                    intent.putExtra("email", edtEmail.text.toString());
-                    startActivity(intent)
-                }
-                override fun onFailure(message: String) {
-                    Log.d("tag",message)
-                }
-            })
+            accountManager.loginUser(
+                "${edt_email.text}",
+                "${edt_password.text}",
+                object : AccountManager.CallBack {
+                    override fun onSuccess(user: FirebaseUser?) {
+                        val intent = Intent(getApplicationContext(), MypageActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    override fun onFailure(message: String) {
+                        Log.d("tag", message)
+                    }
+                })
         }
         join.setOnClickListener {
-            val intent = Intent(this,RegisterActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
 
-    companion object{
+    companion object {
         private const val TAG = "MainActivity"
     }
 }

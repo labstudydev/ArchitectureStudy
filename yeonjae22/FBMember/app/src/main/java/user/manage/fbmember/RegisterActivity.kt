@@ -5,24 +5,29 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.register.*
+import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.register)
+        setContentView(R.layout.activity_register)
         val accountManager = AccountManager.getInstance()
 
-        registerBtn.setOnClickListener {
-            accountManager.createUser(joinEmail.text.toString(), joinPassword.text.toString(), joinName.text.toString(), object : AccountManager.CallBack {
-                override fun onSuccess(user: FirebaseUser?) {
-                    val intent = Intent(getApplicationContext(), MainActivity::class.java)
-                    startActivity(intent)
-                }
-                override fun onFailure(message: String) {
-                    Log.d("tag",message)
-                }
-            })
+        register_btn.setOnClickListener {
+            accountManager.createUser(
+                "${join_email.text}",
+                "${join_password.text}",
+                "${join_name.text}",
+                object : AccountManager.CallBack {
+                    override fun onSuccess(user: FirebaseUser?) {
+                        val intent = Intent(getApplicationContext(), MainActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    override fun onFailure(message: String) {
+                        Log.d("tag", message)
+                    }
+                })
         }
     }
 }

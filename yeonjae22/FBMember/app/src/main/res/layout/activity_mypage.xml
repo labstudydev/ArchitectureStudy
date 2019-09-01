@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:orientation="vertical">
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Login"
+            android:text="회원 정보"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"></TextView>
+
+    <Button
+            android:id="@+id/logout_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="로그아웃"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"></Button>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UID"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
+
+        <TextView
+                android:id="@+id/uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
+    </LinearLayout>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -24,10 +47,12 @@
                 android:text="Email"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
 
-        <EditText
-                android:id="@+id/edt_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
+        <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -37,13 +62,15 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:text="Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
 
-        <EditText
-                android:id="@+id/edt_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
+        <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"></TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -52,19 +79,19 @@
             android:gravity="center">
 
         <Button
-                android:id="@+id/login"
+                android:id="@+id/update_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="로그인"
+                android:text="수정"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"></Button>
 
         <Button
-                android:id="@+id/join"
+                android:id="@+id/delete_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="회원가입"
+                android:text="회원탈퇴"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"></Button>
     </LinearLayout>
 </LinearLayout>
