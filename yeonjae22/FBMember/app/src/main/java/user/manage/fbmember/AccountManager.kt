@@ -4,8 +4,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 
-
 class AccountManager private constructor() {
+
     private val firebaseAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     interface CallBack {
@@ -101,7 +101,7 @@ class AccountManager private constructor() {
 
         @JvmStatic
         fun getInstance(): AccountManager{
-            FirebaseAuth.getInstance().signOut()
+            //FirebaseAuth.getInstance().signOut()
             return instance ?: synchronized(this) {
                 instance ?: AccountManager().also {
                     instance = it
