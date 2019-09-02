@@ -63,7 +63,7 @@
             </TextView>
 
             <EditText
-                    android:id="@+id/login_PW"
+                    android:id="@+id/login_pw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -80,7 +80,7 @@
             android:orientation="vertical">
 
         <Button
-                android:id="@+id/registerBtn"
+                android:id="@+id/register_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="회원가입"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content">
 
         <Button
-                android:id="@+id/loginBtn"
+                android:id="@+id/login_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="로그인"

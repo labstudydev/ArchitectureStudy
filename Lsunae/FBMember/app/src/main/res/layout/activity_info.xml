@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,7 +12,7 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="회원가입"
+                android:text="회원정보"
                 android:textSize="40dp"
                 android:gravity="center">
 
@@ -35,20 +34,20 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email"
+                    android:text="UID"
                     android:textSize="20dp"
                     android:layout_marginLeft="30dp">
 
             </TextView>
 
-            <EditText
-                    android:id="@+id/editEmail"
+            <TextView
+                    android:id="@+id/info_uid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp">
 
-            </EditText>
+            </TextView>
 
         </LinearLayout>
 
@@ -61,20 +60,20 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PW"
+                    android:text="Email"
                     android:textSize="20dp"
                     android:layout_marginLeft="30dp">
 
             </TextView>
 
-            <EditText
-                    android:id="@+id/editPW"
+            <TextView
+                    android:id="@+id/info_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp">
 
-            </EditText>
+            </TextView>
 
         </LinearLayout>
 
@@ -93,14 +92,14 @@
 
             </TextView>
 
-            <EditText
-                    android:id="@+id/editName"
+            <TextView
+                    android:id="@+id/info_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="30dp">
 
-            </EditText>
+            </TextView>
 
         </LinearLayout>
 
@@ -109,15 +108,36 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
 
         <Button
-                android:id="@+id/joinBtn"
+                android:id="@+id/modify_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:text="가입">
+                android:text="정보수정">
+
+        </Button>
+
+        <Button
+                android:id="@+id/del_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="정보삭제">
+
+        </Button>
+
+        <Button
+                android:id="@+id/logout_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="로그아웃">
 
         </Button>
 

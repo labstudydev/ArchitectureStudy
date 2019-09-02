@@ -3,43 +3,37 @@ package user.manage.fbmember
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.info.*
-import kotlinx.android.synthetic.main.login.*
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import kotlinx.android.synthetic.main.activity_info.*
 import android.util.Log
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.modify.*
+import user.manage.fbmember.companion.email
+import user.manage.fbmember.companion.name
+import user.manage.fbmember.companion.uid
 
 
 class InfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.info)
+        setContentView(R.layout.activity_info)
 
         val accountManager = AccountManager.getInstance()
 
-        val uidIntent = getIntent()
-        val infoUID = uidIntent.getStringExtra("UID")
-        info_UID.setText(infoUID)
+        val infoUID = intent.getStringExtra(uid)
+        info_uid.text = infoUID
 
-        val emailIntent = getIntent()
-        val infoEmail = emailIntent.getStringExtra("Email")
-        info_email.setText(infoEmail)
+        val infoEmail = intent.getStringExtra(email)
+        info_email.text = infoEmail
 
-        val nameIntent = getIntent()
-        val infoName = nameIntent.getStringExtra("Name")
-        info_name.setText(infoName)
+        val infoName = intent.getStringExtra(name)
+        info_name.text = infoName
 
-        modifyBtn.setOnClickListener{
+        modify_btn.setOnClickListener{
             val intent = Intent(applicationContext, ModifyActivity::class.java)
             startActivity(intent)
         }
 
-        delBtn.setOnClickListener{
+        del_btn.setOnClickListener{
             accountManager.deleteUser(object : AccountManager.CallBack {
                 override fun onSuccess(user: FirebaseUser?) {
                     Log.d("delete", "delete success")
@@ -53,7 +47,7 @@ class InfoActivity : AppCompatActivity() {
             })
         }
 
-        logoutBtn.setOnClickListener{
+        logout_btn.setOnClickListener{
             accountManager.logout()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

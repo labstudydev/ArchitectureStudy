@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -12,7 +13,7 @@
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="정보수정"
+                android:text="회원가입"
                 android:textSize="40dp"
                 android:gravity="center">
 
@@ -24,6 +25,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="30dp">
+
+            </TextView>
+
+            <EditText
+                    android:id="@+id/edit_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp">
+
+            </EditText>
+
+        </LinearLayout>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -41,7 +68,7 @@
             </TextView>
 
             <EditText
-                    android:id="@+id/modify_PW"
+                    android:id="@+id/edit_pW"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -67,7 +94,7 @@
             </TextView>
 
             <EditText
-                    android:id="@+id/modify_Name"
+                    android:id="@+id/edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -85,12 +112,12 @@
             android:layout_marginTop="50dp">
 
         <Button
-                android:id="@+id/reviseBtn"
+                android:id="@+id/join_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:text="수정">
+                android:text="가입">
 
         </Button>
 
