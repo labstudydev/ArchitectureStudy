@@ -15,40 +15,44 @@ class MainActivity : AppCompatActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser
 
-        var user_email = user?.email
-        var user_uid = user?.uid
-        var user_displayName = user?.displayName
+        val useremail = user?.email
+        val useruid = user?.uid
+        val userdisplayName = user?.displayName
 
-        Inform_id.setText(user_email)
-        Inform_uid.setText(user_uid)
-        Inform_name.setText(user_displayName)
+        inform_id.setText(useremail)
+        inform_uid.setText(useruid)
+        inform_name.setText(userdisplayName)
 
-        Main_modify.setOnClickListener {
+        main_modify.setOnClickListener {
             val nextIntent = Intent(this, ModifyActivity::class.java)
-            nextIntent.putExtra("Name", user_displayName)
-            startActivityForResult(nextIntent, 1)
+            nextIntent.putExtra("Name", userdisplayName)
+            startActivityForResult(nextIntent, REQUEST_CODE)
         }
 
-        Main_back.setOnClickListener {
+        main_back.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
             finish()
         }
-        Main_exit.setOnClickListener {
+        main_exit.setOnClickListener {
             finish()
         }
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 1) {
+        if (requestCode == REQUEST_CODE) {
             when (resultCode) {
-                0 -> Inform_name.setText(FirebaseAuth.getInstance().currentUser?.displayName)
+                RESULT_CODE -> inform_name.setText(FirebaseAuth.getInstance().currentUser?.displayName)
             }
         }
     }
 
     companion object {
         private const val TAG = "MainActivity"
+        const val REQUEST_CODE = 1
+        const val RESULT_CODE = 0
+
+
     }
 }
