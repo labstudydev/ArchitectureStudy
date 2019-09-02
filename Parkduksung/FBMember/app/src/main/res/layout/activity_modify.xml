@@ -18,7 +18,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Main"
+                android:text="Modify"
                 android:textSize="50dp"
                 android:layout_gravity="center"
         />
@@ -41,11 +41,9 @@
                     android:layout_marginLeft="90dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/inform_id"
+                    android:id="@+id/modify_id"
                     android:textSize="20dp"
                     android:inputType="text"
-
-
             />
         </LinearLayout>
 
@@ -63,11 +61,12 @@
                     android:textSize="30dp"
             />
 
-            <TextView
+            <EditText
                     android:layout_marginLeft="70dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/inform_uid"
+                    android:id="@+id/modify_pw"
+                    android:password="true"
                     android:textSize="20dp"
                     android:inputType="text"
 
@@ -88,15 +87,22 @@
                     android:textSize="30dp"
             />
 
-            <TextView
+            <EditText
                     android:layout_marginLeft="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/inform_name"
+                    android:id="@+id/modify_name"
                     android:textSize="20dp"
                     android:inputType="text"
 
             />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_marginTop="45dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
         </LinearLayout>
 
 
@@ -110,21 +116,21 @@
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/main_modify"
+                    android:id="@+id/modify_inform"
                     android:textSize="20dp"
                     android:text="정보수정"
             />
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/main_back"
+                    android:id="@+id/modify_back"
                     android:textSize="20dp"
                     android:text="이전"
             />
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/main_exit"
+                    android:id="@+id/modify_exit"
                     android:textSize="20dp"
                     android:text="종료"
             />
