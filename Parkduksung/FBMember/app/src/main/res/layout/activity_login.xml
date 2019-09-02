@@ -41,7 +41,7 @@
                     android:layout_marginLeft="49dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/User_id"
+                    android:id="@+id/user_id"
                     android:textSize="20dp"
                     android:inputType="text"
 
@@ -67,7 +67,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/User_pw"
+                    android:id="@+id/user_pw"
                     android:password="true"
                     android:textSize="20dp"
                     android:inputType="text"
@@ -86,21 +86,21 @@
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Login"
+                    android:id="@+id/login"
                     android:textSize="20dp"
                     android:text="로그인"
             />
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Register"
+                    android:id="@+id/register"
                     android:textSize="20dp"
                     android:text="회원가입"
             />
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/Exit"
+                    android:id="@+id/exit"
                     android:textSize="20dp"
                     android:text="종료"
             />

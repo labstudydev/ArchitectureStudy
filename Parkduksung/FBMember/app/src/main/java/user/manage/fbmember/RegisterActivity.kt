@@ -15,12 +15,12 @@ class RegisterActivity : AppCompatActivity() {
 
         val accountManager = AccountManager.getInstance()
 
-        Register_inform.setOnClickListener {
+        register_inform.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
             accountManager.createUser(
-                Register_id.text.toString(),
-                Register_pw.text.toString(),
-                Register_name.text.toString(),
+                register_id.text.toString(),
+                register_pw.text.toString(),
+                register_name.text.toString(),
                 object : AccountManager.CallBack {
                     override fun onSuccess(user: FirebaseUser?) {
                         Log.d(TAG, "create : ${user?.email}")
@@ -36,12 +36,12 @@ class RegisterActivity : AppCompatActivity() {
                 })
 
         }
-        Register_back.setOnClickListener {
+        register_back.setOnClickListener {
             val nextIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextIntent)
             finish()
         }
-        Register_exit.setOnClickListener {
+        register_exit.setOnClickListener {
             finish()
         }
     }

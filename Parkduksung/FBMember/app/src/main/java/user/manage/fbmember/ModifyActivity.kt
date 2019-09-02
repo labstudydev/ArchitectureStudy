@@ -15,19 +15,18 @@ class ModifyActivity : AppCompatActivity() {
         setContentView(R.layout.activity_modify)
 
         val user = FirebaseAuth.getInstance().currentUser
-        Modify_id.setText(user?.email)
+        modify_id.setText(user?.email)
 
         val accountManager = AccountManager.getInstance()
 
-        var intent = intent
-        var name = intent.getStringExtra("Name")
+        val name = intent.getStringExtra("Name")
 
-        Modify_name.setText(name)
+        modify_name.setText(name)
 
-        Modify_inform.setOnClickListener {
+        modify_inform.setOnClickListener {
             accountManager.updateUser(
-                Modify_pw.text.toString(),
-                Modify_name.text.toString(),
+                modify_pw.text.toString(),
+                modify_name.text.toString(),
 
                 object : AccountManager.CallBack {
                     override fun onSuccess(user: FirebaseUser?) {
@@ -43,12 +42,12 @@ class ModifyActivity : AppCompatActivity() {
                 })
 
         }
-        Modify_back.setOnClickListener {
+        modify_back.setOnClickListener {
             val nextIntent = Intent(this, MainActivity::class.java)
             startActivity(nextIntent)
             finish()
         }
-        Modify_exit.setOnClickListener {
+        modify_exit.setOnClickListener {
             finish()
 
         }

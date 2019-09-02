@@ -15,46 +15,50 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        if(!isActivate){
+        if (isActivate) {
             FirebaseAuth.getInstance().signOut()
-            isActivate = true
+            isActivate = false
         }
 
         val accountManager = AccountManager.getInstance()
 
-        Login.setOnClickListener{
+        login.setOnClickListener {
 
             val nextIntent = Intent(this, MainActivity::class.java)
 
-            accountManager.loginUser(User_id.text.toString(), User_pw.text.toString(), object : AccountManager.CallBack {
-                override fun onSuccess(user: FirebaseUser?) {
-                    Log.d(TAG, "login : ${user?.email}")
-                    Log.d(TAG, "login : ${user?.displayName}")
-                    startActivity(nextIntent)
-                    finish()
-                }
-                override fun onFailure(message: String) {
-                    Log.d(TAG, message)
-                }
-            })
+            accountManager.loginUser(
+                user_id.text.toString(),
+                user_pw.text.toString(),
+                object : AccountManager.CallBack {
+                    override fun onSuccess(user: FirebaseUser?) {
+                        Log.d(TAG, "login : ${user?.email}")
+                        Log.d(TAG, "login : ${user?.displayName}")
+                        startActivity(nextIntent)
+                        finish()
+                    }
+
+                    override fun onFailure(message: String) {
+                        Log.d(TAG, message)
+                    }
+                })
         }
 
-        Register.setOnClickListener{
-            val nextIntent  = Intent(this, RegisterActivity::class.java)
+        register.setOnClickListener {
+            val nextIntent = Intent(this, RegisterActivity::class.java)
             startActivity(nextIntent)
             finish()
         }
 
-        Exit.setOnClickListener {
+        exit.setOnClickListener {
             finish()
         }
 
 
     }
 
-    companion object{
+    companion object {
         private const val TAG = "LoginActivity"
-        private var isActivate = false
+        private var isActivate = true
     }
 
 }

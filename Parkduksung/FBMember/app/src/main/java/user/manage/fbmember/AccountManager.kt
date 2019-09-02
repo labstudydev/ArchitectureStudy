@@ -1,6 +1,5 @@
 package user.manage.fbmember
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -28,9 +27,7 @@ class AccountManager private constructor() {
                     ?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             callback.onSuccess(firebaseAuth.currentUser)
-                            Log.d(TAG, "create : ${user?.email}")
-                            Log.d(TAG, "create : ${user?.displayName}")
-                            Log.d(TAG, "create : ${user?.uid}")
+
 
                         } else {
                             callback.onFailure("${it.exception?.message}")
@@ -51,8 +48,6 @@ class AccountManager private constructor() {
 
                     // 로그인 성공
                     callback.onSuccess(it.result?.user)
-                    //callback.onSuccess(firebaseAuth.currentUser)
-
 
                 } else {
                     // 로그인 실패
