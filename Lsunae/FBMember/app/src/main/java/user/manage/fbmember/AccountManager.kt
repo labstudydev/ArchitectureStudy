@@ -74,7 +74,7 @@ class AccountManager private constructor() {
                         callback.onFailure("${pfTask.exception?.message}")
                     }
                 }
-        } ?: callback.onFailure("Not a login user")
+        } ?: callback.onFailure("Not a activity_login user")
     }
 
     fun deleteUser(callback: CallBack) {
@@ -87,7 +87,7 @@ class AccountManager private constructor() {
                     callback.onFailure("${task.exception?.message}")
                 }
             }
-        } ?: callback.onFailure("Not a login user")
+        } ?: callback.onFailure("Not a activity_login user")
     }
 
     fun logout(){
@@ -101,7 +101,7 @@ class AccountManager private constructor() {
 
         @JvmStatic
         fun getInstance(): AccountManager{
-            FirebaseAuth.getInstance().signOut()
+            //FirebaseAuth.getInstance().signOut()
             return instance ?: synchronized(this) {
                 instance ?: AccountManager().also {
                     instance = it
