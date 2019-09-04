@@ -34,7 +34,7 @@ class ProductAdapter(val items: List<ProductResponse>) :
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(listener: View.OnClickListener, item: ProductResponse) {
             Glide.with(view.context).load(item.productImage)
-                .override(100, 100)
+                .override(200, 200)
                 .into(view.product_img)
             view.product_name_tv.text = item.productName
             view.product_price_tv.text = item.productPrice
