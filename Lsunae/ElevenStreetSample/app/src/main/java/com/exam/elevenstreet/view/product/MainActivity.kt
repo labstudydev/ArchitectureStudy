@@ -1,15 +1,10 @@
-package com.exam.elevenstreet
+package com.exam.elevenstreet.view.product
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.AbsListView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.elevenstreet.ProductResponse
+import com.exam.elevenstreet.R
+import com.exam.elevenstreet.view.product.adapter.ListAdapter
 import com.example.elevenstreet.ProductXmlPullParserHandler
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_view.*
 
 
