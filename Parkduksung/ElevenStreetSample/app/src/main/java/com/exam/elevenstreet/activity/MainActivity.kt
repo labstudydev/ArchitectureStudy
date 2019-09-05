@@ -2,10 +2,8 @@ package com.exam.elevenstreet.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.adapter.ProductAdapter
 import com.example.elevenstreet.ProductResponse
@@ -21,10 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView  =findViewById(R.id.recyclerView) as RecyclerView
-
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-
         dataBinding()
     }
 
@@ -34,8 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = ProductAdapter(productList as ArrayList<ProductResponse>)
 
-        recyclerView.adapter = adapter
+        recyclerview.adapter = adapter
+        recyclerview.layoutManager = LinearLayoutManager(this)
     }
+
     companion object {
         private const val TAG = "MainActivity"
 //TODO : 검색영역 작업하는데 사용할 변수
