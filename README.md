@@ -1,4 +1,4 @@
 # ArchitectureStudy
 
-- 원우석 [wswon](https://github.com/wswon)
-[공간](https://github.com/StudyFork/GoogryAndroidArchitectureStudy/tree/master/wswon)
+- 정재인 [jeongjaein](https://github.com/jeongjaein )
+[공간](https://github.com/labstudydev/ArchitectureStudy/tree/master/jeongjaein)
