@@ -3,11 +3,8 @@ package com.exam.elevenstreet.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
-import com.exam.elevenstreet.adapter.ProductAdapter
-import com.example.elevenstreet.ProductResponse
-import com.example.elevenstreet.ProductXmlPullParserHandler
+import com.exam.elevenstreet.data.ProductDataBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -19,29 +16,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        dataBinding()
-    }
 
-    private fun dataBinding() {
-        val inputStream = assets.open("ElevenStreetOpenApiService.xml")
-        val productList = ProductXmlPullParserHandler().parse(inputStream)
+        val assetsxmlFile = assets.open("ElevenStreetOpenApiService.xml")
+//        dataBinding()
+        ProductDataBinding(assetsxmlFile,recyclerview_product)
 
-
-        var adapter = ProductAdapter(productList as ArrayList<ProductResponse>)
-
-//        TODO 방법 1
-//        recyclerview_product.adapter = adapter
-//        recyclerview_product.layoutManager = LinearLayoutManager(this)
-
-
-        //TODO 우석조언.
-        recyclerview_product.run {
-            recyclerview_product.adapter = adapter
-            layoutManager = LinearLayoutManager(this@MainActivity)
-        }
 
 
     }
+
+//    private fun dataBinding() {
+//        val inputStream = assets.open("ElevenStreetOpenApiService.xml")
+//        val productList = ProductXmlPullParserHandler().parse(inputStream)
+//
+//
+//        var adapter = ProductAdapter(productList as ArrayList<ProductResponse>)
+//
+////        TODO 방법 1
+////        recyclerview_product.adapter = adapter
+////        recyclerview_product.layoutManager = LinearLayoutManager(this)
+//
+//
+//        //TODO 우석조언.
+//        recyclerview_product.run {
+//            recyclerview_product.adapter = adapter
+//            layoutManager = LinearLayoutManager(this@MainActivity)
+//        }
+//
+//
+//    }
 
     companion object {
         private const val TAG = "MainActivity"

@@ -22,7 +22,6 @@ class ProductAdapter(val productList: ArrayList<ProductResponse>) : RecyclerView
 
 
 //        val image = p0?.itemView.product_image_tv
-
 //        Glide.with(p0?.itemView?.context).load(product.productImage).into(p0?.productimage)
 
 
@@ -71,8 +70,8 @@ class ProductAdapter(val productList: ArrayList<ProductResponse>) : RecyclerView
 //    try {
 //        //urlConnection.connect()
 //        val inputStream  = BufferedInputStream(urlConnection.inputStream)
-//
 //        bitmap = BitmapFactory.decodeStream(inputStream)
+//
 //
 //
 //    }catch (e:Exception){
