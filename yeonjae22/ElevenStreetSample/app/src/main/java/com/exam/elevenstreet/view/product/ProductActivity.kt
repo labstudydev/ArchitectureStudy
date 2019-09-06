@@ -14,7 +14,6 @@ class ProductActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //dataBinding()
-        var products: List<ProductResponse>? = null
         val inputStream = assets.open("ElevenStreetOpenApiService.xml")
         val productList = ProductXmlPullParserHandler().parse(inputStream)
 
