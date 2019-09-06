@@ -15,10 +15,10 @@ class ProductAdapter(val productList: ArrayList<ProductResponse>) : RecyclerView
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product: ProductResponse = productList[position]
 
-        holder?.productname?.text = product.productName
-        holder?.productprice?.text = product.productPrice
-        holder?.productcode?.text = product.productCode
-        holder?.productimage?.text = product.productImage
+        holder.productName.text = product.productName
+        holder.productPrice.text = product.productPrice
+        holder.productCode.text = product.productCode
+        holder.productImage.text = product.productImage
 
 
 //        val image = p0?.itemView.product_image_tv
@@ -40,22 +40,19 @@ class ProductAdapter(val productList: ArrayList<ProductResponse>) : RecyclerView
     }
 
     override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder {
-        val v = LayoutInflater.from(holder?.context).inflate(R.layout.list_layout, holder, false)
-        return ViewHolder(v)
+        val view = LayoutInflater.from(holder.context).inflate(R.layout.list_layout, holder, false)
+        return ViewHolder(view)
     }
 
 
-    override fun getItemCount(): Int {
-        return productList.size
-    }
-
+    override fun getItemCount(): Int = productList.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val productname = itemView.product_name_tv
-        val productprice = itemView.product_price_tv
-        val productcode = itemView.product_code_tv
-        val productimage = itemView.product_image_tv
+        val productName = itemView.product_name_tv
+        val productPrice = itemView.product_price_tv
+        val productCode = itemView.product_code_tv
+        val productImage = itemView.product_image_tv
 
 
     }

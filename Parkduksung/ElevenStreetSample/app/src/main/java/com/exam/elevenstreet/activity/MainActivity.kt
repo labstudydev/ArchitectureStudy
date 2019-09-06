@@ -26,10 +26,21 @@ class MainActivity : AppCompatActivity() {
         val inputStream = assets.open("ElevenStreetOpenApiService.xml")
         val productList = ProductXmlPullParserHandler().parse(inputStream)
 
-        val adapter = ProductAdapter(productList as ArrayList<ProductResponse>)
 
-        recyclerview.adapter = adapter
-        recyclerview.layoutManager = LinearLayoutManager(this)
+        var adapter = ProductAdapter(productList as ArrayList<ProductResponse>)
+
+//        TODO 방법 1
+//        recyclerview_product.adapter = adapter
+//        recyclerview_product.layoutManager = LinearLayoutManager(this)
+
+
+        //TODO 우석조언.
+        recyclerview_product.run {
+            recyclerview_product.adapter = adapter
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
+
+
     }
 
     companion object {
