@@ -39,7 +39,7 @@
             <ImageView
                     android:id="@+id/product_img"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></ImageView>
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

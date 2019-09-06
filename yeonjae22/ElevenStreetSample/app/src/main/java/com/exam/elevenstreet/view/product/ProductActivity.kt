@@ -22,8 +22,8 @@ class ProductActivity : AppCompatActivity() {
     private fun dataBinding() {
         val inputStream = assets.open("ElevenStreetOpenApiService.xml")
         val productList = ProductXmlPullParserHandler().parse(inputStream)
-        var adapter = ProductAdapter(productList)
-        recycler_view.setAdapter(adapter)
+        val adapter = ProductAdapter(productList)
+        recycler_view.adapter= adapter
     }
 
     companion object {
