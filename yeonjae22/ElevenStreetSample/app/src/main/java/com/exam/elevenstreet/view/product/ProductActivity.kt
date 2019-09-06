@@ -13,21 +13,17 @@ class ProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //dataBinding()
-        val inputStream = assets.open("ElevenStreetOpenApiService.xml")
-        val productList = ProductXmlPullParserHandler().parse(inputStream)
-
         val manager = LinearLayoutManager(this)
         recycler_view.setLayoutManager(manager)
         recycler_view.setHasFixedSize(true)
-        var adapter = ProductAdapter(productList)
-        recycler_view.setAdapter(adapter)
+        dataBinding()
     }
 
     private fun dataBinding() {
         val inputStream = assets.open("ElevenStreetOpenApiService.xml")
         val productList = ProductXmlPullParserHandler().parse(inputStream)
-
+        var adapter = ProductAdapter(productList)
+        recycler_view.setAdapter(adapter)
     }
 
     companion object {
