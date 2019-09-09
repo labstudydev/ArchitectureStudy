@@ -1,4 +1,4 @@
-package com.exam.elevenstreet.adapter
+package com.exam.elevenstreet.view.adapter
 
 
 import android.view.LayoutInflater
