@@ -1,17 +1,18 @@
-package com.exam.elevenstreet.view.presenter
+package com.exam.elevenstreet.view.product
+
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
-import com.exam.elevenstreet.data.model.ProductDataBinding
-import com.exam.elevenstreet.view.adapter.ProductAdapter
+import com.exam.elevenstreet.data.Repository.ProductRepository
+import com.exam.elevenstreet.view.product.adapter.ProductAdapter
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class ProductActivity : AppCompatActivity() {
 
 
     @SuppressLint("WrongConstant")
@@ -19,8 +20,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val assetsxmlFile = assets.open("ElevenStreetOpenApiService.xml")
 //        dataBinding()
 //        ProductDataBinding(assetsxmlFile, recyclerview_product)
 
@@ -33,13 +32,15 @@ class MainActivity : AppCompatActivity() {
 //
 //        }
 
-        val productList = ProductDataBinding(assetsxmlFile).getProductlist()
+
+        val productList = ProductRepository().getProductlist("ElevenStreetOpenApiService.xml")
 
 
         recyclerview_product.run {
-            var adapter = ProductAdapter(productList as ArrayList<ProductResponse>)
+            var adapter =
+                ProductAdapter(productList as ArrayList<ProductResponse>)
             recyclerview_product.adapter = adapter
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(this@ProductActivity)
 //        }
 
 
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "MainActivity"
+        private const val TAG = "ProductActivity"
 //TODO : 검색영역 작업하는데 사용할 변수
 //        const val API_CODE = "ProductSearch"
     }

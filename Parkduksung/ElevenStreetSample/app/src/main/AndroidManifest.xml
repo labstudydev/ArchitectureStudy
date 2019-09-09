@@ -9,8 +9,9 @@
             android:networkSecurityConfig="@xml/network_security_config"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
+            android:name=".util.App"
             android:theme="@style/AppTheme">
-        <activity android:name="com.exam.elevenstreet.view.presenter.MainActivity">
+        <activity android:name="com.exam.elevenstreet.view.product.ProductActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
