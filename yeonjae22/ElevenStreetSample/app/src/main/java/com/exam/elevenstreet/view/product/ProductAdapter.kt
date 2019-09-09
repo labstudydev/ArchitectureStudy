@@ -8,12 +8,20 @@ import com.bumptech.glide.Glide
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class ProductAdapter(val items: List<ProductResponse>) :
+class ProductAdapter() :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+
+    val items = mutableListOf<ProductResponse>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item, parent, false)
         return ProductAdapter.ViewHolder(view)
+    }
+
+    fun addData(addDataList: List<ProductResponse>) {
+        items.clear()
+        items.addAll(addDataList)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int =
