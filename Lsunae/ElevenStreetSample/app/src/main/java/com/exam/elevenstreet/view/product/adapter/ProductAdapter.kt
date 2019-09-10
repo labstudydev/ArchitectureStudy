@@ -9,16 +9,6 @@ import com.exam.elevenstreet.R
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.list_item.view.*
 
-//import android.content.Context
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//import android.widget.BaseAdapter
-//import android.widget.TextView
-//import com.exam.elevenstreet.R
-//import com.example.elevenstreet.ProductResponse
-
-
 class ProductAdapter(val items: List<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder{
