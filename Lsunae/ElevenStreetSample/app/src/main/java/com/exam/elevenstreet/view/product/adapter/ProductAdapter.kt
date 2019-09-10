@@ -21,15 +21,13 @@ import kotlinx.android.synthetic.main.list_item.view.*
 
 class ProductAdapter(val items: List<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    //var items: List<ProductResponse> = listOf()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder{
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
 
         return ViewHolder(view)
 
-    } //= ViewHolder(parent)
+    }
 
     override fun getItemCount(): Int = items.size
 
@@ -49,36 +47,3 @@ class ProductAdapter(val items: List<ProductResponse>) : RecyclerView.Adapter<Pr
         val price = itemView.tv_product_price
     }
 }
-
-
-//class ListAdapter(val context: Context, val productList: List<ProductResponse>) : BaseAdapter() {
-//
-//    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-//        val view: View = LayoutInflater.from(convertView.context).inflate(R.layout.activity_main, null)
-//
-//        val name = view.findViewById<TextView>(R.id.product_name_tv)
-//        val price = view.findViewById<TextView>(R.id.product_price_tv)
-//        val code = view.findViewById<TextView>(R.id.product_code_tv)
-//
-//        val product = productList[position]
-//
-//        name.text = product.productName
-//        price.text = product.productPrice
-//        code.text = product.productCode
-//
-//        return view
-//    }
-//
-//    override fun getItem(position: Int): Any {  // =
-//        return productList[position]
-//    }
-//
-//    override fun getItemId(position: Int): Long {
-//        return 0
-//    }
-//
-//    override fun getCount(): Int {
-//        return productList.size
-//    }
-//
-//}

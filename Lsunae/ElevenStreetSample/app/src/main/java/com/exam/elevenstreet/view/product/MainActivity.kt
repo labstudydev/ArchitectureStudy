@@ -10,7 +10,7 @@ import com.exam.elevenstreet.view.product.adapter.ProductAdapter
 import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.recycler_view
+import kotlinx.android.synthetic.main.activity_main.recycler_view_product
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.list_item.*
 import java.net.URL
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        recycler_view.run {
+        recycler_view_product.run {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = productAdapter
         }
