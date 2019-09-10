@@ -60,9 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun dataBinding(): List<ProductResponse> {
         val inputStream = assets.open("ElevenStreetOpenApiService.xml")
-        val productList = ProductXmlPullParserHandler().parse(inputStream)
-
-        return productList
+        return ProductXmlPullParserHandler().parse(inputStream)
     }
 
     companion object {
