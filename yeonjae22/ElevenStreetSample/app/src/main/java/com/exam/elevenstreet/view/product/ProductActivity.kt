@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ElevenStreetApi
 import com.exam.RetrofitInstance
-import com.example.elevenstreet.ProductResponse
-import com.example.elevenstreet.ProductXmlPullParserHandler
+import com.exam.elevenstreet.data.ProductLocalDataSource
 import kotlinx.android.synthetic.main.activity_main.*
 import java.net.URL
 
@@ -25,28 +24,23 @@ class ProductActivity : AppCompatActivity() {
         recycler_view.setLayoutManager(manager)
         recycler_view.setHasFixedSize(true)
 
-        val productList = dataBinding()
+        val productList = ProductLocalDataSource().getProductList(applicationContext)
         val adapter = ProductAdapter()
         recycler_view.adapter = adapter
         adapter.addData(productList)
+
     }
 
-    private fun getSearchByKeyword(keyWords: String, pageNumber: Int) {
+    fun getSearchByKeyword(keyWords: String, pageNumber: Int) {
         val call = elevenStreetApi?.getProductList(
             getString(R.string.eleven_street_API_KEY),
             API_CODE,
-            "수건",
+            "${edt_search.text}",
             1
         )
         val url: String? = "${call?.request()?.url()}"
         val targetURL = URL(url)
         val inputStream = targetURL.openStream()
-    }
-
-    private fun dataBinding():List<ProductResponse> {
-        val inputStream = assets.open("ElevenStreetOpenApiService.xml")
-        val productList = ProductXmlPullParserHandler().parse(inputStream)
-        return productList
     }
 
     companion object {
