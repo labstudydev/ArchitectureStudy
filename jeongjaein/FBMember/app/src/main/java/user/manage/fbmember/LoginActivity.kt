@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -16,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
         val accountManager = AccountManager.getInstance()
 
         btnlogin.setOnClickListener{
-            val intent = Intent(this, MypageActivity::class.java)
+            val MypageIntent = Intent(this, MypageActivity::class.java)
 
             val email = "${email.text}"
             val password = "${L_password.text}"
@@ -24,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
             if(email.isNotEmpty() && password.isNotEmpty()){
                 accountManager.loginUser(email, password , object : AccountManager.CallBack{
                     override fun onSuccess(user: FirebaseUser?) {
+
+
                         Log.d(TAG, "login : ${user?.email}")
                         Log.d(TAG, "login : ${user?.displayName}")
                         Log.d(TAG, "login : ${user?.uid}")
@@ -31,9 +34,7 @@ class LoginActivity : AppCompatActivity() {
                         intent.putExtra(EMAIL, user?.email)
                         intent.putExtra(NAME, user?.displayName)
                         intent.putExtra(UID, user?.uid)
-
-                        startActivity(intent)
-                        finish()
+                        startActivity(MypageIntent)
                     }
                     override fun onFailure(message: String) {
                         Log.d(TAG, message)
@@ -43,9 +44,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnaccount.setOnClickListener{
-            val intent = Intent(this, CreateActivity::class.java)
-            startActivity(intent)
-            finish()
+            val createIntent = Intent(this, CreateActivity::class.java)
+            startActivity(createIntent)
         }
     }
 

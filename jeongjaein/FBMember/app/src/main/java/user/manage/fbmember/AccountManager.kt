@@ -101,7 +101,7 @@ class AccountManager private constructor() {
 
         @JvmStatic
         fun getInstance(): AccountManager{
-            FirebaseAuth.getInstance().signOut()
+            //FirebaseAuth.getInstance().signOut()
             return instance ?: synchronized(this) {
                 instance ?: AccountManager().also {
                     instance = it

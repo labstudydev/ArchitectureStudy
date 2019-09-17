@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_create.*
 
-class CreateActivity: AppCompatActivity()  {
+class CreateActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,24 +16,29 @@ class CreateActivity: AppCompatActivity()  {
         val accountManager = AccountManager.getInstance()
 
         btncreate.setOnClickListener {
-            val Cintent = Intent(this@CreateActivity,LoginActivity::class.java)
-            accountManager.createUser("${C_email.text}","${C_password.text}","${C_name.text}",object : AccountManager.CallBack {
-                override fun onSuccess(user: FirebaseUser?) {
+            val CreateIntent = Intent(this@CreateActivity, LoginActivity::class.java)
+            accountManager.createUser(
+                "${C_email.text}",
+                "${C_password.text}",
+                "${C_name.text}",
+                object : AccountManager.CallBack {
+                    override fun onSuccess(user: FirebaseUser?) {
 
-                    Log.d(TAG, "create : ${user?.email}")
-                    Log.d(TAG, "create : ${user?.displayName}")
-                    Log.d(TAG, "create : ${user?.uid}")
+                        Log.d(TAG, "create : ${user?.email}")
+                        Log.d(TAG, "create : ${user?.displayName}")
+                        Log.d(TAG, "create : ${user?.uid}")
 
-                    startActivity(Cintent)
-                    finish()
-                }
-                override fun onFailure(message: String) {
-                    Log.d(TAG, message)
-                }
-            })//create finish
+                        startActivity(CreateIntent)
+                        finish()
+                    }
+                    override fun onFailure(message: String) {
+                        Log.d(TAG, message)
+                    }
+                })//create finish
         }
     }
-    companion object{
+
+    companion object {
         private const val TAG = "CreateActivity"
     }
 }

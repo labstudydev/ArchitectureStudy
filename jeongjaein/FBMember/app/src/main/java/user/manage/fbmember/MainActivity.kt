@@ -9,8 +9,8 @@
 //
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
-//        //setContentView(R.layout.activity_main)
-//        setContentView(R.layout.activity_login)
+//        //setContentView(R.activity_mypage.activity_main)
+//        setContentView(R.activity_mypage.activity_login)
 //
 //        val accountManager = AccountManager.getInstance()
 //
@@ -87,4 +87,4 @@
 //        private const val TAG = "MainActivity"
 //    }
 //}
-//}*/
+//}
