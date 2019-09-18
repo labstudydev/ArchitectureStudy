@@ -32,8 +32,7 @@ class ProductRemoteDataSource() {
         val url: String? = "${call?.request()?.url()}"
         val targetURL = URL(url)
         val inputStream = targetURL.openStream()
-        val productList = ProductXmlPullParserHandler().parse(inputStream)
-        return productList
+        return ProductXmlPullParserHandler().parse(inputStream)
     }
 
 //    inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
