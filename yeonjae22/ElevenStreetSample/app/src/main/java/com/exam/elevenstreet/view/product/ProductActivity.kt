@@ -8,19 +8,16 @@ import com.ElevenStreetApi
 import com.exam.RetrofitInstance
 import com.exam.elevenstreet.data.ProductLocalDataSource
 import com.exam.elevenstreet.data.ProductRemoteDataSource
+import com.exam.elevenstreet.data.ProductRepository
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ProductActivity : AppCompatActivity() {
-
-    private var elevenStreetApi: ElevenStreetApi? = null
     val adapter = ProductAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        elevenStreetApi =
-            RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")
 
         val manager = LinearLayoutManager(this)
         recycler_view.setLayoutManager(manager)
@@ -33,7 +30,6 @@ class ProductActivity : AppCompatActivity() {
         btn_search.setOnClickListener {
             ProductTask().execute("${edt_search.text}")
         }
-
     }
 
     inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
