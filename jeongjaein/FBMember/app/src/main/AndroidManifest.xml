@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".CreateActivity"/>
         <activity android:name=".MypageActivity"/>
+        <activity android:name=".ModifyActivity"/>
 
 
     </application>

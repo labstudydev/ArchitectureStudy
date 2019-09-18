@@ -39,13 +39,13 @@ class LoginActivity : AppCompatActivity() {
                     override fun onFailure(message: String) {
                         Log.d(TAG, message)
                     }
-                })//login finish*/
+                })
             }
         }
 
         btnaccount.setOnClickListener{
-            val createIntent = Intent(this, CreateActivity::class.java)
-            startActivity(createIntent)
+            val CreateIntent = Intent(this, CreateActivity::class.java)
+            startActivity(CreateIntent)
         }
     }
 
