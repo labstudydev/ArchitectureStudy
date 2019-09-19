@@ -5,17 +5,22 @@ import android.os.AsyncTask
 import com.ElevenStreetApi
 import com.exam.RetrofitInstance
 import com.exam.elevenstreet.ProductActivity
-import com.exam.elevenstreet.ProductAdapter
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.util.App
 import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
 
+
 class ProductRemoteDataSource() {
+
+    interface CallBack {
+        fun onSuccess(productList: List<ProductResponse>)
+        fun onFailure(message: String)
+    }
+
     private var elevenStreetApi: ElevenStreetApi? = null
-    //val adapter = ProductAdapter()
-    val context: Context = App.instance.context()
+    private val context: Context = App.instance.context()
 
     fun getSearchByKeyword(
         keyword: String
@@ -35,16 +40,19 @@ class ProductRemoteDataSource() {
         return ProductXmlPullParserHandler().parse(inputStream)
     }
 
-//    inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
-//
-//        override fun doInBackground(vararg keyWords: String): List<ProductResponse>? {
-//            val productList1 = getSearchByKeyword(keyWords[0])
-//            return productList1
-//        }
-//
-//        override fun onPostExecute(productList1: List<ProductResponse>) {
-//            adapter.addData(productList1)
-//        }
-//    }
+    inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
 
+        override fun doInBackground(vararg keyWords: String): List<ProductResponse>? {
+            val productList = getSearchByKeyword(keyWords[0])
+            return productList
+        }
+
+//        fun onPostExecute(productList: List<ProductResponse>, callback: CallBack) {
+//            if (callback != null) {
+//                callback.onSuccess(productList)
+//            } else {
+//                callback.onFailure("err")
+//            }
+//        }
+    }
 }

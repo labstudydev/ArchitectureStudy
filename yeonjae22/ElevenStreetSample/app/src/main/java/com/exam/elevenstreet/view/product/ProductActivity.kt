@@ -1,21 +1,20 @@
 package com.exam.elevenstreet
 
-import android.os.AsyncTask
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.data.ProductLocalDataSource
 import com.exam.elevenstreet.data.ProductRemoteDataSource
-import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.activity_product.*
 
 class ProductActivity : AppCompatActivity() {
-    val adapter = ProductAdapter()
+    private val adapter = ProductAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
-        val productTask = ProductTask()
+
+        val productRemoteDataSource = ProductRemoteDataSource()
 
         val manager = LinearLayoutManager(this)
         recycler_view.setLayoutManager(manager)
@@ -26,19 +25,8 @@ class ProductActivity : AppCompatActivity() {
         adapter.addData(productList)
 
         btn_search.setOnClickListener {
-            productTask.execute("${edt_search.text}")
-        }
-    }
-
-    inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
-
-        val productRemoteDataSource = ProductRemoteDataSource()
-        override fun doInBackground(vararg keyWords: String): List<ProductResponse>? {
-            val productList1 = productRemoteDataSource.getSearchByKeyword(keyWords[0])
-            return productList1
-        }
-
-        override fun onPostExecute(productList1: List<ProductResponse>) {
+            val productList1 =
+                productRemoteDataSource.ProductTask().execute("${edt_search.text}").get()
             adapter.addData(productList1)
         }
     }
