@@ -90,7 +90,7 @@ class AccountManager private constructor() {
         } ?: callback.onFailure("Not a login user")
     }
 
-    fun logout(){
+    fun logout() {
         firebaseAuth.signOut()
     }
 
@@ -100,7 +100,7 @@ class AccountManager private constructor() {
         private var instance: AccountManager? = null
 
         @JvmStatic
-        fun getInstance(): AccountManager{
+        fun getInstance(): AccountManager {
             //FirebaseAuth.getInstance().signOut()
             return instance ?: synchronized(this) {
                 instance ?: AccountManager().also {

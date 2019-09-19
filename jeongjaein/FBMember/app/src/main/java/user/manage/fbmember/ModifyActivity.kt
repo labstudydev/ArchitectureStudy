@@ -9,7 +9,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseUser
 
 
-class ModifyActivity : AppCompatActivity(){
+class ModifyActivity : AppCompatActivity() {
 
     private val firebaseAuth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
 
@@ -24,25 +24,29 @@ class ModifyActivity : AppCompatActivity(){
         modify_name.setText(user?.displayName)
 
         ok_button.setOnClickListener {
-            accountManager.updateUser("${modify_password.text}", "${modify_name.text}",object : AccountManager.CallBack{
+            accountManager.updateUser(
+                "${modify_password.text}",
+                "${modify_name.text}",
+                object : AccountManager.CallBack {
 
-                    override fun onSuccess(user : FirebaseUser?){
-                        val intent = Intent(this@ModifyActivity,MypageActivity::class.java)
+                    override fun onSuccess(user: FirebaseUser?) {
+                        val intent = Intent(this@ModifyActivity, MypageActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
 
-                override fun onFailure(message: String) {
-                    Log.d("activity_modify",message)
-                }
-            })
+                    override fun onFailure(message: String) {
+                        Log.d("activity_modify", message)
+                    }
+                })
         }
 
         back_button.setOnClickListener {
-            val intent = Intent(this@ModifyActivity,MypageActivity::class.java)
+            val intent = Intent(this@ModifyActivity, MypageActivity::class.java)
             startActivity(intent)
         }
-        }
+    }
+
     companion object {
         const val TAG = "ModifyActivity"
     }

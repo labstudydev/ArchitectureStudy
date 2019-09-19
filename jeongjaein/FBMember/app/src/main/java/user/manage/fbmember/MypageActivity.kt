@@ -22,22 +22,22 @@ class MypageActivity : AppCompatActivity() {
         u_name.setText(user?.displayName)
         u_uid.setText(user?.uid)
 
-        modify_button.setOnClickListener{
+        modify_button.setOnClickListener {
             val modifyIntent = Intent(this, ModifyActivity::class.java)
             startActivity(modifyIntent)
             finish()
         }
 
-        delete_button.setOnClickListener{
+        delete_button.setOnClickListener {
             user?.delete()
             Toast.makeText(this@MypageActivity, "탈퇴됐네용", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@MypageActivity,LoginActivity::class.java)
+            val intent = Intent(this@MypageActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
 
         logout_button.setOnClickListener {
-            val intent = Intent(this@MypageActivity,LoginActivity::class.java)
+            val intent = Intent(this@MypageActivity, LoginActivity::class.java)
             accountManager.logout()
             startActivity(intent)
             finish()

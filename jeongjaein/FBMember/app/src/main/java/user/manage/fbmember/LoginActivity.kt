@@ -17,27 +17,29 @@ class LoginActivity : AppCompatActivity() {
 
         val accountManager = AccountManager.getInstance()
 
-        btnlogin.setOnClickListener{
+        btnlogin.setOnClickListener {
             val mypageIntent = Intent(this, MypageActivity::class.java)
 
             val email = "${email.text}"
             val password = "${L_password.text}"
 
-            if(email.isNotEmpty() && password.isNotEmpty()){
-                accountManager.loginUser(email, password , object : AccountManager.CallBack{
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                accountManager.loginUser(email, password, object : AccountManager.CallBack {
                     override fun onSuccess(user: FirebaseUser?) {
                         startActivity(mypageIntent)
                         finish()
                     }
+
                     override fun onFailure(message: String) {
                         Log.d(TAG, message)
-                        Toast.makeText(this@MypageActivity, "아이디나 비밀번호가 틀렸어용~", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@MypageActivity, "아이디나 비밀번호가 틀렸어용~", Toast.LENGTH_LONG)
+                            .show()
                     }
                 })
             }
         }
 
-        btnaccount.setOnClickListener{
+        btnaccount.setOnClickListener {
             val createIntent = Intent(this, CreateActivity::class.java)
             startActivity(createIntent)
             finish()
@@ -45,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    companion object{
+    companion object {
         private const val TAG = "LoginActivity"
     }
 }

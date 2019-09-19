@@ -25,6 +25,7 @@ class CreateActivity : AppCompatActivity() {
                         finish()
 
                     }
+
                     override fun onFailure(message: String) {
                         Log.d(TAG, message)
                     }
