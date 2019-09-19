@@ -40,7 +40,7 @@
         android:layout_below="@id/t_name"
         android:layout_margin="50dp"
         android:layout_marginStart="50dp"
-        android:text="UID"></TextView>
+        android:text="PWD"></TextView>
 
     <TextView
         android:id="@+id/modify_email"

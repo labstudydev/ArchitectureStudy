@@ -16,25 +16,19 @@ class CreateActivity : AppCompatActivity() {
         val accountManager = AccountManager.getInstance()
 
         btncreate.setOnClickListener {
-            val CreateIntent = Intent(this@CreateActivity, LoginActivity::class.java)
-            accountManager.createUser(
-                "${C_email.text}",
-                "${C_password.text}",
-                "${C_name.text}",
+            val intent = Intent(this@CreateActivity, LoginActivity::class.java)
+            accountManager.createUser("${C_email.text}", "${C_password.text}", "${C_name.text}",
                 object : AccountManager.CallBack {
                     override fun onSuccess(user: FirebaseUser?) {
 
-                        Log.d(TAG, "create : ${user?.email}")
-                        Log.d(TAG, "create : ${user?.displayName}")
-                        Log.d(TAG, "create : ${user?.uid}")
-
-                        startActivity(CreateIntent)
+                        startActivity(intent)
                         finish()
+
                     }
                     override fun onFailure(message: String) {
                         Log.d(TAG, message)
                     }
-                })//create finish
+                })
         }
     }
 

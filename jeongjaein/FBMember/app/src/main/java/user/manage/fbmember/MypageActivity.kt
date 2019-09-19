@@ -15,29 +15,31 @@ class MypageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage)
 
+        val accountManager = AccountManager.getInstance()
         val user = firebaseAuth.currentUser
-//        val email = intent.getStringExtra(LoginActivity.EMAIL)
-//        val name = intent.getStringExtra(LoginActivity.NAME)
-//        val uid = intent.getStringExtra(LoginActivity.UID)
 
         u_email.setText(user?.email)
         u_name.setText(user?.displayName)
         u_uid.setText(user?.uid)
 
         modify_button.setOnClickListener{
-            val ModifyIntent = Intent(this, ModifyActivity::class.java)
-            startActivity(ModifyIntent)
+            val modifyIntent = Intent(this, ModifyActivity::class.java)
+            startActivity(modifyIntent)
+            finish()
         }
 
         delete_button.setOnClickListener{
-            val user = firebaseAuth.currentUser
             user?.delete()
             Toast.makeText(this@MypageActivity, "탈퇴됐네용", Toast.LENGTH_LONG).show()
-
+            val intent = Intent(this@MypageActivity,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         logout_button.setOnClickListener {
-            firebaseAuth.signOut()
+            val intent = Intent(this@MypageActivity,LoginActivity::class.java)
+            accountManager.logout()
+            startActivity(intent)
             finish()
         }
     }
