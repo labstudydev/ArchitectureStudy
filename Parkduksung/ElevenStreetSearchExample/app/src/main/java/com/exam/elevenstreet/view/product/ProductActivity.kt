@@ -84,6 +84,8 @@ class ProductActivity : AppCompatActivity() {
     }
 
 
+
+
     companion object {
         private const val TAG = "ProductActivity"
         //TODO : 검색영역 작업하는데 사용할 변수
