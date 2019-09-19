@@ -1,4 +1,4 @@
-package com.exam.elevenstreet
+package com.exam.elevenstreet.network
 
 import retrofit2.Retrofit
 

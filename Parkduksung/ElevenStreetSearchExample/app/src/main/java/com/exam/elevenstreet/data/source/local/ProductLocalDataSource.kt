@@ -1,4 +1,4 @@
-package com.exam.elevenstreet.data.source
+package com.exam.elevenstreet.data.source.local
 
 import android.content.Context
 import com.exam.elevenstreet.util.App
@@ -8,11 +8,12 @@ import java.io.InputStream
 
 class ProductLocalDataSource {
 
-    fun getProductlist(filename: String): List<ProductResponse> {
+    fun getProductlist(filename: String, callback: (productList: List<ProductResponse>) -> Unit) {
         val context: Context = App.instance.context()
         val inputStream: InputStream = context.assets.open(filename)
-        val productRepositoryList = ProductXmlPullParserHandler().parse(inputStream)
+        ProductXmlPullParserHandler().parse(inputStream) { productList ->
+            callback(productList)
+        }
 
-        return productRepositoryList
     }
 }

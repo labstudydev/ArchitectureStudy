@@ -15,8 +15,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "MainActivity"
-//TODO : 검색영역 작업하는데 사용할 변수
-//        const val API_CODE = "ProductSearch"
+//        private const val TAG = "MainActivity"
+
     }
 }

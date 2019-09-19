@@ -28,9 +28,8 @@ class ProductAdapter(val productList: ArrayList<ProductResponse>) : RecyclerView
     }
 
 
-    override fun getItemCount(): Int {
-        return 100
-    }
+    override fun getItemCount(): Int =productList.size
+
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

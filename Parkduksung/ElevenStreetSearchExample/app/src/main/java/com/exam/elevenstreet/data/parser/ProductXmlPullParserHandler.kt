@@ -13,7 +13,7 @@ class ProductXmlPullParserHandler {
     private var text: String? = null
 
 
-    fun parse(inputStream: InputStream): List<ProductResponse> {
+    fun parse(inputStream: InputStream, callback: (productList: List<ProductResponse>)->Unit){
         try {
             val factory = XmlPullParserFactory.newInstance() // factory라는 XmlPullParserFactory 객체 생성. xml 파싱할때 사용함.
             factory.isNamespaceAware = true  // factory 사용한다고 설정하는것.
@@ -21,7 +21,6 @@ class ProductXmlPullParserHandler {
             parser.setInput(inputStream, null)
             var eventType = parser.eventType
 
-            var totalCount = 0
 
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 val tagName = parser.name
@@ -52,9 +51,6 @@ class ProductXmlPullParserHandler {
                     } else if (tagName.equals("ProductImage300", ignoreCase = true)) {
 
                         product?.productImage = text.orEmpty()
-                    }else if (tagName.equals("TotalCount", ignoreCase = true)){
-                        totalCount = text.orEmpty().toInt()
-                        Log.d("totalCount", "$totalCount")
                     }
                     else -> {
 
@@ -62,11 +58,14 @@ class ProductXmlPullParserHandler {
                 }
                 eventType = parser.next()
             }
+
+            callback(products)
+
         } catch (e: XmlPullParserException) {
             e.printStackTrace()
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        return products
+
     }
 }
