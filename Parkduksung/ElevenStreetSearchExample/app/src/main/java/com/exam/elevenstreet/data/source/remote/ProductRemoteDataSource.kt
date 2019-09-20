@@ -6,12 +6,12 @@ import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
 
-class ProductRemoteDataSource(){
+class ProductRemoteDataSource() {
 
     private var elevenStreetApi: ElevenStreetApi? = null
 
     interface CallBack {
-        fun onSuccess(productList: List<ProductResponse>?)
+        fun onSuccess(productList: List<ProductResponse>)
         fun onFailure(message: String)
     }
 

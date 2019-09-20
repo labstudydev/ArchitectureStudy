@@ -16,25 +16,27 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class ProductActivity : AppCompatActivity() {
 
+    private lateinit var productAdapter: ProductAdapter
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
+        productAdapter = ProductAdapter()
+
         if (ProductRepository().ConnectNetwork()) {
             search_button.setOnClickListener {
 
-                var inputkeyword = "${search_text.text}"
-
-                ProductRemoteDataSource().getProductlist(inputkeyword,
+                ProductRemoteDataSource().getProductlist("${search_text.text}",
                     object : ProductRemoteDataSource.CallBack {
-                        override fun onSuccess(productList: List<ProductResponse>?) {
+                        override fun onSuccess(productList: List<ProductResponse>) {
                             runOnUiThread {
                                 recyclerview_product.run {
-                                    var adapter =
-                                        ProductAdapter(productList as ArrayList<ProductResponse>)
-                                    this.adapter = adapter
+                                    recyclerview_product.adapter = productAdapter
+                                    productAdapter.clearListData()
+                                    productAdapter.addData(productList)
                                     layoutManager = LinearLayoutManager(this@ProductActivity)
                                 }
                             }
@@ -50,9 +52,9 @@ class ProductActivity : AppCompatActivity() {
                 .getProductlist("ElevenStreetOpenApiService.xml")
 
             recyclerview_product.run {
-                var adapter =
-                    ProductAdapter(productList as ArrayList<ProductResponse>)
-                recyclerview_product.adapter = adapter
+                recyclerview_product.adapter = productAdapter
+                productAdapter.clearListData()
+                productAdapter.addData(productList)
                 layoutManager = LinearLayoutManager(this@ProductActivity)
 
             }

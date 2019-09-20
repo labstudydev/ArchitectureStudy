@@ -10,25 +10,19 @@ import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.list_layout.view.*
 
 
-class ProductAdapter(val productList: ArrayList<ProductResponse>) :
-    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+
+    private var productList = mutableListOf<ProductResponse>()
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product: ProductResponse = productList[position]
 
-        //TODO 기존 내 방식
-//        holder.productName.text = product.productName
-//        holder.productPrice.text = product.productPrice
-//        holder.productCode.text = product.productCode
-//        holder.productImage.text = product.productImage
-
-        //TODO 변경사항
         holder.run {
             productName.text = product.productName
             productPrice.text = product.productPrice
             productCode.text = product.productCode
             productImage.text = product.productImage
         }
-
 
     }
 
@@ -47,7 +41,14 @@ class ProductAdapter(val productList: ArrayList<ProductResponse>) :
         val productCode = itemView.product_code_tv
         val productImage = itemView.product_image_tv
 
+    }
 
+    fun addData(product: List<ProductResponse>) =
+        productList.addAll(product)
+
+    fun clearListData() {
+        productList.clear()
+        notifyDataSetChanged()
     }
 
 
