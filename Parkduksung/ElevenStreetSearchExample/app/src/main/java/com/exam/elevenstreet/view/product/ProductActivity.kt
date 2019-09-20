@@ -26,38 +26,38 @@ class ProductActivity : AppCompatActivity() {
             search_button.setOnClickListener {
 
                 var inputkeyword = "${search_text.text}"
-                ProductRemoteDataSource()
-                    .getProductlist(inputkeyword) { productList ->
-                        runOnUiThread {
-                            recyclerview_product.run {
-                                var adapter =
-                                    ProductAdapter(productList as ArrayList<ProductResponse>)
-                                this.adapter = adapter
-                                layoutManager = LinearLayoutManager(this@ProductActivity)
+
+                ProductRemoteDataSource().getProductlist(inputkeyword,
+                    object : ProductRemoteDataSource.CallBack {
+                        override fun onSuccess(productList: List<ProductResponse>?) {
+                            runOnUiThread {
+                                recyclerview_product.run {
+                                    var adapter =
+                                        ProductAdapter(productList as ArrayList<ProductResponse>)
+                                    this.adapter = adapter
+                                    layoutManager = LinearLayoutManager(this@ProductActivity)
+                                }
                             }
                         }
 
-                    }
+                        override fun onFailure(message: String) {
+
+                        }
+                    })
+            }
+        } else {
+            val productList = ProductLocalDataSource()
+                .getProductlist("ElevenStreetOpenApiService.xml")
+
+            recyclerview_product.run {
+                var adapter =
+                    ProductAdapter(productList as ArrayList<ProductResponse>)
+                recyclerview_product.adapter = adapter
+                layoutManager = LinearLayoutManager(this@ProductActivity)
 
             }
-
-        } else {
-            ProductLocalDataSource()
-                .getProductlist("ElevenStreetOpenApiService.xml") { productList ->
-
-                    recyclerview_product.run {
-                        var adapter =
-                            ProductAdapter(productList as ArrayList<ProductResponse>)
-                        recyclerview_product.adapter = adapter
-                        layoutManager = LinearLayoutManager(this@ProductActivity)
-
-                    }
-
-                }
         }
-
-
     }
-
-
 }
+
+

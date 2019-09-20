@@ -6,13 +6,18 @@ import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
 
-class ProductRemoteDataSource {
+class ProductRemoteDataSource(){
 
     private var elevenStreetApi: ElevenStreetApi? = null
 
+    interface CallBack {
+        fun onSuccess(productList: List<ProductResponse>?)
+        fun onFailure(message: String)
+    }
+
     fun getProductlist(
         inputKeyword: String,
-        callback: (productList: List<ProductResponse>) -> Unit
+        callback: CallBack
     ) {
 
         elevenStreetApi =
@@ -27,15 +32,15 @@ class ProductRemoteDataSource {
         val url: String? = "${call?.request()?.url()}"
 
 
-
-        Thread(Runnable {
-            val targetURL = URL(url)
-            val inputStream = targetURL.openStream()
-            ProductXmlPullParserHandler().parse(inputStream) { productList ->
-                callback(productList)
-            }
-
-        }).start()
+        if (url != null) {
+            Thread(Runnable {
+                val targetURL = URL(url)
+                val inputStream = targetURL.openStream()
+                callback.onSuccess(ProductXmlPullParserHandler().parse(inputStream))
+            }).start()
+        } else {
+            callback.onFailure("url 오류")
+        }
 
 
     }
