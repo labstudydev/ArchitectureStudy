@@ -8,5 +8,4 @@ object RetrofitInstance {
             .baseUrl(url)
             .build().create(T::class.java)
     }
-
 }
