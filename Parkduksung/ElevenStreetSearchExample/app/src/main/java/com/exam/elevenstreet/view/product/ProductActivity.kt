@@ -34,7 +34,7 @@ class ProductActivity : AppCompatActivity() {
                         override fun onSuccess(productList: List<ProductResponse>) {
                             runOnUiThread {
                                 recyclerview_product.run {
-                                    recyclerview_product.adapter = productAdapter
+                                    this.adapter = productAdapter
                                     productAdapter.clearListData()
                                     productAdapter.addData(productList)
                                     layoutManager = LinearLayoutManager(this@ProductActivity)
@@ -52,7 +52,7 @@ class ProductActivity : AppCompatActivity() {
                 .getProductlist("ElevenStreetOpenApiService.xml")
 
             recyclerview_product.run {
-                recyclerview_product.adapter = productAdapter
+                this.adapter = productAdapter
                 productAdapter.clearListData()
                 productAdapter.addData(productList)
                 layoutManager = LinearLayoutManager(this@ProductActivity)
