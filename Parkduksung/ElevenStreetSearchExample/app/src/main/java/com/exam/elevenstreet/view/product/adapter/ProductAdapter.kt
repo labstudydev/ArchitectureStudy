@@ -10,25 +10,34 @@ import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.list_layout.view.*
 
 
-class ProductAdapter(val productList: ArrayList<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(val productList: ArrayList<ProductResponse>) :
+    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product: ProductResponse = productList[position]
 
-        holder.productName.text = product.productName
-        holder.productPrice.text = product.productPrice
-        holder.productCode.text = product.productCode
-        holder.productImage.text = product.productImage
+        //TODO 기존 내 방식
+//        holder.productName.text = product.productName
+//        holder.productPrice.text = product.productPrice
+//        holder.productCode.text = product.productCode
+//        holder.productImage.text = product.productImage
+
+        //TODO 변경사항
+        holder.run {
+            productName.text = product.productName
+            productPrice.text = product.productPrice
+            productCode.text = product.productCode
+            productImage.text = product.productImage
+        }
 
 
     }
 
-    override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder {
-        val view = LayoutInflater.from(holder.context).inflate(R.layout.list_layout, holder, false)
-        return ViewHolder(view)
-    }
+    override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder =
+        ViewHolder(LayoutInflater.from(holder.context).inflate(R.layout.list_layout, holder, false))
 
 
-    override fun getItemCount(): Int =productList.size
+    override fun getItemCount(): Int =
+        productList.size
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

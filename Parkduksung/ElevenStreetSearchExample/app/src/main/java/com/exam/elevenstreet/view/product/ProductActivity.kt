@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
+import com.exam.elevenstreet.data.Repository.ProductRepository
 import com.exam.elevenstreet.data.source.local.ProductLocalDataSource
 import com.exam.elevenstreet.data.source.remote.ProductRemoteDataSource
 import com.exam.elevenstreet.view.product.adapter.ProductAdapter
@@ -21,42 +22,42 @@ class ProductActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        ProductLocalDataSource()
-            .getProductlist("ElevenStreetOpenApiService.xml"){ productList ->
+        if (ProductRepository().ConnectNetwork()) {
+            search_button.setOnClickListener {
 
-            recyclerview_product.run {
-                var adapter =
-                    ProductAdapter(productList as ArrayList<ProductResponse>)
-                recyclerview_product.adapter = adapter
-                layoutManager = LinearLayoutManager(this@ProductActivity)
+                var inputkeyword = "${search_text.text}"
+                ProductRemoteDataSource()
+                    .getProductlist(inputkeyword) { productList ->
+                        runOnUiThread {
+                            recyclerview_product.run {
+                                var adapter =
+                                    ProductAdapter(productList as ArrayList<ProductResponse>)
+                                this.adapter = adapter
+                                layoutManager = LinearLayoutManager(this@ProductActivity)
+                            }
+                        }
+
+                    }
 
             }
 
-        }
+        } else {
+            ProductLocalDataSource()
+                .getProductlist("ElevenStreetOpenApiService.xml") { productList ->
 
-        search_button.setOnClickListener {
-
-            var keyword  = "${search_text.text}"
-            ProductRemoteDataSource()
-                .getProductlist(keyword){ productList ->
-                runOnUiThread {
                     recyclerview_product.run {
                         var adapter =
                             ProductAdapter(productList as ArrayList<ProductResponse>)
-                        this.adapter = adapter
+                        recyclerview_product.adapter = adapter
                         layoutManager = LinearLayoutManager(this@ProductActivity)
+
                     }
+
                 }
-
-            }
-
         }
 
 
     }
 
-    companion object {
-//        private const val TAG = "ProductActivity"
 
-    }
 }

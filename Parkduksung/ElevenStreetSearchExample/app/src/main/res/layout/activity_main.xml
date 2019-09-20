@@ -13,16 +13,13 @@
         <EditText
                 android:id="@+id/search_text"
                 android:layout_width="320dp"
-                android:layout_height="wrap_content"
-
-                ></EditText>
+                android:layout_height="wrap_content" />
 
         <Button
+                android:id="@+id/search_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/search_button"
-                android:text="찾기"
-                ></Button>
+                android:text="찾기" />
 
     </LinearLayout>
 
@@ -30,6 +27,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_product"
                 android:layout_width="match_parent"

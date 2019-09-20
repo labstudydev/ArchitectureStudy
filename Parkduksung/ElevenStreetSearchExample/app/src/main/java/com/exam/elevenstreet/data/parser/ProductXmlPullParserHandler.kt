@@ -13,9 +13,10 @@ class ProductXmlPullParserHandler {
     private var text: String? = null
 
 
-    fun parse(inputStream: InputStream, callback: (productList: List<ProductResponse>)->Unit){
+    fun parse(inputStream: InputStream, callback: (productList: List<ProductResponse>) -> Unit) {
         try {
-            val factory = XmlPullParserFactory.newInstance() // factory라는 XmlPullParserFactory 객체 생성. xml 파싱할때 사용함.
+            val factory =
+                XmlPullParserFactory.newInstance() // factory라는 XmlPullParserFactory 객체 생성. xml 파싱할때 사용함.
             factory.isNamespaceAware = true  // factory 사용한다고 설정하는것.
             val parser = factory.newPullParser()  // parser 라는 factory 새 인스턴스 생성.
             parser.setInput(inputStream, null)
