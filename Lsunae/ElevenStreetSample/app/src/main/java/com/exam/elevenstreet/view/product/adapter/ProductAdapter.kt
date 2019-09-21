@@ -8,9 +8,7 @@ import com.exam.elevenstreet.R
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class ProductAdapter(private val items: List<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
-
-    private var productItemList = mutableListOf<ProductResponse>()
+class ProductAdapter(private val items: MutableList<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder{
 
@@ -38,8 +36,14 @@ class ProductAdapter(private val items: List<ProductResponse>) : RecyclerView.Ad
         val price = itemView.tv_product_price
     }
 
-    fun ClearData(){
-        productItemList.clear()
+    fun replaceAll(productList: List<ProductResponse>){
+        items.clear()
+        items.addAll(productList)
         notifyDataSetChanged()
     }
+
+//    fun ClearData(){
+//
+//        notifyDataSetChanged()
+//    }
 }

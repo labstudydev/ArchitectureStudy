@@ -26,6 +26,8 @@ class ProductActivity : AppCompatActivity() {
     private var pageNum = 1
     private var productTask = ProductTask()
 
+    //val productRepository by lazy {ProductRepository()}
+
 //    private lateinit var productTask: ProductRemoteDataSource.ProductTask
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +36,8 @@ class ProductActivity : AppCompatActivity() {
 
         val productList = dataBinding()
 
-        productAdapter = ProductAdapter(productList)
+
+        productAdapter = ProductAdapter(productList.toMutableList())
 
         elevenStreetApi =
             RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")
@@ -48,7 +51,8 @@ class ProductActivity : AppCompatActivity() {
 //            ProductRemoteDataSource.ProductTask.getSearchByKeyword()
 //            var productTask = ProductRemoteDataSource().ProductTask()
 
-            productTask.execute(keyWord, pageNum.toString())
+            val productList = ProductTask().execute(keyWord, pageNum.toString()).get()
+            productAdapter.replaceAll(productList)
         }
     }
 
@@ -80,7 +84,7 @@ class ProductActivity : AppCompatActivity() {
 
     }
 
-    inner class ProductTask : AsyncTask<String, String, List<ProductResponse>>() {
+    inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
 
         override fun doInBackground(vararg p0: String): List<ProductResponse> {
 
@@ -112,6 +116,5 @@ class ProductActivity : AppCompatActivity() {
         private const val TAG = "ProductActivity"
         const val API_CODE = "ProductSearch"
     }
-
 
 }
