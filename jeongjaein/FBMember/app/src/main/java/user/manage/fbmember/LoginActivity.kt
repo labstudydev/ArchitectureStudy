@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
             val mypageIntent = Intent(this, MypageActivity::class.java)
 
             val email = "${email.text}"
-            val password = "${L_password.text}"
+            val password = "${l_password.text}"
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 accountManager.loginUser(email, password, object : AccountManager.CallBack {
@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
                     override fun onFailure(message: String) {
                         Log.d(TAG, message)
-                        Toast.makeText(this@MypageActivity, "아이디나 비밀번호가 틀렸어용~", Toast.LENGTH_LONG)
+                        Toast.makeText(this@LoginActivity, "아이디나 비밀번호가 틀렸어용~", Toast.LENGTH_LONG)
                             .show()
                     }
                 })

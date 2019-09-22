@@ -9,7 +9,7 @@
     tools:context=".CreateActivity">
 
     <EditText
-        android:id="@+id/C_email"
+        android:id="@+id/c_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="144dp"
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:text="E-mail"
-        app:layout_constraintBaseline_toBaselineOf="@+id/C_email"
-        app:layout_constraintEnd_toStartOf="@+id/C_email"
+        app:layout_constraintBaseline_toBaselineOf="@+id/c_email"
+        app:layout_constraintEnd_toStartOf="@+id/c_email"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -36,12 +36,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="PWD"
-        app:layout_constraintBaseline_toBaselineOf="@+id/C.password"
-        app:layout_constraintEnd_toStartOf="@+id/C.password"
+        app:layout_constraintBaseline_toBaselineOf="@+id/c_password"
+        app:layout_constraintEnd_toStartOf="@+id/c_password"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/C.password"
+        android:id="@+id/c_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="38dp"
@@ -50,7 +50,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/passwordview"
-        app:layout_constraintTop_toBottomOf="@+id/C_email" />
+        app:layout_constraintTop_toBottomOf="@+id/c_email" />
 
     <TextView
         android:id="@+id/nameview"
@@ -58,12 +58,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Name"
-        app:layout_constraintBaseline_toBaselineOf="@+id/C.name"
-        app:layout_constraintEnd_toStartOf="@+id/C.name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/c_name"
+        app:layout_constraintEnd_toStartOf="@+id/c_name"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/C.name"
+        android:id="@+id/c_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
@@ -72,7 +72,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nameview"
-        app:layout_constraintTop_toBottomOf="@+id/C.password" />
+        app:layout_constraintTop_toBottomOf="@+id/c_password" />
 
     <Button
         android:id="@+id/btncreate"
@@ -82,6 +82,6 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="87dp"
         android:text="Create !"
-        app:layout_constraintStart_toStartOf="@+id/C.name"
-        app:layout_constraintTop_toBottomOf="@+id/C.name" />
+        app:layout_constraintStart_toStartOf="@+id/c_name"
+        app:layout_constraintTop_toBottomOf="@+id/c_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,11 +17,11 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/btnlogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toEndOf="@+id/textView_email"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
@@ -32,17 +32,17 @@
         app:layout_constraintTop_toTopOf="@+id/email" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView_pwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:text="PWD"
-        app:layout_constraintBaseline_toBaselineOf="@+id/L.password"
-        app:layout_constraintEnd_toStartOf="@+id/L.password"
+        app:layout_constraintBaseline_toBaselineOf="@+id/l_password"
+        app:layout_constraintEnd_toStartOf="@+id/l_password"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/L.password"
+        android:id="@+id/l_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
@@ -50,7 +50,7 @@
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView_pwd"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
@@ -74,11 +74,11 @@
         android:layout_marginBottom="136dp"
         android:text="CREATE ACCOUNT"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="@+id/guideword"
+        app:layout_constraintTop_toBottomOf="@+id/guideword" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/guideword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
