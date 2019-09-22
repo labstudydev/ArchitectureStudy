@@ -1,0 +1,40 @@
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="8dp">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/product_image_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"/>
+
+        <TextView
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="3dp"
+                android:id="@+id/product_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/product_image_iv"
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"/>
+
+        <TextView
+                android:id="@+id/product_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/product_image_iv"
+                android:layout_below="@id/product_name_tv"
+                android:layout_alignStart="@id/product_name_tv"
+
+                android:textColor="@color/colorBlack"
+                android:textSize="12sp"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
