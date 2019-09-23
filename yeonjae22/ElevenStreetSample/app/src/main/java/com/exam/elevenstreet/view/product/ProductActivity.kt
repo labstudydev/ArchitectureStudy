@@ -1,10 +1,12 @@
 package com.exam.elevenstreet
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.data.ProductLocalDataSource
 import com.exam.elevenstreet.data.ProductRemoteDataSource
+import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.activity_product.*
 
 class ProductActivity : AppCompatActivity() {
@@ -25,9 +27,17 @@ class ProductActivity : AppCompatActivity() {
         adapter.addData(productList)
 
         btn_search.setOnClickListener {
-            val productList1 =
-                productRemoteDataSource.ProductTask().execute("${edt_search.text}").get()
-            adapter.addData(productList1)
+            val productList =
+                productRemoteDataSource.getSearchByKeyword("${edt_search.text}", object :
+                    ProductRemoteDataSource.CallBack {
+                    override fun onSuccess(productList: List<ProductResponse>) {
+                        adapter.addData(productList)
+                    }
+
+                    override fun onFailure(message: String) {
+                        Log.d("tag", message)
+                    }
+                })
         }
     }
 
