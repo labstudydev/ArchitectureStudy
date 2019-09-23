@@ -7,7 +7,6 @@ class ProductRepository {
 
 
     fun ConnectNetwork(): Boolean {
-
         if (App.instance.context().isConnectedToNetwork())
             return true
         else

@@ -18,10 +18,13 @@ class ProductActivity : AppCompatActivity() {
 
     private lateinit var productAdapter: ProductAdapter
 
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
 
 
         productAdapter = ProductAdapter()

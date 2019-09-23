@@ -1,12 +1,16 @@
 package com.exam.elevenstreet.data.source.remote
 
+
+import com.exam.elevenstreet.R
 import com.exam.elevenstreet.network.RetrofitInstance
 import com.exam.elevenstreet.network.api.ElevenStreetApi
+import com.exam.elevenstreet.util.App
 import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
 
-class ProductRemoteDataSource() {
+
+class ProductRemoteDataSource {
 
     private var elevenStreetApi: ElevenStreetApi? = null
 
@@ -22,8 +26,9 @@ class ProductRemoteDataSource() {
 
         elevenStreetApi =
             RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")
+
         val call = elevenStreetApi?.getProductList(
-            API_KEY,
+            App.instance.context().getString(R.string.eleven_street_API_KEY),
             API_CODE,
             inputKeyword,
             1
@@ -42,14 +47,10 @@ class ProductRemoteDataSource() {
             callback.onFailure("url 오류")
         }
 
-
     }
 
-
     companion object {
-
         const val API_CODE = "ProductSearch"
-        const val API_KEY = "1419942f67713eca9cfbb9a752cac395"
     }
 
 
