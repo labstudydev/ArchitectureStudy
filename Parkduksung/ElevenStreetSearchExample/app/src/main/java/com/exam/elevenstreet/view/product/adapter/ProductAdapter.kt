@@ -14,6 +14,10 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private var productList = mutableListOf<ProductResponse>()
 
+    override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder =
+        ViewHolder(LayoutInflater.from(holder.context).inflate(R.layout.list_layout, holder, false))
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product: ProductResponse = productList[position]
 
@@ -25,10 +29,6 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         }
 
     }
-
-    override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(holder.context).inflate(R.layout.list_layout, holder, false))
-
 
     override fun getItemCount(): Int =
         productList.size
