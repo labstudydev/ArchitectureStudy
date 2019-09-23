@@ -5,12 +5,21 @@ import com.exam.elevenstreet.util.App
 import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 
-class ProductLocalDataSource() {
+class ProductLocalDataSource private constructor(){
     val context: Context = App.instance.context()
 
-    fun getProductList(callback: ProductRepository.CallBack): List<ProductResponse> {
+    fun loadCacheProductData(callback: ProductRepository.CallBack) {
         val inputStream = context.assets.open("ElevenStreetOpenApiService.xml")
         callback.onSuccess(ProductXmlPullParserHandler().parse(inputStream))
-        return ProductXmlPullParserHandler().parse(inputStream)
+        ProductXmlPullParserHandler().parse(inputStream)
+    }
+    companion object {
+        private var instance: ProductLocalDataSource? = null
+        fun getInstance(): ProductLocalDataSource =
+            instance ?: synchronized(this) {
+                instance ?: ProductLocalDataSource().also {
+                    instance = it
+                }
+            }
     }
 }

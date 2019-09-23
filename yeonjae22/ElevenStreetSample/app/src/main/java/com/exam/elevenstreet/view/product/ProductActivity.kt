@@ -18,15 +18,15 @@ class ProductActivity : AppCompatActivity() {
         setContentView(R.layout.activity_product)
 
         val productRepository = ProductRepository(
-            ProductRemoteDataSource(),
-            ProductLocalDataSource()
+            ProductRemoteDataSource.getInstance(),
+            ProductLocalDataSource.getInstance()
         )
 
         val manager = LinearLayoutManager(this)
-        recycler_view.setLayoutManager(manager)
+        recycler_view.layoutManager = manager
         recycler_view.setHasFixedSize(true)
 
-            productRepository.getProductList(object : ProductRepository.CallBack {
+            productRepository.getSearchByKeyword("수건", object : ProductRepository.CallBack {
                 override fun onSuccess(productList: List<ProductResponse>) {
                     recycler_view.adapter = adapter
                     adapter.addData(productList)

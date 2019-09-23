@@ -12,9 +12,8 @@ import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
 
 
-class ProductRemoteDataSource() {
+class ProductRemoteDataSource private constructor(private var elevenStreetApi: ElevenStreetApi? = null) {
 
-    private var elevenStreetApi: ElevenStreetApi? = null
     private val context: Context = App.instance.context()
 
     fun getSearchByKeyword(
@@ -41,5 +40,14 @@ class ProductRemoteDataSource() {
 
             return ProductXmlPullParserHandler().parse(inputStream)
         }
+    }
+    companion object {
+        private var instance: ProductRemoteDataSource? = null
+        fun getInstance(): ProductRemoteDataSource =
+            instance ?: synchronized(this) {
+                instance ?: ProductRemoteDataSource().also {
+                    instance = it
+                }
+            }
     }
 }

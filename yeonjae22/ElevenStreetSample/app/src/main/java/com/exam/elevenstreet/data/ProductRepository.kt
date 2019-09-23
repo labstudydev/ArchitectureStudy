@@ -1,5 +1,7 @@
 package com.exam.elevenstreet.data
 
+import com.exam.elevenstreet.util.App
+import com.exam.elevenstreet.util.isConnectedToNetwork
 import com.example.elevenstreet.ProductResponse
 
 class ProductRepository(
@@ -16,13 +18,10 @@ class ProductRepository(
         keyWord: String,
         callback: CallBack
     ) {
-        productRemoteDataSource.getSearchByKeyword(keyWord, callback)
+        if (App.instance.context().isConnectedToNetwork()) {
+            productRemoteDataSource.getSearchByKeyword(keyWord, callback)
+        } else {
+            productLocalDataSource.loadCacheProductData(callback)
+        }
     }
-
-    fun getProductList(
-        callback: CallBack
-    ) {
-        productLocalDataSource.getProductList(callback)
-    }
-
 }
