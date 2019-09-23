@@ -2,10 +2,9 @@ package com.exam.elevenstreet.data
 
 import android.content.Context
 import com.exam.elevenstreet.util.App
-import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 
-class ProductLocalDataSource private constructor(){
+class ProductLocalDataSource private constructor() {
     val context: Context = App.instance.context()
 
     fun loadCacheProductData(callback: ProductRepository.CallBack) {
@@ -13,6 +12,7 @@ class ProductLocalDataSource private constructor(){
         callback.onSuccess(ProductXmlPullParserHandler().parse(inputStream))
         ProductXmlPullParserHandler().parse(inputStream)
     }
+
     companion object {
         private var instance: ProductLocalDataSource? = null
         fun getInstance(): ProductLocalDataSource =

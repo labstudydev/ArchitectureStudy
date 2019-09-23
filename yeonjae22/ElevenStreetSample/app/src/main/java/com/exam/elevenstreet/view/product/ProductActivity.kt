@@ -12,42 +12,42 @@ import kotlinx.android.synthetic.main.activity_product.*
 
 class ProductActivity : AppCompatActivity() {
     private val adapter = ProductAdapter()
+    private val productRepository = ProductRepository(
+        ProductRemoteDataSource.getInstance(),
+        ProductLocalDataSource.getInstance()
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
 
-        val productRepository = ProductRepository(
-            ProductRemoteDataSource.getInstance(),
-            ProductLocalDataSource.getInstance()
-        )
-
         val manager = LinearLayoutManager(this)
         recycler_view.layoutManager = manager
-        recycler_view.setHasFixedSize(true)
 
-            productRepository.getSearchByKeyword("수건", object : ProductRepository.CallBack {
+        setupView()
+        btn_search.setOnClickListener {
+            productRepository.getSearchByKeyword("${edt_search.text}", object :
+                ProductRepository.CallBack {
                 override fun onSuccess(productList: List<ProductResponse>) {
-                    recycler_view.adapter = adapter
                     adapter.addData(productList)
                 }
 
                 override fun onFailure(message: String) {
+                    Log.d("tag", message)
                 }
             })
-
-        btn_search.setOnClickListener {
-                productRepository.getSearchByKeyword("${edt_search.text}", object :
-                    ProductRepository.CallBack {
-                    override fun onSuccess(productList: List<ProductResponse>) {
-                        adapter.addData(productList)
-                    }
-
-                    override fun onFailure(message: String) {
-                        Log.d("tag", message)
-                    }
-                })
         }
+    }
+    private fun setupView(){
+        productRepository.getSearchByKeyword("수건", object : ProductRepository.CallBack {
+            override fun onSuccess(productList: List<ProductResponse>) {
+                recycler_view.adapter = adapter
+                adapter.addData(productList)
+            }
+
+            override fun onFailure(message: String) {
+            }
+        })
     }
 
     companion object {

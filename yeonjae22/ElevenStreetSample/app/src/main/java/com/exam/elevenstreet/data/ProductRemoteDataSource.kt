@@ -41,6 +41,7 @@ class ProductRemoteDataSource private constructor(private var elevenStreetApi: E
             return ProductXmlPullParserHandler().parse(inputStream)
         }
     }
+
     companion object {
         private var instance: ProductRemoteDataSource? = null
         fun getInstance(): ProductRemoteDataSource =
