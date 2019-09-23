@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.exam.elevenstreet.R
-import com.example.elevenstreet.ProductResponse
+import com.exam.elevenstreet.network.model.ProductResponse
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class ProductAdapter(private val items: MutableList<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
