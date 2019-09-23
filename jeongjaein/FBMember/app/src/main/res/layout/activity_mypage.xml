@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3"
+    tools:context=".MypageActivity">
+
+
+    <TextView
+        android:id="@+id/t_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="200dp"
+        android:text="E-Mail"></TextView>
+
+    <TextView
+        android:id="@+id/t_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t_email"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:text="Name"></TextView>
+
+    <TextView
+        android:id="@+id/t_uid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t_name"
+        android:layout_margin="50dp"
+        android:layout_marginStart="50dp"
+        android:text="UID"></TextView>
+
+    <TextView
+        android:id="@+id/u_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/t_email"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/t_email">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/u_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/t_name"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/t_name">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/u_uid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/t_uid"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/t_uid">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/modify_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/t_uid"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Modify">
+
+    </Button>
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/modify_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Delete Account">
+
+    </Button>
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/delete_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="LOGOUT">
+
+    </Button>
+</RelativeLayout>
