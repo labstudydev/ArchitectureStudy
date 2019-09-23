@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.data.ProductLocalDataSource
 import com.exam.elevenstreet.data.ProductRemoteDataSource
+import com.exam.elevenstreet.data.ProductRepository
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.activity_product.*
 
@@ -16,20 +17,28 @@ class ProductActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
 
-        val productRemoteDataSource = ProductRemoteDataSource()
+        val productRepository = ProductRepository(
+            ProductRemoteDataSource(),
+            ProductLocalDataSource()
+        )
 
         val manager = LinearLayoutManager(this)
         recycler_view.setLayoutManager(manager)
         recycler_view.setHasFixedSize(true)
 
-        val productList = ProductLocalDataSource().getProductList()
-        recycler_view.adapter = adapter
-        adapter.addData(productList)
+            productRepository.getProductList(object : ProductRepository.CallBack {
+                override fun onSuccess(productList: List<ProductResponse>) {
+                    recycler_view.adapter = adapter
+                    adapter.addData(productList)
+                }
+
+                override fun onFailure(message: String) {
+                }
+            })
 
         btn_search.setOnClickListener {
-            val productList =
-                productRemoteDataSource.getSearchByKeyword("${edt_search.text}", object :
-                    ProductRemoteDataSource.CallBack {
+                productRepository.getSearchByKeyword("${edt_search.text}", object :
+                    ProductRepository.CallBack {
                     override fun onSuccess(productList: List<ProductResponse>) {
                         adapter.addData(productList)
                     }

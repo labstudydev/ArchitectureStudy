@@ -8,9 +8,9 @@ import com.example.elevenstreet.ProductXmlPullParserHandler
 class ProductLocalDataSource() {
     val context: Context = App.instance.context()
 
-    fun getProductList(): List<ProductResponse> {
+    fun getProductList(callback: ProductRepository.CallBack): List<ProductResponse> {
         val inputStream = context.assets.open("ElevenStreetOpenApiService.xml")
-        val productList = ProductXmlPullParserHandler().parse(inputStream)
-        return productList
+        callback.onSuccess(ProductXmlPullParserHandler().parse(inputStream))
+        return ProductXmlPullParserHandler().parse(inputStream)
     }
 }

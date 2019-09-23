@@ -14,17 +14,12 @@ import java.net.URL
 
 class ProductRemoteDataSource() {
 
-    interface CallBack {
-        fun onSuccess(productList: List<ProductResponse>)
-        fun onFailure(message: String)
-    }
-
     private var elevenStreetApi: ElevenStreetApi? = null
     private val context: Context = App.instance.context()
 
     fun getSearchByKeyword(
         keyword: String,
-        callback: CallBack
+        callback: ProductRepository.CallBack
     ) {
         elevenStreetApi =
             RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")
