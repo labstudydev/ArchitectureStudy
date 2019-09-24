@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.data.Repository.ProductRepository
+import com.exam.elevenstreet.data.Repository.ProductRepositoryData
 import com.exam.elevenstreet.data.source.local.ProductLocalDataSource
 import com.exam.elevenstreet.data.source.remote.ProductRemoteDataSource
 import com.exam.elevenstreet.view.product.adapter.ProductAdapter
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class ProductActivity : AppCompatActivity() {
 
     private lateinit var productAdapter: ProductAdapter
-
+    private lateinit var productRepositoryData: ProductRepositoryData
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,44 +26,41 @@ class ProductActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
-
+        productRepositoryData =
+            ProductRepository.getInstance(ProductRemoteDataSource(), ProductLocalDataSource())
         productAdapter = ProductAdapter()
+        startView()
 
-        if (ProductRepository().ConnectNetwork()) {
-            search_button.setOnClickListener {
+    }
 
-                ProductRemoteDataSource().getProductlist("${search_text.text}",
-                    object : ProductRemoteDataSource.CallBack {
-                        override fun onSuccess(productList: List<ProductResponse>) {
-                            runOnUiThread {
-                                recyclerview_product.run {
-                                    this.adapter = productAdapter
-                                    productAdapter.clearListData()
-                                    productAdapter.addData(productList)
-                                    layoutManager = LinearLayoutManager(this@ProductActivity)
-                                }
-                            }
-                        }
+    private fun startView() {
 
-                        override fun onFailure(message: String) {
+        recyclerview_product.run {
 
-                        }
-                    })
+
+            this.adapter = productAdapter
+            productRepositoryData.getProductRepositoryData2 { productlist: List<ProductResponse> ->
+                productAdapter.addData(productlist)
             }
-        } else {
-            val productList = ProductLocalDataSource()
-                .getProductlist("ElevenStreetOpenApiService.xml")
+            layoutManager = LinearLayoutManager(this@ProductActivity)
 
-            recyclerview_product.run {
-                this.adapter = productAdapter
-                productAdapter.clearListData()
-                productAdapter.addData(productList)
-                layoutManager = LinearLayoutManager(this@ProductActivity)
+        }
 
+
+
+        search_button.setOnClickListener {
+            productRepositoryData.getProductRepositoryData("${search_text.text}") { productlist: List<ProductResponse> ->
+                runOnUiThread {
+                    productAdapter.clearListData()
+                    productAdapter.addData(productlist)
+                }
             }
         }
+
+
     }
+
+
 }
 
 
