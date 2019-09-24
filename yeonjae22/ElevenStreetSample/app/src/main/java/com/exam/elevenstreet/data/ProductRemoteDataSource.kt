@@ -12,7 +12,7 @@ import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
 
 
-class ProductRemoteDataSource private constructor(private var elevenStreetApi: ElevenStreetApi? = null) {
+class ProductRemoteDataSource private constructor(private var elevenStreetApi: ElevenStreetApi) {
 
     private val context: Context = App.instance.context()
 
@@ -20,8 +20,6 @@ class ProductRemoteDataSource private constructor(private var elevenStreetApi: E
         keyword: String,
         callback: ProductRepository.CallBack
     ) {
-        elevenStreetApi =
-            RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")
         callback.onSuccess(ProductTask().execute(keyword).get())
     }
 
@@ -44,9 +42,9 @@ class ProductRemoteDataSource private constructor(private var elevenStreetApi: E
 
     companion object {
         private var instance: ProductRemoteDataSource? = null
-        fun getInstance(): ProductRemoteDataSource =
+        fun getInstance(elevenStreetApi: ElevenStreetApi): ProductRemoteDataSource =
             instance ?: synchronized(this) {
-                instance ?: ProductRemoteDataSource().also {
+                instance ?: ProductRemoteDataSource(elevenStreetApi).also {
                     instance = it
                 }
             }

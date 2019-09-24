@@ -1,7 +1,7 @@
 package com.exam.elevenstreet.data
 
 import com.exam.elevenstreet.util.App
-import com.exam.elevenstreet.util.isConnectedToNetwork
+import com.exam.elevenstreet.ext.isConnectedToNetwork
 import com.example.elevenstreet.ProductResponse
 
 class ProductRepository(

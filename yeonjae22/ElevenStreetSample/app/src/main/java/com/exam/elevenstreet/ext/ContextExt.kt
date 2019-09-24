@@ -1,4 +1,4 @@
-package com.exam.elevenstreet.util
+package com.exam.elevenstreet.ext
 
 import android.content.Context
 import android.net.ConnectivityManager
