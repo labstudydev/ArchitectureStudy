@@ -1,8 +1,8 @@
-package com.exam.elevenstreet.data.Repository
+package com.exam.elevenstreet.data.repository
 
 import com.example.elevenstreet.ProductResponse
 
-interface ProductRepositoryData {
+interface ProductRepository {
     fun getProductRepositoryRemoteData(
         keyWord: String,
         callback: (productList: List<ProductResponse>) -> Unit

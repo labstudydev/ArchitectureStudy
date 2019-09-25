@@ -1,6 +1,6 @@
 package com.exam.elevenstreet.view.product.presenter
 
-import com.exam.elevenstreet.data.Repository.ProductRepository
+import com.exam.elevenstreet.data.repository.ProductRepository
 import com.example.elevenstreet.ProductResponse
 
 class ProductPresenter(
@@ -10,18 +10,15 @@ class ProductPresenter(
 
 
     override fun startPresenter() {
-        productRepositoryData.getProductRepositoryData2 { productList: List<ProductResponse> ->
+        productRepositoryData.getProductRepositoryLocalData { productList: List<ProductResponse> ->
             productView.showStartProductList(productList)
         }
-
     }
 
     override fun searchByKeyword(keyword: String) {
-
-        productRepositoryData.getProductRepositoryData(keyword) { productList: List<ProductResponse> ->
+        productRepositoryData.getProductRepositoryRemoteData(keyword) { productList: List<ProductResponse> ->
             productView.showSearchProductList(productList)
         }
-
     }
 
 
