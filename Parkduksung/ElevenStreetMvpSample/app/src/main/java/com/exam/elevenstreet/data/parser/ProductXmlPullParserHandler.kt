@@ -13,7 +13,7 @@ class ProductXmlPullParserHandler {
     private var text: String? = null
 
 
-    fun parse(inputStream: InputStream, callback: (productList: List<ProductResponse>) -> Unit) {
+    fun parse(inputStream: InputStream): List<ProductResponse> {
         try {
             val factory =
                 XmlPullParserFactory.newInstance() // factory라는 XmlPullParserFactory 객체 생성. xml 파싱할때 사용함.
@@ -60,7 +60,6 @@ class ProductXmlPullParserHandler {
                 eventType = parser.next()
             }
 
-            callback(products)
 
         } catch (e: XmlPullParserException) {
             e.printStackTrace()
@@ -68,6 +67,7 @@ class ProductXmlPullParserHandler {
             e.printStackTrace()
         }
 
+        return products
 
     }
 }

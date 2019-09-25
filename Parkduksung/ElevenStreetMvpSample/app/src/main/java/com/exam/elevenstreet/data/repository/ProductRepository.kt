@@ -4,11 +4,12 @@ import com.example.elevenstreet.ProductResponse
 
 interface ProductRepository {
     fun getProductRepositoryRemoteData(
-        keyWord: String,
-        callback: (productList: List<ProductResponse>) -> Unit
+        keyword: String,
+        productList: List<ProductResponse>
     )
 
+
     fun getProductRepositoryLocalData(
-        callback: (productList: List<ProductResponse>) -> Unit
+        productList: List<ProductResponse>
     )
 }

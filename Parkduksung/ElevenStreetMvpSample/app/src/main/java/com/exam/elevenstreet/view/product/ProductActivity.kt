@@ -6,10 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
-import com.exam.elevenstreet.data.repository.ProductRepositoryImpl
-import com.exam.elevenstreet.data.source.local.ProductLocalDataSourceImpl
-import com.exam.elevenstreet.data.source.remote.ProductRemoteDataSourceImpl
-import com.exam.elevenstreet.network.RetrofitInstance
 import com.exam.elevenstreet.view.product.adapter.ProductAdapter
 import com.exam.elevenstreet.view.product.presenter.ProductConstract
 import com.exam.elevenstreet.view.product.presenter.ProductPresenter
@@ -29,10 +25,7 @@ class ProductActivity : AppCompatActivity(), ProductConstract.View {
         setContentView(R.layout.activity_main)
 
         presenter = ProductPresenter(
-            ProductRepositoryImpl.getInstance(
-                ProductRemoteDataSourceImpl.getInstance(RetrofitInstance.getInstance(CALL_URL)),
-                ProductLocalDataSourceImpl.getInstance()
-            ), this
+            this
         )
         startView()
 
@@ -57,7 +50,7 @@ class ProductActivity : AppCompatActivity(), ProductConstract.View {
         }
     }
 
-    override fun showSearchProductList(productList: List<ProductResponse>) {
+    override fun showSearchProductList(keyword: String, productList: List<ProductResponse>) {
         runOnUiThread {
             productAdapter.clearListData()
             productAdapter.addData(productList)
@@ -66,7 +59,7 @@ class ProductActivity : AppCompatActivity(), ProductConstract.View {
 
 
     companion object {
-        private const val CALL_URL = "https://openapi.11st.co.kr/openapi/"
+        const val CALL_URL = "https://openapi.11st.co.kr/openapi/"
     }
 
 }
