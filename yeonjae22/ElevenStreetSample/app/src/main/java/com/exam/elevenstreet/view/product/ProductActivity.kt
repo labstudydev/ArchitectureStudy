@@ -1,75 +1,57 @@
 package com.exam.elevenstreet
 
-import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ElevenStreetApi
-import com.exam.RetrofitInstance
 import com.exam.elevenstreet.data.ProductLocalDataSource
+import com.exam.elevenstreet.data.ProductRemoteDataSource
+import com.exam.elevenstreet.data.ProductRepository
+import com.exam.elevenstreet.network.RetrofitInstance
 import com.example.elevenstreet.ProductResponse
-import com.example.elevenstreet.ProductXmlPullParserHandler
-import kotlinx.android.synthetic.main.activity_main.*
-import java.net.URL
-
+import kotlinx.android.synthetic.main.activity_product.*
 
 class ProductActivity : AppCompatActivity() {
-
-    private var elevenStreetApi: ElevenStreetApi? = null
-    val adapter = ProductAdapter()
-
-    interface CallBack {
-        fun onSuccess(productList1: List<ProductResponse>)
-        fun onFailure(message: String)
-    }
+    private val adapter = ProductAdapter()
+    private val productRepository = ProductRepository(
+        ProductRemoteDataSource.getInstance
+            (RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")),
+        ProductLocalDataSource.getInstance()
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        elevenStreetApi =
-            RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")
+        setContentView(R.layout.activity_product)
 
         val manager = LinearLayoutManager(this)
-        recycler_view.setLayoutManager(manager)
-        recycler_view.setHasFixedSize(true)
+        recycler_view.layoutManager = manager
 
-        val productList = ProductLocalDataSource().getProductList(applicationContext)
-        //val adapter = ProductAdapter()
-        recycler_view.adapter = adapter
-        adapter.addData(productList)
-
+        setupView()
         btn_search.setOnClickListener {
-            ProductTask().execute()
-        }
+            productRepository.getSearchByKeyword("${edt_search.text}", object :
+                ProductRepository.CallBack {
+                override fun onSuccess(productList: List<ProductResponse>) {
+                    adapter.addData(productList)
+                }
 
+                override fun onFailure(message: String) {
+                    Log.d("tag", message)
+                }
+            })
+        }
     }
 
-    fun getSearchByKeyword(
-    ): List<ProductResponse> {
-        val call = elevenStreetApi?.getProductList(
-            getString(R.string.eleven_street_API_KEY),
-            API_CODE,
-            "${edt_search.text}",
-            1
-        )
-        val url: String? = "${call?.request()?.url()}"
-        val targetURL = URL(url)
-        val inputStream = targetURL.openStream()
-        val productList = ProductXmlPullParserHandler().parse(inputStream)
-        return productList
-    }
+    private fun setupView() {
+        productRepository.getSearchByKeyword("수건", object : ProductRepository.CallBack {
+            override fun onSuccess(productList: List<ProductResponse>) {
+                recycler_view.adapter = adapter
+                adapter.addData(productList)
+            }
 
-    internal inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
-
-        override fun doInBackground(vararg keyWords: String): List<ProductResponse>? {
-            val productList1 = getSearchByKeyword()
-            return productList1
-        }
-
-        override fun onPostExecute(productList1: List<ProductResponse>) {
-            adapter.addData(productList1)
-        }
+            override fun onFailure(message: String) {
+            }
+        })
     }
 
     companion object {
