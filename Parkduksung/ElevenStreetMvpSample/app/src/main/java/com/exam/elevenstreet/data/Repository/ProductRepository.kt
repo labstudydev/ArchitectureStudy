@@ -12,11 +12,11 @@ class ProductRepository private constructor(
 ) : ProductRepositoryData {
 
 
-    override fun getProductRepositoryData2(callback: (productList: List<ProductResponse>) -> Unit) {
+    override fun getProductRepositoryLocalData(callback: (productList: List<ProductResponse>) -> Unit) {
         productLocalDataSource.getProductLocalData(callback)
     }
 
-    override fun getProductRepositoryData(
+    override fun getProductRepositoryRemoteData(
         keyWord: String,
         callback: (productList: List<ProductResponse>) -> Unit
     ) {

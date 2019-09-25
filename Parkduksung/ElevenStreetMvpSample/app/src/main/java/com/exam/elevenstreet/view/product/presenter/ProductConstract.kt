@@ -10,7 +10,7 @@ interface ProductConstract {
 
     interface Presenter {
         fun searchByKeyword(keyword: String)
-        fun showStart()
+        fun startPresenter()
     }
 
 }

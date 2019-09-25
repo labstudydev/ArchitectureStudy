@@ -41,7 +41,7 @@ class ProductActivity : AppCompatActivity(), ProductConstract.View {
         recyclerview_product.run {
             this.adapter = productAdapter
             layoutManager = LinearLayoutManager(this@ProductActivity)
-            presenter.showStart()
+            presenter.startPresenter()
         }
 
         search_button.setOnClickListener {

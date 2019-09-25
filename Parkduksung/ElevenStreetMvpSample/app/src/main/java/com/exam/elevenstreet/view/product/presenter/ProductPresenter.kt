@@ -9,7 +9,7 @@ class ProductPresenter(
 ) : ProductConstract.Presenter {
 
 
-    override fun showStart() {
+    override fun startPresenter() {
         productRepositoryData.getProductRepositoryData2 { productList: List<ProductResponse> ->
             productView.showStartProductList(productList)
         }
