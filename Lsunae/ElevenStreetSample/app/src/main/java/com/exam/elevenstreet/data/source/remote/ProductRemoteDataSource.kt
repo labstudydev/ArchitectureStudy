@@ -19,9 +19,7 @@ class ProductRemoteDataSource constructor(private var elevenStreetApi: ElevenStr
 
     fun getSearchByKeyword(keyWord: String, callback: ProductCallback) {
 
-        val list = ProductTask().execute(keyWord).get()
-
-        callback.onSuccess(list)
+        callback.onSuccess(ProductTask().execute(keyWord).get())
     }
 
     inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
