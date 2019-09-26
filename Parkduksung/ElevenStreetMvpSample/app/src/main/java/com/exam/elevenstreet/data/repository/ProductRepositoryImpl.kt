@@ -65,11 +65,10 @@ class ProductRepositoryImpl private constructor(
             remoteDataSourceImpl: ProductRemoteDataSourceImpl,
             localDataSourceImpl: ProductLocalDataSourceImpl
         ): ProductRepositoryImpl =
-            instance ?: synchronized(this) {
-                instance ?: ProductRepositoryImpl(remoteDataSourceImpl, localDataSourceImpl).also {
-                    instance = it
-                }
+            instance ?: ProductRepositoryImpl(remoteDataSourceImpl, localDataSourceImpl).also {
+                instance = it
             }
+
     }
 
 

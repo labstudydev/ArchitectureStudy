@@ -43,11 +43,10 @@ class ProductRemoteDataSourceImpl private constructor(private val elevenStreetAp
         private var instance: ProductRemoteDataSourceImpl? = null
 
         fun getInstance(elevenStreetApi: ElevenStreetApi): ProductRemoteDataSourceImpl =
-            instance ?: synchronized(this) {
-                instance ?: ProductRemoteDataSourceImpl(elevenStreetApi).also {
-                    instance = it
-                }
+            instance ?: instance ?: ProductRemoteDataSourceImpl(elevenStreetApi).also {
+                instance = it
             }
+
 
     }
 

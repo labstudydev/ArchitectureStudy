@@ -18,10 +18,8 @@ class ProductLocalDataSourceImpl private constructor() {
         private var instance: ProductLocalDataSourceImpl? = null
 
         fun getInstance(): ProductLocalDataSourceImpl =
-            instance ?: synchronized(this) {
-                instance ?: ProductLocalDataSourceImpl().also {
-                    instance = it
-                }
+            instance ?: instance ?: ProductLocalDataSourceImpl().also {
+                instance = it
             }
 
 
