@@ -11,11 +11,8 @@ import kotlinx.android.synthetic.main.list_item.view.*
 class ProductAdapter(private val items: MutableList<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder{
-
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-
         return ViewHolder(view)
-
     }
 
     override fun getItemCount(): Int = items.size
@@ -42,8 +39,4 @@ class ProductAdapter(private val items: MutableList<ProductResponse>) : Recycler
         notifyDataSetChanged()
     }
 
-//    fun ClearData(){
-//
-//        notifyDataSetChanged()
-//    }
 }

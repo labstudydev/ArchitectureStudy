@@ -1,9 +1,12 @@
 package com.exam.elevenstreet.data.source.remote
 
 import android.os.AsyncTask
+import com.exam.elevenstreet.R
 import com.exam.elevenstreet.RetrofitInstance
 import com.exam.elevenstreet.data.ProductCallback
 import com.exam.elevenstreet.data.parser.ProductXmlPullParserHandler
+import com.exam.elevenstreet.data.repository.ProductRepository
+import com.exam.elevenstreet.data.source.local.ProductLocalDataSource
 import com.exam.elevenstreet.network.api.ElevenStreetApi
 import com.exam.elevenstreet.network.model.ProductResponse
 import com.exam.elevenstreet.view.product.App
@@ -11,36 +14,25 @@ import com.exam.elevenstreet.view.product.ProductActivity
 
 import java.net.URL
 
-class ProductRemoteDataSource {
+class ProductRemoteDataSource constructor(private var elevenStreetApi: ElevenStreetApi) {
+    private val context = App.instance.context()
 
-    private var elevenStreetApi : ElevenStreetApi? = null
+    fun getSearchByKeyword(keyWord: String, callback: ProductCallback) {
 
-//    private lateinit var keyWord : String
-//    private var pageNum = 1
-
-    fun getSearchByKeyword(keyWord: String, pageNum: Int, callback: ProductCallback) {
-
-//        this.keyWord = keyWord
-//        this.pageNum = pageNum
-
-        val list = ProductTask().execute(keyWord, "$pageNum").get()
+        val list = ProductTask().execute(keyWord).get()
 
         callback.onSuccess(list)
     }
 
-    private inner class ProductTask: AsyncTask<String, Void, List<ProductResponse>>() {
+    inner class ProductTask : AsyncTask<String, Void, List<ProductResponse>>() {
 
-        override fun doInBackground(vararg params: String): List<ProductResponse> {
-
-            val context = App.instance.context()
-
-            RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")
+        override fun doInBackground(vararg keyWord: String): List<ProductResponse>? {
 
             val call = elevenStreetApi?.getProductList(
-                context.getString(com.exam.elevenstreet.R.string.eleven_street_API_KEY),
+                context.getString(R.string.eleven_street_API_KEY),
                 ProductActivity.API_CODE,
-                params[0],
-                params[1].toInt()
+                keyWord[0],
+                1
             )
 
             val url: String? = "${call?.request()?.url()}"
@@ -49,5 +41,17 @@ class ProductRemoteDataSource {
 
             return ProductXmlPullParserHandler().parse(inputStream)
         }
+
     }
+
+    companion object {
+        private var instance: ProductRemoteDataSource? = null
+        fun getInstance(elevenStreetApi: ElevenStreetApi): ProductRemoteDataSource =
+            instance ?: synchronized(this) {
+                instance ?: ProductRemoteDataSource(elevenStreetApi).also {
+                    instance = it
+                }
+            }
+    }
+
 }
