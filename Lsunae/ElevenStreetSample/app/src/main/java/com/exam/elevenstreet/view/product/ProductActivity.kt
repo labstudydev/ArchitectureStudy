@@ -72,7 +72,6 @@ class ProductActivity : AppCompatActivity() {
 
             }
         })
-
     }
 
     companion object {
