@@ -17,7 +17,7 @@ class CreateActivity : AppCompatActivity() {
 
         btncreate.setOnClickListener {
             val intent = Intent(this@CreateActivity, LoginActivity::class.java)
-            accountManager.createUser("${C_email.text}", "${C_password.text}", "${C_name.text}",
+            accountManager.createUser("${c_email.text}", "${c_password.text}", "${c_name.text}",
                 object : AccountManager.CallBack {
                     override fun onSuccess(user: FirebaseUser?) {
 
