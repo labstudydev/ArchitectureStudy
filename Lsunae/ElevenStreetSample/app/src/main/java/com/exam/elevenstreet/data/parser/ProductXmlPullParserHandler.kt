@@ -1,6 +1,7 @@
-package com.example.elevenstreet
+package com.exam.elevenstreet.data.parser
 
 import android.util.Log
+import com.exam.elevenstreet.network.model.ProductResponse
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory

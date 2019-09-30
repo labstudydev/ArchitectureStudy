@@ -1,22 +1,18 @@
 package com.exam.elevenstreet.view.product.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.exam.elevenstreet.R
-import com.example.elevenstreet.ProductResponse
+import com.exam.elevenstreet.network.model.ProductResponse
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class ProductAdapter(val items: List<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(private val items: MutableList<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder{
-
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-
         return ViewHolder(view)
-
     }
 
     override fun getItemCount(): Int = items.size
@@ -36,4 +32,11 @@ class ProductAdapter(val items: List<ProductResponse>) : RecyclerView.Adapter<Pr
         val name = itemView.tv_product_name
         val price = itemView.tv_product_price
     }
+
+    fun replaceAll(productList: List<ProductResponse>){
+        items.clear()
+        items.addAll(productList)
+        notifyDataSetChanged()
+    }
+
 }
