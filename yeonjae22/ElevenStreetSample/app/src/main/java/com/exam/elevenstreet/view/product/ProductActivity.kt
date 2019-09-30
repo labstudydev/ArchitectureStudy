@@ -9,49 +9,42 @@ import com.exam.elevenstreet.data.ProductLocalDataSource
 import com.exam.elevenstreet.data.ProductRemoteDataSource
 import com.exam.elevenstreet.data.ProductRepository
 import com.exam.elevenstreet.network.RetrofitInstance
+import com.exam.elevenstreet.view.presenter.ProductContract
+import com.exam.elevenstreet.view.presenter.ProductPresenter
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.activity_product.*
 
-class ProductActivity : AppCompatActivity() {
+class ProductActivity : AppCompatActivity(), ProductContract.View {
+    override lateinit var presenter: ProductContract.Presenter
     private val adapter = ProductAdapter()
-    private val productRepository = ProductRepository(
-        ProductRemoteDataSource.getInstance
-            (RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")),
-        ProductLocalDataSource.getInstance()
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
 
-        val manager = LinearLayoutManager(this)
-        recycler_view.layoutManager = manager
-
+        presenter = ProductPresenter(
+            ProductRepository.getInstance(
+                ProductRemoteDataSource.getInstance
+                    (RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")),
+                ProductLocalDataSource.getInstance()
+            ),
+            this
+        )
         setupView()
-        btn_search.setOnClickListener {
-            productRepository.getSearchByKeyword("${edt_search.text}", object :
-                ProductRepository.CallBack {
-                override fun onSuccess(productList: List<ProductResponse>) {
-                    adapter.addData(productList)
-                }
 
-                override fun onFailure(message: String) {
-                    Log.d("tag", message)
-                }
-            })
+        btn_search.setOnClickListener {
+            presenter.searchByKeyword("${edt_search.text}")
         }
     }
 
-    private fun setupView() {
-        productRepository.getSearchByKeyword("수건", object : ProductRepository.CallBack {
-            override fun onSuccess(productList: List<ProductResponse>) {
-                recycler_view.adapter = adapter
-                adapter.addData(productList)
-            }
+    override fun showProductList(productList: List<ProductResponse>) {
+        adapter.addData(productList)
+    }
 
-            override fun onFailure(message: String) {
-            }
-        })
+    private fun setupView() {
+        val manager = LinearLayoutManager(this)
+        recycler_view.layoutManager = manager
+        recycler_view.adapter = adapter
     }
 
     companion object {

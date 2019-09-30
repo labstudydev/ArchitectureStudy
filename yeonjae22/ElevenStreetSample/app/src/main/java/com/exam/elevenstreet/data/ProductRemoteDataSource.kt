@@ -3,7 +3,6 @@ package com.exam.elevenstreet.data
 import android.content.Context
 import android.os.AsyncTask
 import com.ElevenStreetApi
-import com.exam.RetrofitInstance
 import com.exam.elevenstreet.ProductActivity
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.util.App
