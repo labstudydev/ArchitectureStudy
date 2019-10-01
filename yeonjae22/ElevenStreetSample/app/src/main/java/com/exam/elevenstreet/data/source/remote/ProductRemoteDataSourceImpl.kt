@@ -1,23 +1,25 @@
-package com.exam.elevenstreet.data
+package com.exam.elevenstreet.data.source.remote
 
 import android.content.Context
 import android.os.AsyncTask
-import com.ElevenStreetApi
 import com.exam.elevenstreet.ProductActivity
 import com.exam.elevenstreet.R
+import com.exam.elevenstreet.data.ProductCallBack
+import com.exam.elevenstreet.network.ElevenStreetApi
 import com.exam.elevenstreet.util.App
 import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
 
 
-class ProductRemoteDataSource private constructor(private var elevenStreetApi: ElevenStreetApi) {
+class ProductRemoteDataSourceImpl private constructor(private var elevenStreetApi: ElevenStreetApi) :
+    ProductRemoteDataSource {
 
     private val context: Context = App.instance.context()
 
-    fun getSearchByKeyword(
+    override fun getSearchByKeyword(
         keyword: String,
-        callback: ProductRepository.CallBack
+        callback: ProductCallBack
     ) {
         callback.onSuccess(ProductTask().execute(keyword).get())
     }
@@ -40,12 +42,11 @@ class ProductRemoteDataSource private constructor(private var elevenStreetApi: E
     }
 
     companion object {
-        private var instance: ProductRemoteDataSource? = null
-        fun getInstance(elevenStreetApi: ElevenStreetApi): ProductRemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: ProductRemoteDataSource(elevenStreetApi).also {
+        private var instance: ProductRemoteDataSourceImpl? = null
+        fun getInstance(elevenStreetApi: ElevenStreetApi): ProductRemoteDataSourceImpl =
+            instance
+                ?: ProductRemoteDataSourceImpl(elevenStreetApi).also {
                     instance = it
                 }
-            }
     }
 }

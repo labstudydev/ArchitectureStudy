@@ -1,25 +1,25 @@
-package com.exam.elevenstreet.data
+package com.exam.elevenstreet.data.source.local
 
 import android.content.Context
+import com.exam.elevenstreet.data.ProductCallBack
 import com.exam.elevenstreet.util.App
 import com.example.elevenstreet.ProductXmlPullParserHandler
 
-class ProductLocalDataSource private constructor() {
+class ProductLocalDataSourceImpl private constructor() : ProductLocalDataSource {
     val context: Context = App.instance.context()
 
-    fun loadCacheProductData(callback: ProductRepository.CallBack) {
+    override fun loadCacheProductData(callback: ProductCallBack) {
         val inputStream = context.assets.open("ElevenStreetOpenApiService.xml")
         callback.onSuccess(ProductXmlPullParserHandler().parse(inputStream))
         ProductXmlPullParserHandler().parse(inputStream)
     }
 
     companion object {
-        private var instance: ProductLocalDataSource? = null
-        fun getInstance(): ProductLocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: ProductLocalDataSource().also {
+        private var instance: ProductLocalDataSourceImpl? = null
+        fun getInstance(): ProductLocalDataSourceImpl =
+            instance
+                ?: ProductLocalDataSourceImpl().also {
                     instance = it
                 }
-            }
     }
 }

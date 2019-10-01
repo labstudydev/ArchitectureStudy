@@ -1,13 +1,14 @@
 package com.exam.elevenstreet
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ElevenStreetApi
-import com.exam.elevenstreet.data.ProductLocalDataSource
-import com.exam.elevenstreet.data.ProductRemoteDataSource
-import com.exam.elevenstreet.data.ProductRepository
+import com.exam.elevenstreet.data.source.local.ProductLocalDataSource
+import com.exam.elevenstreet.data.source.remote.ProductRemoteDataSource
+import com.exam.elevenstreet.data.repository.ProductRepositoryImpl
+import com.exam.elevenstreet.data.source.local.ProductLocalDataSourceImpl
+import com.exam.elevenstreet.data.source.remote.ProductRemoteDataSourceImpl
+import com.exam.elevenstreet.model.ProductItem
 import com.exam.elevenstreet.network.RetrofitInstance
 import com.exam.elevenstreet.view.presenter.ProductContract
 import com.exam.elevenstreet.view.presenter.ProductPresenter
@@ -23,10 +24,10 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
         setContentView(R.layout.activity_product)
 
         presenter = ProductPresenter(
-            ProductRepository.getInstance(
-                ProductRemoteDataSource.getInstance
-                    (RetrofitInstance.getInstance<ElevenStreetApi>("https://openapi.11st.co.kr/openapi/")),
-                ProductLocalDataSource.getInstance()
+            ProductRepositoryImpl.getInstance(
+                ProductRemoteDataSourceImpl.getInstance
+                    (RetrofitInstance.getInstance("https://openapi.11st.co.kr/openapi/")),
+                ProductLocalDataSourceImpl.getInstance()
             ),
             this
         )

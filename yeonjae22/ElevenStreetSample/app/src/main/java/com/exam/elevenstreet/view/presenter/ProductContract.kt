@@ -1,5 +1,6 @@
 package com.exam.elevenstreet.view.presenter
 
+import com.exam.elevenstreet.model.ProductItem
 import com.example.elevenstreet.ProductResponse
 
 interface ProductContract {
