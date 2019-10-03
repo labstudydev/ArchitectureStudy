@@ -28,7 +28,9 @@ class ProductRecyclerViewAdapter(testList: List<ProductResponse>?) ://mutablelis
     }
 
 
-    override fun getItemCount() = productList!!.size
+    override fun getItemCount(): Int {
+        return productList!!.size
+    }
 
 
     inner class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -11,23 +11,26 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var productList: List<ProductResponse>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
         dataBinding()
-        var product: List<ProductResponse>?
-        rv_product_list.adapter = ProductRecyclerViewAdapter(product)
+//        val inputStream = assets.open("ElevenStreetOpenApiService.xml")
+//        val productList = ProductXmlPullParserHandler().parse(inputStream)
+        rv_product_list.adapter = ProductRecyclerViewAdapter(productList)
         rv_product_list.layoutManager = LinearLayoutManager(this)
     }
 
     private fun dataBinding(): List<ProductResponse> {
         val inputStream = assets.open("ElevenStreetOpenApiService.xml")
-        val productList = ProductXmlPullParserHandler().parse(inputStream)
+        productList = ProductXmlPullParserHandler().parse(inputStream)
         productList.forEach {
             Log.d(TAG, "$it")
         }
         return productList
+
     }
 
     companion object {
