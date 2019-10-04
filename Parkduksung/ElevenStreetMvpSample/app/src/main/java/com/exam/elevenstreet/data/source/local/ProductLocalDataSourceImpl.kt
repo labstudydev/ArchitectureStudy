@@ -3,12 +3,10 @@ package com.exam.elevenstreet.data.source.local
 import com.exam.elevenstreet.util.App
 import com.example.elevenstreet.ProductXmlPullParserHandler
 
-class ProductLocalDataSourceImpl private constructor() {
-
-    fun getProductLocalData(callback: ProductLocalDataSource) {
-
+class ProductLocalDataSourceImpl private constructor() : ProductLocalDataSource {
+    override fun getLocalData(callback: ProductLocalDataSourceCallback) {
         val inputStream = App.instance.context().assets.open("ElevenStreetOpenApiService.xml")
-        callback.getProductLocalData(ProductXmlPullParserHandler().parse(inputStream))
+        callback.getProductList(ProductXmlPullParserHandler().parse(inputStream))
 
     }
 

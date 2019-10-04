@@ -6,17 +6,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
+import com.exam.elevenstreet.data.model.ProductItem
 import com.exam.elevenstreet.view.product.adapter.ProductAdapter
-import com.exam.elevenstreet.view.product.presenter.ProductConstract
+import com.exam.elevenstreet.view.product.presenter.ProductContract
 import com.exam.elevenstreet.view.product.presenter.ProductPresenter
-import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class ProductActivity : AppCompatActivity(), ProductConstract.View {
+class ProductActivity : AppCompatActivity(), ProductContract.View {
 
 
-    private lateinit var presenter: ProductConstract.Presenter
+    private lateinit var presenter: ProductContract.Presenter
     private val productAdapter by lazy { ProductAdapter() }
 
     @SuppressLint("WrongConstant")
@@ -35,25 +35,20 @@ class ProductActivity : AppCompatActivity(), ProductConstract.View {
         recyclerview_product.run {
             this.adapter = productAdapter
             layoutManager = LinearLayoutManager(this@ProductActivity)
-            presenter.startPresenter()
+
         }
 
         search_button.setOnClickListener {
+            productAdapter.clearListData()
             presenter.searchByKeyword("${search_text.text}")
         }
 
     }
 
-    override fun showStartProductList(productList: List<ProductResponse>) {
-        runOnUiThread {
-            productAdapter.addData(productList)
-        }
-    }
 
-    override fun showSearchProductList(keyword: String, productList: List<ProductResponse>) {
+    override fun showProductList(item: ProductItem) {
         runOnUiThread {
-            productAdapter.clearListData()
-            productAdapter.addData(productList)
+            productAdapter.addData(item)
         }
     }
 
