@@ -12,7 +12,6 @@ class ProductXmlPullParserHandler {
     private var product: ProductResponse? = null
     private var text: String? = null
 
-
     fun parse(inputStream: InputStream): List<ProductResponse>{
         try {
             val factory = XmlPullParserFactory.newInstance()
@@ -44,6 +43,10 @@ class ProductXmlPullParserHandler {
                         product?.productPrice = text.orEmpty()
                     } else if (tagName.equals("ProductImage300", ignoreCase = true)) {
                         product?.productImage = text.orEmpty()
+                    } else if (tagName.equals("Seller", ignoreCase = true)) {
+                        product?.productSeller = text.orEmpty()
+                    } else if (tagName.equals("Delivery", ignoreCase = true)) {
+                        product?.productDelivery = text.orEmpty()
                     }
                     else -> {
 

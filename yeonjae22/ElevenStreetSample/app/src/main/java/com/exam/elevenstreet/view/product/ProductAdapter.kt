@@ -1,10 +1,12 @@
 package com.exam.elevenstreet
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.exam.elevenstreet.view.detail.DetailActivity
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.list_item.view.*
 
@@ -46,7 +48,14 @@ class ProductAdapter() :
                 product_name_tv.text = item.productName
                 product_price_tv.text = item.productPrice
                 product_code_tv.text = item.productCode
+
+                val detailList = arrayListOf<String>(item.productName, item.productPrice, item.productSeller, item.productDelivery)
                 setOnClickListener(listener)
+                view.setOnClickListener {
+                    val intent = Intent(context, DetailActivity::class.java)
+                    intent.putStringArrayListExtra("detailList",detailList)
+                    view.context.startActivity(intent)
+                }
             }
         }
     }
