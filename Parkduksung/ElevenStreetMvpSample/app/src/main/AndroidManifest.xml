@@ -14,13 +14,15 @@
             android:supportsRtl="true"
             android:name=".util.App"
             android:theme="@style/AppTheme">
-        <activity android:name="com.exam.elevenstreet.view.product.ProductActivity">
+        <activity android:name="com.exam.elevenstreet.view.product.activity.ProductActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

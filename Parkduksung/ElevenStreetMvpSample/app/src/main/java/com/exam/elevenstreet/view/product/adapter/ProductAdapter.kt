@@ -12,9 +12,17 @@ import com.exam.elevenstreet.data.model.ProductItem
 import kotlinx.android.synthetic.main.list_layout.view.*
 
 
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter :
+    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+
+    interface ItemClick {
+        fun onClick(view: View, productItem: ProductItem)
+    }
+
+    var itemClick: ItemClick? = null
 
     private var productList = mutableListOf<ProductItem>()
+
 
     override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder =
         ViewHolder(LayoutInflater.from(holder.context).inflate(R.layout.list_layout, holder, false))
@@ -23,12 +31,20 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val productItem: ProductItem = productList[position]
 
+        holder.itemView.setOnClickListener {
+
+            itemClick?.onClick(it, productItem)
+
+        }
+
+
         holder.run {
             productName.text = productItem.productName
             productPrice.text = productItem.productPrice
             productImage.setImageBitmap(productItem.productImage)
 
         }
+
 
     }
 
@@ -41,6 +57,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         val productName: TextView = itemView.product_name_tv
         val productPrice: TextView = itemView.product_price_tv
         val productImage: ImageView = itemView.product_image_tv
+
 
     }
 
