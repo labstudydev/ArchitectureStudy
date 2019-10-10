@@ -7,12 +7,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.elevenstreet.ProductResponse
-import java.util.ArrayList
 
-class ProductRecyclerViewAdapter(testList: List<ProductResponse>?) ://mutablelist는 약간 추상적인 배열?느낌 ProductResponse에 정의되어있는 대로 배열을말하는둣
+class ProductRecyclerViewAdapter(RecyclerList: List<ProductResponse>?) ://mutablelist는 약간 추상적인 배열?느낌 ProductResponse에 정의되어있는 대로 배열을말하는둣
     RecyclerView.Adapter<ProductRecyclerViewAdapter.ProductViewHolder>() {
 
-    private var productList: List<ProductResponse>? = testList
+    private var productList: List<ProductResponse>? = RecyclerList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
@@ -24,6 +23,8 @@ class ProductRecyclerViewAdapter(testList: List<ProductResponse>?) ://mutablelis
         holder!!.textName.text = ProductResponse.productName
         holder!!.textPrice.text = ProductResponse.productPrice
         holder!!.textCode.text = ProductResponse.productCode
+        holder!!.textImage.text = ProductResponse.productImage
+
 
     }
 
@@ -37,6 +38,7 @@ class ProductRecyclerViewAdapter(testList: List<ProductResponse>?) ://mutablelis
         var textName = view.findViewById(R.id.product_name_tv) as TextView
         var textPrice = view.findViewById(R.id.product_price_tv) as TextView
         var textCode = view.findViewById(R.id.product_code_tv) as TextView
+        var textImage = view.findViewById(R.id.product_code_tv) as TextView
 
     }
 }

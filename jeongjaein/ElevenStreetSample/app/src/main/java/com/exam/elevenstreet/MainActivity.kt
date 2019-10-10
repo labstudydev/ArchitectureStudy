@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
         dataBinding()
-//        val inputStream = assets.open("ElevenStreetOpenApiService.xml")
-//        val productList = ProductXmlPullParserHandler().parse(inputStream)
         rv_product_list.adapter = ProductRecyclerViewAdapter(productList)
         rv_product_list.layoutManager = LinearLayoutManager(this)
     }
@@ -26,9 +24,9 @@ class MainActivity : AppCompatActivity() {
     private fun dataBinding(): List<ProductResponse> {
         val inputStream = assets.open("ElevenStreetOpenApiService.xml")
         productList = ProductXmlPullParserHandler().parse(inputStream)
-        productList.forEach {
-            Log.d(TAG, "$it")
-        }
+//        productList.forEach {
+//            Log.d(TAG, "$it")
+//        }
         return productList
 
     }
