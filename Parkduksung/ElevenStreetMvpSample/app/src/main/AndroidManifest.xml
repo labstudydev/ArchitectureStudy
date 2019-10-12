@@ -14,7 +14,7 @@
             android:supportsRtl="true"
             android:name=".util.App"
             android:theme="@style/AppTheme">
-        <activity android:name="com.exam.elevenstreet.view.product.activity.ProductActivity">
+        <activity android:name="com.exam.elevenstreet.view.product.ProductActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

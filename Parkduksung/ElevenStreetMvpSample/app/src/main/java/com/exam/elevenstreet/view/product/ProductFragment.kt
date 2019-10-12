@@ -1,4 +1,4 @@
-package com.exam.elevenstreet.view.product.fragment
+package com.exam.elevenstreet.view.product
 
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -11,15 +11,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.exam.elevenstreet.R
-import com.exam.elevenstreet.view.product.OnBackPressedListener
 import kotlinx.android.synthetic.main.fragment_layout.*
 
 class ProductFragment : Fragment(),
     OnBackPressedListener {
 
-    var productName: TextView? = null
-    var productPrice: TextView? = null
-    var productImage: ImageView? = null
+
+    private lateinit var productName: TextView
+    private lateinit var productPrice: TextView
+    private lateinit var productImage: ImageView
+
 
     override fun onBackPressed(): Boolean {
         val fragmentManager = fragmentManager
@@ -39,6 +40,8 @@ class ProductFragment : Fragment(),
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate")
         super.onCreate(savedInstanceState)
+
+
     }
 
     override fun onCreateView(
@@ -59,9 +62,10 @@ class ProductFragment : Fragment(),
 
             val bundle = arguments
 
-            productName!!.text = bundle?.getString("Name")
-            productPrice!!.text = bundle?.getString("Price")
-            productImage!!.setImageBitmap(bundle?.getParcelable("Image"))
+
+            productName.text = bundle?.getString("Name")
+            productPrice.text = bundle?.getString("Price")
+            productImage.setImageBitmap(bundle?.getParcelable("Image"))
 
         }
     }

@@ -25,7 +25,12 @@ class ProductRemoteDataSourceImpl private constructor(private val elevenStreetAp
             Thread(Runnable {
                 val targetURL = URL(url)
                 val inputStream = targetURL.openStream()
-                callback.getProductList((ProductXmlPullParserHandler().parse(inputStream)))
+
+                if (inputStream != null) {
+                    callback.onSuccess((ProductXmlPullParserHandler().parse(inputStream)))
+                } else {
+                    callback.onFailure("Get Data Fail!!")
+                }
             }).start()
         }
     }

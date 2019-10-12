@@ -8,7 +8,7 @@ import com.exam.elevenstreet.data.repository.ProductRepositoryImpl
 import com.exam.elevenstreet.data.source.local.ProductLocalDataSourceImpl
 import com.exam.elevenstreet.data.source.remote.ProductRemoteDataSourceImpl
 import com.exam.elevenstreet.network.RetrofitInstance
-import com.exam.elevenstreet.view.product.activity.ProductActivity
+import com.exam.elevenstreet.view.product.ProductActivity
 import com.example.elevenstreet.ProductResponse
 
 class ProductPresenter(

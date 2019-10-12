@@ -22,7 +22,7 @@ class ProductRepositoryImpl private constructor(
 
             productRemoteDataSource.getRemoteData(keyword,
                 object : ProductRemoteDataSourceCallback {
-                    override fun getProductList(productList: List<ProductResponse>) {
+                    override fun onSuccess(productList: List<ProductResponse>) {
                         if (productList.isNotEmpty()) {
                             callback.onSuccess(productList)
                         } else {
@@ -34,7 +34,7 @@ class ProductRepositoryImpl private constructor(
         } else {
 
             productLocalDataSource.getLocalData(object : ProductLocalDataSourceCallback {
-                override fun getProductList(productList: List<ProductResponse>) {
+                override fun onSuccess(productList: List<ProductResponse>) {
                     if (productList.isNotEmpty()) {
                         callback.onSuccess(productList)
                     } else {

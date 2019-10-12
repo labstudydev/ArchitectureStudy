@@ -1,4 +1,4 @@
-package com.exam.elevenstreet.view.product.activity
+package com.exam.elevenstreet.view.product
 
 
 import android.annotation.SuppressLint
@@ -9,9 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.data.model.ProductItem
-import com.exam.elevenstreet.view.product.OnBackPressedListener
 import com.exam.elevenstreet.view.product.adapter.ProductAdapter
-import com.exam.elevenstreet.view.product.fragment.ProductFragment
 import com.exam.elevenstreet.view.product.presenter.ProductContract
 import com.exam.elevenstreet.view.product.presenter.ProductPresenter
 import kotlinx.android.synthetic.main.activity_main.*
