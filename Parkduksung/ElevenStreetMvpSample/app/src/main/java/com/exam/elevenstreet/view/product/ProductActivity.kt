@@ -78,20 +78,16 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
         productAdapter.itemClick = object : ProductAdapter.ItemClick {
             override fun onClick(view: View, productItem: ProductItem) {
 
-                val fragmentManager = supportFragmentManager
-                val transaction = fragmentManager.beginTransaction()
 
-                val fragment1 = ProductFragment()
+                val productFragment = ProductFragment.newInstance(
+                    productItem.productName,
+                    productItem.productPrice,
+                    productItem.productImage
+                )
 
-                transaction.replace(R.id.container_your_topic, fragment1)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container_your_topic, productFragment).commit()
 
-                val bundle = Bundle()
-                bundle.putString("Name", productItem.productName)
-                bundle.putString("Price", productItem.productPrice)
-                bundle.putParcelable("Image", productItem.productImage)
-
-                fragment1.arguments = bundle
-                transaction.commit()
             }
 
         }

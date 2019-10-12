@@ -2,6 +2,7 @@ package com.exam.elevenstreet.view.product
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -115,5 +116,26 @@ class ProductFragment : Fragment(),
         super.onDetach()
     }
 
+
+    companion object {
+
+        fun newInstance(
+            productName: String,
+            productPrice: String,
+            productImage: Bitmap?
+        ) = ProductFragment().apply {
+            arguments = Bundle().apply {
+                putString("Name", productName)
+                putString("Price", productPrice)
+                productImage?.let {
+                    putParcelable("Image", it)
+                }
+
+            }
+
+        }
+
+
+    }
 
 }
