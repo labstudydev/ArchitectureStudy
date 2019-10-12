@@ -19,7 +19,7 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
 
 
     override fun onBackPressed() {
-        val fragment = this.supportFragmentManager.findFragmentById(R.id.fragment)
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.container_your_topic)
 
         if ((fragment as? OnBackPressedListener)?.onBackPressed() != null) {
 
@@ -83,7 +83,7 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
 
                 val fragment1 = ProductFragment()
 
-                transaction.replace(R.id.fragment, fragment1)
+                transaction.replace(R.id.container_your_topic, fragment1)
 
                 val bundle = Bundle()
                 bundle.putString("Name", productItem.productName)

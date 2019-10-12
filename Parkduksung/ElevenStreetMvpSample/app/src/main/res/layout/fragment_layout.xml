@@ -3,13 +3,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite">
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
         <Button
-                android:id="@+id/backbutton"
+                android:id="@+id/backButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="뒤로">
@@ -41,9 +42,10 @@
                         android:id="@+id/fragment_product_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text=""
                         android:textColor="@color/colorBlack"
-                        android:textSize="12sp"
-                        android:text=""/>
+                        android:textSize="12sp" />
+
                 <TextView
 
                         android:id="@+id/fragment_product_price"
@@ -53,11 +55,9 @@
                         android:textSize="12sp" />
 
 
-
             </LinearLayout>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

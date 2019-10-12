@@ -23,10 +23,9 @@ class ProductFragment : Fragment(),
 
 
     override fun onBackPressed(): Boolean {
-        val fragmentManager = fragmentManager
-        val fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction.remove(this)
-        fragmentTransaction.commit()
+
+        requireFragmentManager().beginTransaction().remove(this).commit()
+
         return true
     }
 
@@ -75,7 +74,7 @@ class ProductFragment : Fragment(),
         super.onActivityCreated(savedInstanceState)
 
 
-        backbutton.setOnClickListener {
+        backButton.setOnClickListener {
             onBackPressed()
         }
 
