@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.exam.elevenstreet.R
 import com.exam.elevenstreet.data.model.ProductItem
-import kotlinx.android.synthetic.main.list_layout.view.*
+import com.exam.elevenstreet.databinding.ListLayoutBinding
 
 
 class ProductAdapter :
@@ -24,8 +23,18 @@ class ProductAdapter :
     private var productList = mutableListOf<ProductItem>()
 
 
-    override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(holder.context).inflate(R.layout.list_layout, holder, false))
+    private lateinit var listLayoutBinding: ListLayoutBinding
+
+
+    override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder {
+
+
+        listLayoutBinding =
+            ListLayoutBinding.inflate(LayoutInflater.from(holder.context), holder, false)
+
+        return ViewHolder(listLayoutBinding)
+
+    }
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -42,7 +51,6 @@ class ProductAdapter :
             productName.text = productItem.productName
             productPrice.text = productItem.productPrice
             productImage.setImageBitmap(productItem.productImage)
-
         }
 
 
@@ -52,11 +60,12 @@ class ProductAdapter :
         productList.size
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(listLayoutBinding: ListLayoutBinding) :
+        RecyclerView.ViewHolder(listLayoutBinding.root) {
 
-        val productName: TextView = itemView.product_name_tv
-        val productPrice: TextView = itemView.product_price_tv
-        val productImage: ImageView = itemView.product_image_tv
+        val productName: TextView = listLayoutBinding.productNameTv
+        val productPrice: TextView = listLayoutBinding.productPriceTv
+        val productImage: ImageView = listLayoutBinding.productImageTv
 
 
     }
