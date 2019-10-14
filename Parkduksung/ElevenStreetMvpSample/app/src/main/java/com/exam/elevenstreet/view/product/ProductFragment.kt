@@ -57,27 +57,24 @@ class ProductFragment : Fragment(),
         fragmentLayoutBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_layout, container, false)
 
-        return fragmentLayoutBinding.root.also {
+        return fragmentLayoutBinding.root
 
-
-            productName = it.findViewById(R.id.fragment_product_name)
-            productPrice = it.findViewById(R.id.fragment_product_price)
-            productImage = it.findViewById(R.id.fragment_product_image)
-
-
-            val bundle = arguments
-
-
-            productName.text = bundle?.getString("Name")
-            productPrice.text = bundle?.getString("Price")
-            productImage.setImageBitmap(bundle?.getParcelable("Image"))
-
-        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         Log.d(TAG, "onActivityCreated")
         super.onActivityCreated(savedInstanceState)
+
+        val bundle = arguments
+
+        productName = fragmentLayoutBinding.fragmentProductName
+        productPrice = fragmentLayoutBinding.fragmentProductPrice
+        productImage = fragmentLayoutBinding.fragmentProductImage
+
+
+        productName.text = bundle?.getString("Name")
+        productPrice.text = bundle?.getString("Price")
+        productImage.setImageBitmap(bundle?.getParcelable("Image"))
 
 
         fragmentLayoutBinding.backButton.setOnClickListener {
