@@ -3,20 +3,38 @@ package com.exam.elevenstreet.view.product
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
+import com.exam.elevenstreet.data.model.ProductItem
 import com.exam.elevenstreet.view.product.adapter.ProductAdapter
-import com.exam.elevenstreet.view.product.presenter.ProductConstract
+import com.exam.elevenstreet.view.product.presenter.ProductContract
 import com.exam.elevenstreet.view.product.presenter.ProductPresenter
-import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class ProductActivity : AppCompatActivity(), ProductConstract.View {
+class ProductActivity : AppCompatActivity(), ProductContract.View {
 
 
-    private lateinit var presenter: ProductConstract.Presenter
+    override fun onBackPressed() {
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.container_your_topic)
+
+        if ((fragment as? OnBackPressedListener)?.onBackPressed() != null) {
+
+            Log.d("뒤로가기", "Fragment")
+
+        } else {
+            Log.d("뒤로가기", "ProductActivity")
+
+            super.onBackPressed()
+        }
+
+
+    }
+
+    private lateinit var presenter: ProductContract.Presenter
     private val productAdapter by lazy { ProductAdapter() }
 
     @SuppressLint("WrongConstant")
@@ -28,32 +46,59 @@ class ProductActivity : AppCompatActivity(), ProductConstract.View {
             this
         )
         startView()
+        itemClick()
 
     }
 
+
     private fun startView() {
+
+
         recyclerview_product.run {
             this.adapter = productAdapter
             layoutManager = LinearLayoutManager(this@ProductActivity)
-            presenter.startPresenter()
+
+
         }
 
         search_button.setOnClickListener {
-            presenter.searchByKeyword("${search_text.text}")
-        }
 
-    }
-
-    override fun showStartProductList(productList: List<ProductResponse>) {
-        runOnUiThread {
-            productAdapter.addData(productList)
-        }
-    }
-
-    override fun showSearchProductList(keyword: String, productList: List<ProductResponse>) {
-        runOnUiThread {
             productAdapter.clearListData()
-            productAdapter.addData(productList)
+            presenter.searchByKeyword("${search_text.text}")
+
+
+        }
+
+
+    }
+
+
+    private fun itemClick() {
+
+        productAdapter.itemClick = object : ProductAdapter.ItemClick {
+            override fun onClick(view: View, productItem: ProductItem) {
+
+
+                val productFragment = ProductFragment.newInstance(
+                    productItem.productName,
+                    productItem.productPrice,
+                    productItem.productImage
+                )
+
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container_your_topic, productFragment).commit()
+
+            }
+
+        }
+
+
+    }
+
+
+    override fun showProductList(item: ProductItem) {
+        runOnUiThread {
+            productAdapter.addData(item)
         }
     }
 

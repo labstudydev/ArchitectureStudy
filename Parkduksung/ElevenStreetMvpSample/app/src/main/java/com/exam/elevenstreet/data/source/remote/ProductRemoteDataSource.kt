@@ -1,10 +1,10 @@
 package com.exam.elevenstreet.data.source.remote
 
-import com.example.elevenstreet.ProductResponse
-
 interface ProductRemoteDataSource {
-    fun getProductRemoteData(
+
+    fun getRemoteData(
         keyword: String,
-        productList: List<ProductResponse>
+        callback: ProductRemoteDataSourceCallback
     )
+
 }

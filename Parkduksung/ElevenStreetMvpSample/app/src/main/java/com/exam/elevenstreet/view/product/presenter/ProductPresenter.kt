@@ -1,6 +1,9 @@
 package com.exam.elevenstreet.view.product.presenter
 
-import com.exam.elevenstreet.data.repository.ProductRepository
+import android.util.Log
+import com.exam.elevenstreet.data.model.ProductItem
+import com.exam.elevenstreet.data.model.ProductItemCallback
+import com.exam.elevenstreet.data.repository.ProductRepositoryCallback
 import com.exam.elevenstreet.data.repository.ProductRepositoryImpl
 import com.exam.elevenstreet.data.source.local.ProductLocalDataSourceImpl
 import com.exam.elevenstreet.data.source.remote.ProductRemoteDataSourceImpl
@@ -9,33 +12,9 @@ import com.exam.elevenstreet.view.product.ProductActivity
 import com.example.elevenstreet.ProductResponse
 
 class ProductPresenter(
-    private val productView: ProductConstract.View
-) : ProductConstract.Presenter {
+    private val productView: ProductContract.View
+) : ProductContract.Presenter {
 
-
-    override fun startPresenter() {
-
-        ProductRepositoryImpl.getInstance(
-            ProductRemoteDataSourceImpl.getInstance(
-                RetrofitInstance.getInstance(ProductActivity.CALL_URL)
-            ),
-            ProductLocalDataSourceImpl.getInstance()
-        ).getProductRepositoryLocalData(object : ProductRepository {
-            override fun getProductRepositoryRemoteData(
-                keyword: String,
-                productList: List<ProductResponse>
-            ) {
-
-            }
-
-            override fun getProductRepositoryLocalData(productList: List<ProductResponse>) {
-                productView.showStartProductList(productList)
-            }
-
-        })
-
-
-    }
 
     override fun searchByKeyword(keyword: String) {
         ProductRepositoryImpl.getInstance(
@@ -43,18 +22,25 @@ class ProductPresenter(
                 RetrofitInstance.getInstance(ProductActivity.CALL_URL)
             ),
             ProductLocalDataSourceImpl.getInstance()
-        ).getProductRepositoryRemoteData(keyword, object : ProductRepository {
-            override fun getProductRepositoryRemoteData(
-                keyword: String,
-                productList: List<ProductResponse>
-            ) {
-                productView.showSearchProductList(keyword, productList)
+        ).getSearchByKeyword(keyword, object : ProductRepositoryCallback {
+
+            override fun onSuccess(productList: List<ProductResponse>) {
+
+                productList.map {
+                    it.toProductItem(object : ProductItemCallback {
+                        override fun onSuccess(productItem: ProductItem) {
+
+                            productView.showProductList(productItem)
+                        }
+
+                    })
+                }
+
             }
 
-            override fun getProductRepositoryLocalData(productList: List<ProductResponse>) {
-
+            override fun onFailure(message: String) {
+                Log.d("Error", message)
             }
-
         })
 
 

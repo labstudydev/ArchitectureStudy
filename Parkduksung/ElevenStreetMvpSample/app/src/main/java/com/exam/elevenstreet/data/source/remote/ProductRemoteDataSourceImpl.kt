@@ -8,12 +8,9 @@ import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
 
 
-class ProductRemoteDataSourceImpl private constructor(private val elevenStreetApi: ElevenStreetApi) {
-
-    fun getProductRemoteData(
-        keyword: String,
-        callback: ProductRemoteDataSource
-    ) {
+class ProductRemoteDataSourceImpl private constructor(private val elevenStreetApi: ElevenStreetApi) :
+    ProductRemoteDataSource {
+    override fun getRemoteData(keyword: String, callback: ProductRemoteDataSourceCallback) {
 
         val call = elevenStreetApi.getProductList(
             App.instance.context().getString(R.string.eleven_street_API_KEY),
@@ -24,18 +21,20 @@ class ProductRemoteDataSourceImpl private constructor(private val elevenStreetAp
 
         val url: String? = "${call.request()?.url()}"
 
-
         if (url != null) {
             Thread(Runnable {
                 val targetURL = URL(url)
                 val inputStream = targetURL.openStream()
-                callback.getProductRemoteData(
-                    keyword, ProductXmlPullParserHandler()
-                        .parse(inputStream)
-                )
+
+                if (inputStream != null) {
+                    callback.onSuccess((ProductXmlPullParserHandler().parse(inputStream)))
+                } else {
+                    callback.onFailure("Get Data Fail!!")
+                }
             }).start()
         }
     }
+
 
     companion object {
         const val API_CODE = "ProductSearch"
