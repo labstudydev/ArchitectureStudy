@@ -69,7 +69,7 @@ class ProductFragment : Fragment(),
 
         productName = fragmentLayoutBinding.tvProductName
         productPrice = fragmentLayoutBinding.tvProductPrice
-        productImage = fragmentLayoutBinding.tvProductImage
+        productImage = fragmentLayoutBinding.ivProductImage
 
 
         productName.text = bundle?.getString("Name")

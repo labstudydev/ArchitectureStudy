@@ -56,7 +56,7 @@ class ProductAdapter :
 
         val productName: TextView = listLayoutBinding.productNameTv
         val productPrice: TextView = listLayoutBinding.productPriceTv
-        val productImage: ImageView = listLayoutBinding.productImageTv
+        val productImage: ImageView = listLayoutBinding.productImageIv
 
 
     }
