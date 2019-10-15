@@ -23,18 +23,9 @@ class ProductAdapter :
     private var productList = mutableListOf<ProductItem>()
 
 
-    private lateinit var listLayoutBinding: ListLayoutBinding
+    override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder =
 
-
-    override fun onCreateViewHolder(holder: ViewGroup, position: Int): ViewHolder {
-
-
-        listLayoutBinding =
-            ListLayoutBinding.inflate(LayoutInflater.from(holder.context), holder, false)
-
-        return ViewHolder(listLayoutBinding)
-
-    }
+        ViewHolder(ListLayoutBinding.inflate(LayoutInflater.from(holder.context), holder, false))
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
