@@ -67,9 +67,9 @@ class ProductFragment : Fragment(),
 
         val bundle = arguments
 
-        productName = fragmentLayoutBinding.fragmentProductName
-        productPrice = fragmentLayoutBinding.fragmentProductPrice
-        productImage = fragmentLayoutBinding.fragmentProductImage
+        productName = fragmentLayoutBinding.tvProductName
+        productPrice = fragmentLayoutBinding.tvProductPrice
+        productImage = fragmentLayoutBinding.tvProductImage
 
 
         productName.text = bundle?.getString("Name")

@@ -32,7 +32,7 @@
                         android:layout_height="wrap_content">
 
                     <ImageView
-                            android:id="@+id/fragment_product_image"
+                            android:id="@+id/tv_product_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
@@ -44,7 +44,7 @@
                         android:orientation="vertical">
 
                     <TextView
-                            android:id="@+id/fragment_product_name"
+                            android:id="@+id/tv_product_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
@@ -53,7 +53,7 @@
 
                     <TextView
 
-                            android:id="@+id/fragment_product_price"
+                            android:id="@+id/tv_product_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorBlack"

@@ -20,7 +20,7 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
 
 
     override fun onBackPressed() {
-        val fragment = this.supportFragmentManager.findFragmentById(R.id.container_your_topic)
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.container)
 
         if ((fragment as? OnBackPressedListener)?.onBackPressed() != null) {
 
@@ -91,7 +91,7 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
                 )
 
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_your_topic, productFragment).commit()
+                    .replace(R.id.container, productFragment).commit()
 
             }
 
