@@ -6,20 +6,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.data.model.ProductItem
+import com.exam.elevenstreet.databinding.ActivityMainBinding
 import com.exam.elevenstreet.view.product.adapter.ProductAdapter
 import com.exam.elevenstreet.view.product.presenter.ProductContract
 import com.exam.elevenstreet.view.product.presenter.ProductPresenter
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class ProductActivity : AppCompatActivity(), ProductContract.View {
 
 
     override fun onBackPressed() {
-        val fragment = this.supportFragmentManager.findFragmentById(R.id.container_your_topic)
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.container)
 
         if ((fragment as? OnBackPressedListener)?.onBackPressed() != null) {
 
@@ -36,11 +37,16 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
 
     private lateinit var presenter: ProductContract.Presenter
     private val productAdapter by lazy { ProductAdapter() }
+    private lateinit var activityMainBinding: ActivityMainBinding
+
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
 
         presenter = ProductPresenter(
             this
@@ -54,17 +60,17 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
     private fun startView() {
 
 
-        recyclerview_product.run {
+        activityMainBinding.recyclerviewProduct.run {
             this.adapter = productAdapter
             layoutManager = LinearLayoutManager(this@ProductActivity)
 
 
         }
 
-        search_button.setOnClickListener {
+        activityMainBinding.searchButton.setOnClickListener {
 
             productAdapter.clearListData()
-            presenter.searchByKeyword("${search_text.text}")
+            presenter.searchByKeyword("${activityMainBinding.searchText.text}")
 
 
         }
@@ -78,7 +84,6 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
         productAdapter.itemClick = object : ProductAdapter.ItemClick {
             override fun onClick(view: View, productItem: ProductItem) {
 
-
                 val productFragment = ProductFragment.newInstance(
                     productItem.productName,
                     productItem.productPrice,
@@ -86,7 +91,7 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
                 )
 
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.container_your_topic, productFragment).commit()
+                    .replace(R.id.container, productFragment).commit()
 
             }
 

@@ -10,17 +10,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.exam.elevenstreet.R
-import kotlinx.android.synthetic.main.fragment_layout.*
+import com.exam.elevenstreet.databinding.FragmentLayoutBinding
+
 
 class ProductFragment : Fragment(),
     OnBackPressedListener {
 
-
     private lateinit var productName: TextView
     private lateinit var productPrice: TextView
     private lateinit var productImage: ImageView
+
+    private lateinit var fragmentLayoutBinding: FragmentLayoutBinding
 
 
     override fun onBackPressed(): Boolean {
@@ -51,31 +54,30 @@ class ProductFragment : Fragment(),
     ): View? {
         Log.d(TAG, "onCreateView")
 
+        fragmentLayoutBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_layout, container, false)
 
-        return inflater.inflate(R.layout.fragment_layout, container, false).also {
+        return fragmentLayoutBinding.root
 
-
-            productName = it.findViewById(R.id.fragment_product_name)
-            productPrice = it.findViewById(R.id.fragment_product_price)
-            productImage = it.findViewById(R.id.fragment_product_image)
-
-
-            val bundle = arguments
-
-
-            productName.text = bundle?.getString("Name")
-            productPrice.text = bundle?.getString("Price")
-            productImage.setImageBitmap(bundle?.getParcelable("Image"))
-
-        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         Log.d(TAG, "onActivityCreated")
         super.onActivityCreated(savedInstanceState)
 
+        val bundle = arguments
 
-        backButton.setOnClickListener {
+        productName = fragmentLayoutBinding.tvProductName
+        productPrice = fragmentLayoutBinding.tvProductPrice
+        productImage = fragmentLayoutBinding.ivProductImage
+
+
+        productName.text = bundle?.getString("Name")
+        productPrice.text = bundle?.getString("Price")
+        productImage.setImageBitmap(bundle?.getParcelable("Image"))
+
+
+        fragmentLayoutBinding.backButton.setOnClickListener {
             onBackPressed()
         }
 
