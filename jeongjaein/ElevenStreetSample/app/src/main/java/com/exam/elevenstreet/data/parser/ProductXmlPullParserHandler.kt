@@ -43,7 +43,7 @@ class ProductXmlPullParserHandler {
                     } else if (tagName.equals("ProductPrice", ignoreCase = true)) {
                         product?.productPrice = text.orEmpty()
                     } else if (tagName.equals("ProductImage300", ignoreCase = true)) {
-                        product?.productImage = text.orEmpty()
+                        product?.productImage = '"'+text.orEmpty()+'"'
                     }
                     else -> {
 
