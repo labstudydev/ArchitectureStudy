@@ -14,16 +14,15 @@ import com.exam.elevenstreet.view.product.ProductFragment
 import com.exam.elevenstreet.view.product.presenter.ProductContract
 import com.exam.elevenstreet.view.product.presenter.ProductPresenter
 import com.example.elevenstreet.ProductResponse
-import kotlinx.android.synthetic.main.activity_product.*
 
 class ProductActivity : AppCompatActivity(), ProductContract.View {
     override lateinit var presenter: ProductContract.Presenter
     private val adapter = ProductAdapter()
+    private lateinit var binding: ActivityProductBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityProductBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_product)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_product)
 
         presenter = ProductPresenter(
             ProductRepositoryImpl.getInstance(
@@ -35,8 +34,8 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
         )
         setupView()
 
-        btn_search.setOnClickListener {
-            presenter.searchByKeyword("${edt_search.text}")
+        binding.btnSearch.setOnClickListener {
+            presenter.searchByKeyword("${binding.edtSearch.text}")
         }
 
         adapter.setOnClickListener(object : ProductAdapter.OnClickListener {
@@ -61,8 +60,8 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
 
     private fun setupView() {
         val manager = LinearLayoutManager(this)
-        recycler_view.layoutManager = manager
-        recycler_view.adapter = adapter
+        binding.recyclerView.layoutManager = manager
+        binding.recyclerView.adapter = adapter
     }
 
     fun back(fragment: Fragment) {

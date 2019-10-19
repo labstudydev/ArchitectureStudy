@@ -2,6 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <variable
+                name="productResponse"
+                type="com.example.elevenstreet.ProductResponse" />
 
     </data>
 <FrameLayout
@@ -38,21 +41,25 @@
                     android:orientation="vertical">
 
                 <TextView
+                        android:text="@{productResponse.productName}"
                         android:id="@+id/product_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                 <TextView
+                        android:text="@{productResponse.productPrice}"
                         android:id="@+id/product_price_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                 <TextView
+                        android:text="@{productResponse.productSeller}"
                         android:id="@+id/product_seller_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                 <TextView
+                        android:text="@{productResponse.productDelivery}"
                         android:id="@+id/product_delivery_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

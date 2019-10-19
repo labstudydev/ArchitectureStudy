@@ -4,30 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.exam.elevenstreet.ProductActivity
 import com.exam.elevenstreet.R
-import kotlinx.android.synthetic.main.fragment_product.*
+import com.exam.elevenstreet.databinding.FragmentProductBinding
 
 class ProductFragment : Fragment() {
+    private lateinit var binding: FragmentProductBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_product, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_product, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        product_name_tv.text = arguments!!.getString("productName")
-        product_price_tv.text = arguments!!.getString("productPrice")
-        product_seller_tv.text = arguments!!.getString("productSeller")
-        product_delivery_tv.text = arguments!!.getString("productDelivery")
+        binding.productNameTv.text = arguments!!.getString("productName")
+        binding.productPriceTv.text = arguments!!.getString("productPrice")
+        binding.productSellerTv.text = arguments!!.getString("productSeller")
+        binding.productDeliveryTv.text = arguments!!.getString("productDelivery")
 
 
-        btn_back.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             (activity as ProductActivity).back(this)
         }
     }
