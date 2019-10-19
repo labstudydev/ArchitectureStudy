@@ -10,7 +10,7 @@ class ProductLocalDataSource {
 
     val context = App.instance.context()
 
-    fun getProductDataList(callback: ProductCallback){
+    fun getProductDataList(callback: ProductCallback) {
         val inputStream = context.assets.open("ElevenStreetOpenApiService.xml")
         callback.onSuccess(ProductXmlPullParserHandler().parse(inputStream))
 
@@ -19,10 +19,8 @@ class ProductLocalDataSource {
     companion object {
         private var instance: ProductLocalDataSource? = null
         fun getInstance(): ProductLocalDataSource =
-            instance ?: synchronized(this) {
-                instance ?: ProductLocalDataSource().also {
-                    instance = it
-                }
+            instance ?: ProductLocalDataSource().also {
+                instance = it
             }
     }
 }

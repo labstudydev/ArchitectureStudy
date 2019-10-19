@@ -45,11 +45,8 @@ class ProductRemoteDataSource constructor(private var elevenStreetApi: ElevenStr
     companion object {
         private var instance: ProductRemoteDataSource? = null
         fun getInstance(elevenStreetApi: ElevenStreetApi): ProductRemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: ProductRemoteDataSource(elevenStreetApi).also {
-                    instance = it
-                }
+            instance ?: ProductRemoteDataSource(elevenStreetApi).also {
+                instance = it
             }
     }
-
 }
