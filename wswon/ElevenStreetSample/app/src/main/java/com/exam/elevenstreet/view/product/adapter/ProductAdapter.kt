@@ -9,6 +9,16 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
 
     private var productItemList = mutableListOf<ProductItem>()
 
+    private var onClickListener: OnClickListener? = null
+
+    interface OnClickListener{
+        fun onClick(productItem: ProductItem)
+    }
+
+    fun setOnClickListener(listener: OnClickListener){
+        onClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder =
         ProductViewHolder(parent)
 
@@ -16,7 +26,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductViewHolder>() {
         productItemList.size
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) =
-        holder.bind(productItemList[position])
+        holder.bind(productItemList[position], onClickListener)
 
     fun addData(productItem: ProductItem){
         productItemList.add(productItem)

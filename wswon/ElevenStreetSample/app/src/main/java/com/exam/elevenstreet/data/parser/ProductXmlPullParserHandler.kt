@@ -52,6 +52,9 @@ class ProductXmlPullParserHandler {
                             tagName.equals("ProductImage300", ignoreCase = true) -> {
                                 product?.productImage = text.orEmpty()
                             }
+                            tagName.equals("Delivery", ignoreCase = true) -> {
+                                product?.delivery = text.orEmpty()
+                            }
                             tagName.equals("TotalCount", ignoreCase = true) -> {
                                 totalCount = text.orEmpty().toInt()
                             }
