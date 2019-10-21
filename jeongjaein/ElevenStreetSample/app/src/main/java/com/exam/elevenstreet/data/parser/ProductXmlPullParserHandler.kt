@@ -13,7 +13,7 @@ class ProductXmlPullParserHandler {
     private var text: String? = null
 
 
-    fun parse(inputStream: InputStream): List<ProductResponse> {
+    fun parse(inputStream: InputStream, callback : (List<ProductResponse>) ->Unit): ArrayList<ProductResponse> {
         try {
             val factory = XmlPullParserFactory.newInstance()
             factory.isNamespaceAware = true

@@ -6,9 +6,11 @@ import com.example.elevenstreet.ProductResponse
 
 interface MainContract {
     interface View:BaseView<Presenter>{
+        fun showProduct()
+        fun setupView()
     }
 interface Presenter : BasePresenter{
-    fun databind(): List<ProductResponse>
-    fun setupView()
+    fun databind()
+
 }
 }

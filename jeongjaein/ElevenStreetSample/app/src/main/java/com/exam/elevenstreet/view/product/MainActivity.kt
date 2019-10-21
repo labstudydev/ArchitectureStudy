@@ -1,58 +1,58 @@
 package com.exam.elevenstreet.view.product
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exam.elevenstreet.R
-import com.exam.elevenstreet.data.repository.ProductRepository
-import com.exam.elevenstreet.data.source.local.ProductLocalDataSource
 import com.exam.elevenstreet.view.product.adapter.ProductRecyclerViewAdapter
 import com.exam.elevenstreet.view.product.presenter.MainContract
 import com.exam.elevenstreet.view.product.presenter.ProductPresenter
-import com.example.elevenstreet.ProductResponse
-import com.example.elevenstreet.ProductXmlPullParserHandler
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(),MainContract.View{
+class MainActivity : AppCompatActivity(), MainContract.View {
+    override fun showProduct() {
 
-
-//    private lateinit var productList: List<ProductResponse>
-    private val productRepository by lazy {
-        ProductRepository(ProductLocalDataSource())
     }
-    override lateinit var presenter : MainContract.Presenter
 
+//    private val productRepository by lazy {
+//        ProductRepositoryInterface(ProductLocalDataSource())
+//    }
+
+
+    override var presenter: MainContract.Presenter = ProductPresenter()
+
+    private val productRecyclerViewAdapter by lazy { ProductRecyclerViewAdapter() }// 컴파일때 생성말고 접근할때 생성
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        presenter = ProductPresenter()
+        setupView()
+        presenter.databind()
+    }
+//        1. context가 필요한 작업을 미리해서 넘겨준다 ex) presenter == ProductPresenter(this@MainActivity,inputstream)
 //        dataBinding()
-
+//        2. global context를 만들어 사용한다. asset열때 ㅇㅅㅇ
 //        productRepository
 
 
-        search_button.setOnClickListener {
-            val productAdapter = ProductRecyclerViewAdapter()
+//        search_button.setOnClickListener {
 
-//            productAdapter.setOnItemClickListener(object :
+//                        productAdapter.setOnItemClickListener(object :
 //                ProductRecyclerViewAdapter.OnItemClickListener {
 //                override fun onClick() {
 //
 //                }
 //            })
-            setupView()
-            presenter.databind()
 
-        }
 
-    }
+//        }
 
-    private fun setupView() {
-        rv_product_list.adapter = ProductRecyclerViewAdapter()
+
+
+    override fun setupView() {
+        rv_product_list.adapter = productRecyclerViewAdapter
         rv_product_list.layoutManager = LinearLayoutManager(this)
     }
 

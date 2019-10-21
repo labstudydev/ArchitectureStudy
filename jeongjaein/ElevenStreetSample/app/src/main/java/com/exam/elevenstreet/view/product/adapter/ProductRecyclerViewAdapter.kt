@@ -50,9 +50,13 @@ class ProductRecyclerViewAdapter : RecyclerView.Adapter<ProductViewHolder>() {
     override fun getItemCount(): Int =
         productList.size
 
+//    fun replaceAll(productList:List<ProductResponse>){
+//        productList.clear(productList)
+//        productList.addAll(productList)
+//    }
 }
 //    inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//
+//C
 //        private val textName: TextView = itemView.product_name_tv
 //        private val textPrice: TextView = itemView.product_price_tv
 //        private val textCode: TextView = itemView.product_code_tv
