@@ -2,7 +2,7 @@ package com.exam.elevenstreet.data.source.remote
 
 import android.content.Context
 import android.os.AsyncTask
-import com.exam.elevenstreet.ProductActivity
+import com.exam.elevenstreet.view.product.ProductActivity
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.data.ProductCallBack
 import com.exam.elevenstreet.network.ElevenStreetApi

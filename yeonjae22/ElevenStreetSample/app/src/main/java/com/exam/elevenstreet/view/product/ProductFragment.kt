@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.exam.elevenstreet.ProductActivity
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.databinding.FragmentProductBinding
 
@@ -28,7 +27,6 @@ class ProductFragment : Fragment() {
         binding.productPriceTv.text = arguments!!.getString("productPrice")
         binding.productSellerTv.text = arguments!!.getString("productSeller")
         binding.productDeliveryTv.text = arguments!!.getString("productDelivery")
-
 
         binding.btnBack.setOnClickListener {
             (activity as ProductActivity).back(this)

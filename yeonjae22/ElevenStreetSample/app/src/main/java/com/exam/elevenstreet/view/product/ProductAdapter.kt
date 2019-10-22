@@ -1,19 +1,18 @@
-package com.exam.elevenstreet
+package com.exam.elevenstreet.view.product
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.exam.elevenstreet.R
 import com.exam.elevenstreet.databinding.ListItemBinding
-import com.exam.elevenstreet.util.App
 import com.example.elevenstreet.ProductResponse
 
-class ProductAdapter() :
+class ProductAdapter :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private lateinit var binding: ListItemBinding
-    var listener: OnClickListener? = null
+    private lateinit var listener: OnClickListener
 
     // View에 작업이 일어나면 Listener, CallBack은 데이터만 받아옴
     interface OnClickListener {
@@ -25,7 +24,7 @@ class ProductAdapter() :
     }
 
     private val items = mutableListOf<ProductResponse>()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         binding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
@@ -46,24 +45,17 @@ class ProductAdapter() :
     override fun getItemCount(): Int =
         items.size
 
-    override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
-        val item = items[position]
-        holder.run {
-            bind(listener!!, item, binding)
-            itemView.tag = item
-        }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(listener!!, items[position])//null 체크
     }
 
-    class ViewHolder(binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(listener: OnClickListener, item: ProductResponse, binding: ListItemBinding) {
+    inner class ViewHolder(
+        private val binding: ListItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(listener: OnClickListener, item: ProductResponse) {
             binding.run {
-                Glide.with(App.instance.context()).load(item.productImage)
-                    .override(200, 200)
-                    .into(productImg)
-                productNameTv.text = item.productName
-                productPriceTv.text = item.productPrice
-                productCodeTv.text = item.productCode
-                cardView.setOnClickListener {
+                productResponse = item
+                itemView.setOnClickListener {
                     listener.onClick(item)
                 }
             }

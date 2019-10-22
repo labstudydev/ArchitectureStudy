@@ -48,6 +48,7 @@
                         android:textSize="12sp" />
 
                 <ImageView
+                        imageLoad="@{productResponse.productImage}"
                         android:id="@+id/product_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
