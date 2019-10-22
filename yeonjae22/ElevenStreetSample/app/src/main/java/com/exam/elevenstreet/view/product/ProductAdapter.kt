@@ -49,7 +49,7 @@ class ProductAdapter :
         holder.bind(listener!!, items[position])//null 체크
     }
 
-    inner class ViewHolder(
+    class ViewHolder(
         private val binding: ListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(listener: OnClickListener, item: ProductResponse) {

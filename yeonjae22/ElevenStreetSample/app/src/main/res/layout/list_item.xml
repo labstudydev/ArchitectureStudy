@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
         <variable
                 name="productResponse"
                 type="com.example.elevenstreet.ProductResponse" />
-
     </data>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,32 +25,32 @@
                     android:orientation="vertical">
 
                 <TextView
-                        android:text="@{productResponse.productName}"
                         android:id="@+id/product_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{productResponse.productName}"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
 
                 <TextView
-                        android:text="@{productResponse.productPrice}"
                         android:id="@+id/product_price_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{productResponse.productPrice}"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
 
                 <TextView
-                        android:text="@{productResponse.productCode}"
                         android:id="@+id/product_code_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{productResponse.productCode}"
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp" />
 
                 <ImageView
-                        imageLoad="@{productResponse.productImage}"
                         android:id="@+id/product_img"
+                        imageLoad="@{productResponse.productImage}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 

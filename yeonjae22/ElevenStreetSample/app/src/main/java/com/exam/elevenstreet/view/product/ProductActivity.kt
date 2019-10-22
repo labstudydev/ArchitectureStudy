@@ -17,6 +17,7 @@ import com.exam.elevenstreet.viewmodel.ProductViewModel
 import com.example.elevenstreet.ProductResponse
 
 class ProductActivity : AppCompatActivity() {
+    val productFragment = ProductFragment()
     private val adapter = ProductAdapter()
     private lateinit var binding: ActivityProductBinding
     private val viewModel = ProductViewModel(
@@ -40,7 +41,6 @@ class ProductActivity : AppCompatActivity() {
 
         adapter.setOnClickListener(object : ProductAdapter.OnClickListener {
             override fun onClick(productResponse: ProductResponse) {
-                val productFragment = ProductFragment()
                 supportFragmentManager.beginTransaction().replace(
                     R.id.frame,
                     productFragment.newInstance(
@@ -71,8 +71,9 @@ class ProductActivity : AppCompatActivity() {
         })
     }
 
-    fun back(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().remove(fragment).commit()
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportFragmentManager.beginTransaction().remove(productFragment).commit()
         supportFragmentManager.popBackStack()
     }
 
