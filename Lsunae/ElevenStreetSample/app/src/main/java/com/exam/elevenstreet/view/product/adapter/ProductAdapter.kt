@@ -6,59 +6,53 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.exam.elevenstreet.R
-import com.exam.elevenstreet.data.model.ProductItem
 import com.exam.elevenstreet.databinding.ListItemBinding
 import com.exam.elevenstreet.network.model.ProductResponse
-//import kotlinx.android.synthetic.main.list_item.view.*
 
-class ProductAdapter(private val items: MutableList<ProductResponse>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(private val items: MutableList<ProductResponse>) :
+    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    private var onClickListener:OnClickListener?=null
+    private lateinit var onClickListener: OnClickListener
     private lateinit var binding: ListItemBinding
 
-    interface OnClickListener{
-        fun onClick(productItem: ProductItem)
+    interface OnClickListener {
+        fun onClick(productItem: ProductResponse)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder{
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+    fun setOnClickListener(listener: OnClickListener) {
+        onClickListener = listener
+    }
 
-       binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.list_item, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-//        return ViewHolder(view)
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.list_item,
+            parent,
+            false
+        )
+        if (::onClickListener.isLateinit) {
 
+        }
         return ViewHolder(binding.root)
     }
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        items[position].let { item ->
-            with(holder) {
-                code.text = item.productCode
-                name.text = item.productName
-                price.text = item.productPrice
-            }
-        }
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(onClickListener, items[position])
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(listener: OnClickListener{
-            view.run{
-                binding.run {
-//                    productResponse = item
-
-                }
+        fun bind(listener: OnClickListener, productItem: ProductResponse) {
+            if (::onClickListener.isLateinit) {
+                listener.onClick(productItem)
             }
-        })
-
-        val code = itemView.tv_product_code
-        val name = itemView.tv_product_name
-        val price = itemView.tv_product_price
+            binding.productItem = productItem
+        }
     }
 
-    fun replaceAll(productList: List<ProductResponse>){
+    fun replaceAll(productList: List<ProductResponse>) {
         items.clear()
         items.addAll(productList)
         notifyDataSetChanged()
