@@ -1,4 +1,4 @@
-package com.exam.elevenstreet.view.presenter
+package com.exam.elevenstreet.view.product.presenter
 
 import com.example.elevenstreet.ProductResponse
 

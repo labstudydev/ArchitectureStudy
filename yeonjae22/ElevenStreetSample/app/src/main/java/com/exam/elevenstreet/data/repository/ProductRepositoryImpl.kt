@@ -1,21 +1,19 @@
-package com.exam.elevenstreet.data
+package com.exam.elevenstreet.data.repository
 
+import com.exam.elevenstreet.data.ProductCallBack
+import com.exam.elevenstreet.data.source.local.ProductLocalDataSource
+import com.exam.elevenstreet.data.source.remote.ProductRemoteDataSource
 import com.exam.elevenstreet.ext.isConnectedToNetwork
 import com.exam.elevenstreet.util.App
-import com.example.elevenstreet.ProductResponse
 
-class ProductRepository(
+class ProductRepositoryImpl private constructor(
     private val productRemoteDataSource: ProductRemoteDataSource,
     private val productLocalDataSource: ProductLocalDataSource
-) {
-    interface CallBack {
-        fun onSuccess(productList: List<ProductResponse>)
-        fun onFailure(message: String)
-    }
+): ProductRepository {
 
-    fun getSearchByKeyword(
+    override fun getSearchByKeyword(
         keyWord: String,
-        callback: CallBack
+        callback: ProductCallBack
     ) {
         if (App.instance.context().isConnectedToNetwork()) {
             productRemoteDataSource.getSearchByKeyword(keyWord, callback)
@@ -25,15 +23,16 @@ class ProductRepository(
     }
 
     companion object {
-        private var instance: ProductRepository? = null
+        private var instance: ProductRepositoryImpl? = null
         fun getInstance(
             productRemoteDataSource: ProductRemoteDataSource,
             productLocalDataSource: ProductLocalDataSource
-        ): ProductRepository =
-            instance ?: ProductRepository(
-                productRemoteDataSource,
-                productLocalDataSource
-            ).also {
+        ): ProductRepositoryImpl =
+            instance
+                ?: ProductRepositoryImpl(
+                    productRemoteDataSource,
+                    productLocalDataSource
+                ).also {
                 instance = it
             }
     }

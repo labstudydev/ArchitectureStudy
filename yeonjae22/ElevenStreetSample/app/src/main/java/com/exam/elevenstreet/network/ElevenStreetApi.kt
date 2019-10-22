@@ -1,4 +1,4 @@
-package com
+package com.exam.elevenstreet.network
 
 import okhttp3.ResponseBody
 import retrofit2.Call
