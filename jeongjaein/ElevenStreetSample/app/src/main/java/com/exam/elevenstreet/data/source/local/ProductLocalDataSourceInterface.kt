@@ -1,7 +1,7 @@
 package com.exam.elevenstreet.data.source.local
 
-import com.example.elevenstreet.ProductResponse
+import com.exam.elevenstreet.data.CallBack
 
 interface ProductLocalDataSourceInterface {
-    fun getProductList(callback:(productList: List<ProductResponse>)->Unit)
+    fun getProductList(callback: CallBack)
 }

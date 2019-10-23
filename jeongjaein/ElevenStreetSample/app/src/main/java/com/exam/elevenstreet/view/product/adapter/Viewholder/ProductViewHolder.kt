@@ -1,9 +1,7 @@
 package com.exam.elevenstreet.view.product.adapter.Viewholder
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -24,15 +22,15 @@ class ProductViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 //        val listener = View.OnClickListener { clickListener?.onClick() }
 
 
-
         itemView.run {
 
-            val tempurl = productResponse.productImage.replace("\n".toRegex(), "")
+            val temp1url = productResponse.productImage.replace("\n", "")
 
-            val replaceurl = tempurl.replace(" ".toRegex(), "")
+            val temp2url = temp1url.replace(" ", "")
 
+            val replaceurl = temp2url.replace("\"", "")
             GlideApp.with(itemView)
-                .load("http://i.011st.com/t/300/pd/18/2/4/2/2/4/8/eqSaS/2138242248_B.jpg")
+                .load(replaceurl)
                 .error(R.drawable.ic_alarm_on_black_24dp)
                 .into(textImage)
 
