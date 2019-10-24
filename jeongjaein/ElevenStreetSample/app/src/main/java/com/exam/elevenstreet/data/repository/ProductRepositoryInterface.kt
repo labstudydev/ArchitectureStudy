@@ -5,9 +5,8 @@ import com.exam.elevenstreet.data.model.ProductItem
 import com.exam.elevenstreet.data.source.local.ProductLocalDataSource
 import com.example.elevenstreet.ProductResponse
 
-interface ProductRepositoryInterface
-{
+interface ProductRepositoryInterface {
     fun getProductItem(
-        callback : CallBack
+        callback: CallBack
     )
 }

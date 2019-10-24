@@ -18,11 +18,10 @@ class ProductLocalDataSource : ProductLocalDataSourceInterface {
     companion object {
         private var instance: ProductLocalDataSource? = null
         fun getInstance(): ProductLocalDataSource =
-            instance ?: synchronized(this) {
                 instance ?: ProductLocalDataSource().also {
                     instance = it
                 }
-            }
+
     }
 
 }

@@ -5,22 +5,27 @@ import com.exam.elevenstreet.data.CallBack
 import com.exam.elevenstreet.data.repository.ProductRepository
 import com.example.elevenstreet.ProductResponse
 
-class ProductPresenter : AppCompatActivity(), MainContract.Presenter {
+class ProductPresenter(
+    private val productRepository: ProductRepository.Companion,
+    private val productView: MainContract.View
+
+) : AppCompatActivity(), MainContract.Presenter {
+
     override fun start() {
 
     }
 
-    //    private lateinit var productList: List<ProductResponse>
-    private val productRepository: ProductRepository? = null
-    private val productView: MainContract.View? = null
     override fun databind() {
-        productRepository?.getProductItem(object : CallBack {
+
+        productRepository.getInstance(object : CallBack {
 
             override fun onSuccess(productList: List<ProductResponse>) {
                 productView?.showProduct(productList)
+
             }
 
             override fun onFailure(message: String) {
+
             }
 
 

@@ -19,10 +19,6 @@ class ProductViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     private val textImage: ImageView = itemView.product_image_iv
 
     fun bind(productResponse: ProductResponse) {
-//        val listener = View.OnClickListener { clickListener?.onClick() }
-
-
-        itemView.run {
 
             val temp1url = productResponse.productImage.replace("\n", "")
 
@@ -34,22 +30,10 @@ class ProductViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
                 .error(R.drawable.ic_alarm_on_black_24dp)
                 .into(textImage)
 
-//            itemView.setOnClickListener(listener)
             textName.text = productResponse.productName
             textPrice.text = productResponse.productPrice
-            textCode.text = replaceurl
-//                var count = 0
-//                val array : List<Int> = ArrayList<Int>()
-//                for(i in 0..replaceurl.length){
-//                    if(replaceurl[i] == productResponse.productImage[i]){
-//                        count ++
-//
-//                    }
-//                }
-//            val compareurl = "http://i.011st.com/t/300/pd/18/2/4/2/2/4/8/eqSaS/2138242248_B.jpg"
-//            if (replaceurl.length == compareurl.length) {
-//                textCode.text = "고영찬 바보@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-//            }
-        }
+            textCode.text = productResponse.productCode
+
+
     }
 }
