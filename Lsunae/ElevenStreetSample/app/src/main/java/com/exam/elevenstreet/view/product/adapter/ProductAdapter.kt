@@ -45,7 +45,7 @@ class ProductAdapter(private val items: MutableList<ProductResponse>) :
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(listener: OnClickListener, productItem: ProductResponse) {
-            if (::onClickListener.isLateinit) {
+            if (::onClickListener.isInitialized) {
                 listener.onClick(productItem)
             }
             binding.productItem = productItem

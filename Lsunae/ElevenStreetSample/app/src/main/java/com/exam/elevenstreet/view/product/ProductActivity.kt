@@ -29,7 +29,7 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
 
         productAdapter.setOnClickListener(object : ProductAdapter.OnClickListener {
             override fun onClick(productItem: ProductResponse) {
-                
+
             }
         })
         productPresenter = ProductPresenter(
@@ -51,8 +51,11 @@ class ProductActivity : AppCompatActivity(), ProductContract.View {
 
     private fun setupView() {
         val layoutManager = LinearLayoutManager(this@ProductActivity)
-        activityMainBinding.recyclerViewProduct.layoutManager = layoutManager
-        activityMainBinding.recyclerViewProduct.adapter = productAdapter
+
+        activityMainBinding.recyclerViewProduct.run {
+            this.layoutManager = layoutManager
+            adapter = productAdapter
+        }
     }
 
     companion object {

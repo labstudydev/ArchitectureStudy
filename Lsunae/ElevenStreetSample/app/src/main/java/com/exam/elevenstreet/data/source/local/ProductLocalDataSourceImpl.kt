@@ -6,7 +6,7 @@ import com.exam.elevenstreet.view.product.App
 
 class ProductLocalDataSourceImpl : ProductLocalDataSource {
 
-    val context = App.instance.context()
+    private val context = App.instance.context()
 
     override fun getProductDataList(callback: ProductCallback) {
         val inputStream = context.assets.open("ElevenStreetOpenApiService.xml")

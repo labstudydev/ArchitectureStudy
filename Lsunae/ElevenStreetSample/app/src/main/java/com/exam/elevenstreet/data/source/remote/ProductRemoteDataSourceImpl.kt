@@ -11,7 +11,7 @@ import com.exam.elevenstreet.view.product.ProductActivity
 
 import java.net.URL
 
-class ProductRemoteDataSourceImpl constructor(private var elevenStreetApi: ElevenStreetApi) : ProductRemoteDataSource{
+class ProductRemoteDataSourceImpl private constructor(private var elevenStreetApi: ElevenStreetApi) : ProductRemoteDataSource{
     private val context = App.instance.context()
 
     override fun getSearchByKeyword(keyWord: String, callback: ProductCallback) {
