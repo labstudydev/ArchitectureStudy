@@ -29,7 +29,7 @@ class ProductFragment : Fragment() {
         binding.productDeliveryTv.text = arguments!!.getString("productDelivery")
 
         binding.btnBack.setOnClickListener {
-            (activity as ProductActivity).onBackPressed()
+            requireActivity().onBackPressed()
         }
     }
 
