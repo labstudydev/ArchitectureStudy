@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <EditText
-                android:id="@+id/edit_search"
-                android:layout_width="300sp"
-                android:layout_height="wrap_content"
-                android:hint="검색어를 입력하세요." />
-
-        <Button
-                android:id="@+id/btn_search"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:text="검색">
-
-        </Button>
-
-
-    </LinearLayout>
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_product"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F0F0F0"/>
+            android:orientation="vertical">
 
-</LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <EditText
+                    android:id="@+id/edit_search"
+                    android:layout_width="300sp"
+                    android:layout_height="wrap_content"
+                    android:hint="검색어를 입력하세요." />
+
+            <Button
+                    android:id="@+id/btn_search"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="검색">
+
+            </Button>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#F0F0F0" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

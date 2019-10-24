@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">ElevenStreetSample</string>
     <string name="eleven_street_API_KEY">1419942f67713eca9cfbb9a752cac395</string>
+
+    <string name="stringHint">검색어를 입력하세요</string>
+
+    <array name="dd">
+        <item></item>
+        <item></item>
+        <item></item>
+    </array>
 </resources>

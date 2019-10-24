@@ -1,6 +1,5 @@
 package com.exam.elevenstreet.data
 
-
 import com.exam.elevenstreet.network.model.ProductResponse
 
 interface ProductCallback {
