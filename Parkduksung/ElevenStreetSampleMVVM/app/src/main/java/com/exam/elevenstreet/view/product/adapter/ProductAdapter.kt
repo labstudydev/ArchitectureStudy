@@ -2,7 +2,6 @@ package com.exam.elevenstreet.view.product.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.exam.elevenstreet.BR
@@ -36,7 +35,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         holder.run {
 
             bind(productItem)
-            productImage.setImageBitmap(productItem.productImage)
+
 
         }
     }
@@ -54,9 +53,6 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     class ViewHolder(private val itemProductBinding: ItemProductBinding) :
         RecyclerView.ViewHolder(itemProductBinding.root) {
-
-
-        val productImage: ImageView = itemProductBinding.productImageIv
 
         fun bind(item: ProductItem) {
             itemProductBinding.setVariable(BR.productItem, item)
