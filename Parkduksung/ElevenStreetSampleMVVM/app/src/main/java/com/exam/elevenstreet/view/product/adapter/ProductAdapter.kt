@@ -3,23 +3,29 @@ package com.exam.elevenstreet.view.product.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.exam.elevenstreet.BR
+import com.exam.elevenstreet.R
 import com.exam.elevenstreet.data.model.ProductItem
 import com.exam.elevenstreet.databinding.ItemProductBinding
 
 class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private var productItemList = mutableListOf<ProductItem>()
+    private lateinit var binding: ItemProductBinding
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(
-            ItemProductBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.item_product,
+            parent,
+            false
         )
+
+        return ViewHolder(binding)
+    }
 
     override fun getItemCount(): Int =
         productItemList.size
@@ -28,9 +34,10 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
         val productItem: ProductItem = productItemList[position]
         holder.run {
-            productName.text = productItem.productName
-            productPrice.text = productItem.productPrice
+
+            bind(productItem)
             productImage.setImageBitmap(productItem.productImage)
+
         }
     }
 
@@ -45,12 +52,15 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemProductBinding: ItemProductBinding) :
+    class ViewHolder(private val itemProductBinding: ItemProductBinding) :
         RecyclerView.ViewHolder(itemProductBinding.root) {
 
-        val productName: TextView = itemProductBinding.productNameTv
-        val productPrice: TextView = itemProductBinding.productPriceTv
+
         val productImage: ImageView = itemProductBinding.productImageIv
+
+        fun bind(item: ProductItem) {
+            itemProductBinding.setVariable(BR.productItem, item)
+        }
 
 
     }

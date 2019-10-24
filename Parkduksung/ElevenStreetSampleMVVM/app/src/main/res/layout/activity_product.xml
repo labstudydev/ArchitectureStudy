@@ -2,12 +2,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-
-        <variable
-                name="productItem"
-                type="com.exam.elevenstreet.data.model.ProductItem" />
-    </data>
+    <data></data>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -50,13 +45,6 @@
                     android:id="@+id/rv_product"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
-<!--            <ProgressBar-->
-<!--                    android:id="@+id/pgr_product_load"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_centerInParent="true"-->
-<!--                    android:visibility="gone" />-->
 
 
         </RelativeLayout>

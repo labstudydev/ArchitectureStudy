@@ -33,13 +33,12 @@ class ProductActivity : AppCompatActivity() {
         )
     }
 
-//    private var isShowingMessage = false
     private lateinit var activityProductBinding: ActivityProductBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_product)
+
 
         activityProductBinding = DataBindingUtil.setContentView(this, R.layout.activity_product)
         setupView()
@@ -52,51 +51,24 @@ class ProductActivity : AppCompatActivity() {
         }
     }
 
-//    fun showMessage(message: String) {
-//        if (!isShowingMessage) {
-//            isShowingMessage = true
-//            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-//            Handler().postDelayed({
-//                isShowingMessage = false
-//            }, 1000)
-//        }
-//    }
-//
-//    fun showLoadingProgress() {
-//        runOnUiThread {
-//            activityProductBinding.pgrProductLoad.visibility = View.VISIBLE
-//            activityProductBinding.pgrProductLoad.isIndeterminate = true
-//        }
-//    }
-//
-//    fun endDataLoad() {
-//        runOnUiThread {
-//            activityProductBinding.pgrProductLoad.visibility = View.GONE
-//            activityProductBinding.pgrProductLoad.isIndeterminate = false
-//            productViewModel.checkProductEnd(productAdapter.itemCount)
-//        }
-//    }
-
     private fun setupView() {
         activityProductBinding.rvProduct.run {
             layoutManager = LinearLayoutManager(this@ProductActivity)
             adapter = productAdapter
 
 
+            productViewModel
+
+
 
             productViewModel.productItemList.addOnPropertyChangedCallback(object :
                 Observable.OnPropertyChangedCallback() {
                 override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                    (sender as? ObservableField<List<ProductItem>>)?.get()?.let {
-                        it.forEach{
-                            showProductList(it)
-                        }
+                    (sender as? ObservableField<ProductItem>)?.get()?.let {
+                        showProductList(it)
 
-//                        endDataLoad()
                     }
 
-//
-//                    showLoadingProgress()
 
                 }
 

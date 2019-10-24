@@ -17,7 +17,11 @@ data class ProductResponse @JvmOverloads constructor(
     var productImage: String = ""
 ) {
     fun toProductItem(callback: (productItem: ProductItem) -> Unit) {
+
+
         Thread(Runnable {
+
+
             val priceFormat = DecimalFormat("###,###원")
 
             try {

@@ -15,9 +15,7 @@ class ProductViewModel(private val productRepository: ProductRepository) {
     private var pageNum = 1
     private var totalCount = 0
 
-    val productItemList = ObservableField<List<ProductItem>>()
-
-    private var _productItemList = mutableListOf<ProductItem>()
+    val productItemList = ObservableField<ProductItem>()
 
 
     fun searchByKeyword(keyword: String) {
@@ -36,12 +34,6 @@ class ProductViewModel(private val productRepository: ProductRepository) {
         }
     }
 
-    fun checkProductEnd(itemCount: Int) {
-        if ((totalCount - itemCount) < 50) {
-            isProductLastPrevious = true
-        }
-    }
-
     private fun getProductList(keyword: String, pageNum: Int) {
         productRepository.getSearchByKeyword(keyword, pageNum) { productResponse, totalCount ->
 
@@ -53,32 +45,15 @@ class ProductViewModel(private val productRepository: ProductRepository) {
                 if (productResponse.isEmpty()) {
                     Log.d("Error", "검색 결과가 없습니다.")
                 } else {
-                    // 데이터 로드 시작 progress show
 
-//                    prductView.showLoadingProgress()
-////                    productView.showLoadingProgress()
-
-
-//                    productResponse.forEach {
-//                        it.toProductItem { productItem ->
-//                            _productItemList.add(
-//                                productItem
-//                            )
-//                        }
-//                    }
-
-//
-//                    // 데이터변환 ProductResponse -> ProductItem
                     productResponse.forEach {
                         it.toProductItem { productItem ->
-                            _productItemList.add(productItem)
+
+                            productItemList.set(productItem)
                         }
+
                     }
 
-                    productItemList.set(_productItemList)
-//
-//                    //데이터 셋팅 완료. progress hide
-//                    prductView.endDataLoad()
                 }
             }
         }

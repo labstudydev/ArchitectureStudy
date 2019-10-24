@@ -25,8 +25,7 @@
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     android:textColor="@color/colorBlack"
-                    android:textSize="12sp"
-                     />
+                    android:textSize="12sp" />
 
             <TextView
                     android:id="@+id/product_name_tv"
@@ -35,7 +34,7 @@
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="3dp"
                     android:layout_toEndOf="@id/product_image_iv"
-
+                    android:text="@{productItem.productName}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp" />
 
@@ -46,7 +45,7 @@
                     android:layout_below="@id/product_name_tv"
                     android:layout_alignStart="@id/product_name_tv"
                     android:layout_toEndOf="@id/product_image_iv"
-
+                    android:text="@{productItem.productPrice}"
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp" />
         </RelativeLayout>
