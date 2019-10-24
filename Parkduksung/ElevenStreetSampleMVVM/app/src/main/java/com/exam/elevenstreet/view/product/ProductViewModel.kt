@@ -15,7 +15,7 @@ class ProductViewModel(private val productRepository: ProductRepository) {
     private var pageNum = 1
     private var totalCount = 0
 
-    val productItemList = ObservableField<ProductItem>()
+    val productItem = ObservableField<ProductItem>()
 
 
     fun searchByKeyword(keyword: String) {
@@ -49,7 +49,7 @@ class ProductViewModel(private val productRepository: ProductRepository) {
                     productResponse.forEach {
                         it.toProductItem { productItem ->
 
-                            productItemList.set(productItem)
+                            this.productItem.set(productItem)
                         }
 
                     }

@@ -61,7 +61,7 @@ class ProductActivity : AppCompatActivity() {
 
 
 
-            productViewModel.productItemList.addOnPropertyChangedCallback(object :
+            productViewModel.productItem.addOnPropertyChangedCallback(object :
                 Observable.OnPropertyChangedCallback() {
                 override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                     (sender as? ObservableField<ProductItem>)?.get()?.let {
