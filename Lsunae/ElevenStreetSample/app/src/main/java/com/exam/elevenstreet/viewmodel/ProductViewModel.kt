@@ -1,15 +1,23 @@
 package com.exam.elevenstreet.viewmodel
 
 import androidx.databinding.ObservableField
-import com.exam.elevenstreet.data.model.ProductItem
+import com.exam.elevenstreet.data.ProductCallback
 import com.exam.elevenstreet.data.repository.ProductRepository
+import com.exam.elevenstreet.network.model.ProductResponse
 
 class ProductViewModel(private val productRepository: ProductRepository){
 
-   // ProductPresenter 에 있는 소스를 가져와서 넣으면 됨
+    val productItemList = ObservableField<List<ProductResponse>>()
 
-    val productItemList = ObservableField<List<ProductItem>>()  //ObservabledField를 사용하면 감지를 할 수 있음
+    fun searchByKeyword(keyword: String) {
+        productRepository.getProductList(keyword, object : ProductCallback {
+            override fun onFailure(message: String) {
 
+            }
 
-
+            override fun onSuccess(productList: List<ProductResponse>) {
+                productItemList.set(productList)
+            }
+        })
+    }
 }
