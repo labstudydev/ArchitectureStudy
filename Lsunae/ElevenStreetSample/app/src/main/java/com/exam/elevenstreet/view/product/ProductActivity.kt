@@ -25,7 +25,8 @@ class ProductActivity : AppCompatActivity() {
     private val productViewModel = ProductViewModel(
         ProductRepositoryImpl(
             ProductRemoteDataSourceImpl.getInstance(
-                RetrofitInstance.getInstance("https://openapi.11st.co.kr/openapi/")),
+                RetrofitInstance.getInstance("https://openapi.11st.co.kr/openapi/")
+            ),
             ProductLocalDataSourceImpl.getInstance()
         )
     )
@@ -41,7 +42,7 @@ class ProductActivity : AppCompatActivity() {
 
             }
         })
-        
+
         setupView()
         setupViewModel()
     }
@@ -62,7 +63,7 @@ class ProductActivity : AppCompatActivity() {
     private fun setupViewModel() {
         productViewModel.productItemList.addOnPropertyChangedCallback(object :
 
-        Observable.OnPropertyChangedCallback() {
+            Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 (sender as? ObservableField<List<ProductResponse>>)
                     ?.get()
