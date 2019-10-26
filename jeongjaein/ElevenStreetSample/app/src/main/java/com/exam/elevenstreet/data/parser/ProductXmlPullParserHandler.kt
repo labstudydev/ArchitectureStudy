@@ -1,7 +1,6 @@
 package com.example.elevenstreet
 
 import android.util.Log
-import com.exam.elevenstreet.data.CallBack
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
@@ -14,7 +13,7 @@ class ProductXmlPullParserHandler {
     private var text: String? = null
 
 
-    fun parse(inputStream: InputStream, callback: CallBack): ArrayList<ProductResponse> {
+    fun parse(inputStream: InputStream): ArrayList<ProductResponse> {
         try {
             val factory = XmlPullParserFactory.newInstance()
             factory.isNamespaceAware = true

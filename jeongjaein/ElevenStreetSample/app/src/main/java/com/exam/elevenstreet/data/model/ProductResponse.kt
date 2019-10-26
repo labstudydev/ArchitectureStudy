@@ -1,10 +1,6 @@
 package com.example.elevenstreet
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-data class ProductResponse(
-
+data class ProductResponse @JvmOverloads constructor(
     var productCode: String = "",
     var productName: String = "",
     var productPrice: String = "",

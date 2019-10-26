@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.exam.elevenstreet.R
+import com.exam.elevenstreet.data.model.ProductItem
 import com.exam.elevenstreet.module.GlideApp
 import com.example.elevenstreet.ProductResponse
 import kotlinx.android.synthetic.main.item_product.view.*
@@ -20,19 +21,19 @@ class ProductViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
     fun bind(productResponse: ProductResponse) {
 
-            val temp1url = productResponse.productImage.replace("\n", "")
+        val temp1url = productResponse.productImage.replace("\n", "")
 
-            val temp2url = temp1url.replace(" ", "")
+        val temp2url = temp1url.replace(" ", "")
 
-            val replaceurl = temp2url.replace("\"", "")
-            GlideApp.with(itemView)
-                .load(replaceurl)
-                .error(R.drawable.ic_alarm_on_black_24dp)
-                .into(textImage)
+        val replaceurl = temp2url.replace("\"", "")
+        GlideApp.with(itemView)
+            .load(replaceurl)
+            .error(R.drawable.ic_alarm_on_black_24dp)
+            .into(textImage)
 
-            textName.text = productResponse.productName
-            textPrice.text = productResponse.productPrice
-            textCode.text = productResponse.productCode
+        textName.text = productResponse.productName
+        textPrice.text = productResponse.productPrice
+        textCode.text = productResponse.productCode
 
 
     }

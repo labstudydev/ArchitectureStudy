@@ -1,43 +1,31 @@
 package com.exam.elevenstreet.view.product.presenter
 
-import androidx.appcompat.app.AppCompatActivity
-import com.exam.elevenstreet.data.CallBack
-import com.exam.elevenstreet.data.repository.ProductRepository
-import com.example.elevenstreet.ProductResponse
+import com.exam.elevenstreet.data.repository.ProductRepositoryInterface
 
 class ProductPresenter(
-    private val productRepository: ProductRepository.Companion,
+    private val productRepository: ProductRepositoryInterface,
     private val productView: MainContract.View
+) : MainContract.Presenter {
 
-) : AppCompatActivity(), MainContract.Presenter {
+    private var pageNum = 1
+    private lateinit var lastSearchKeyword: String
+
+    override fun searchByKeyword(keyword: String) {
+        pageNum = 1
+        lastSearchKeyword = keyword
+        databind(lastSearchKeyword, pageNum)
+    }
 
     override fun start() {
 
     }
 
-    override fun databind() {
-
-        productRepository.getInstance(object : CallBack {
-
-            override fun onSuccess(productList: List<ProductResponse>) {
-                productView?.showProduct(productList)
-
-            }
-
-            override fun onFailure(message: String) {
-
-            }
-
-
-        })
+    private fun databind(keyword: String, pageNum: Int) {
+        productRepository.getProductItem(keyword, pageNum) { productList ->
+            productView.showProduct(productList)
+        }
 
 
     }
-    /*      val productAdapter = ProductRecyclerViewAdapter(productList)
-          val globalContext = MyApplication
-          val inputStream = globalContext.context().assets.open("ElevenStreetOpenApiService.xml")
 
-          productList = ProductXmlPullParserHandler().parse(inputStream)
-
-  */
 }

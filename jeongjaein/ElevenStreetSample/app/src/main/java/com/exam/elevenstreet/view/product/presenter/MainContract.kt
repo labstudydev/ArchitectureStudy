@@ -5,12 +5,13 @@ import com.exam.elevenstreet.view.product.base.BaseView
 import com.example.elevenstreet.ProductResponse
 
 interface MainContract {
-    interface View:BaseView<Presenter>{
+    interface View : BaseView<Presenter> {
         fun showProduct(productList: List<ProductResponse>)
         fun setupView()
     }
-interface Presenter : BasePresenter{
-    override fun databind()
 
-}
+    interface Presenter : BasePresenter {
+        fun searchByKeyword(keyword: String)
+
+    }
 }
