@@ -19,15 +19,13 @@ class ProductFragment : BaseFragment<FragmentProductBinding>(R.layout.fragment_p
         binding.btnBack.setOnClickListener {
             requireActivity().onBackPressed()
         }
-
-        view?.setOnClickListener {
-            true
-        }
     }
 
     companion object {
         fun newInstance(
-            productName: String, productPrice: String, productSeller: String,
+            productName: String,
+            productPrice: String,
+            productSeller: String,
             productDelivery: String
         ) = ProductFragment().apply {
             arguments = Bundle().apply {

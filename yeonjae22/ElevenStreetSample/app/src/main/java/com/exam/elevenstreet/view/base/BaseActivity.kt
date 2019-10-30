@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-open class BaseActivity<T: ViewDataBinding>(@LayoutRes private val layoutId: Int) : AppCompatActivity() {
+abstract class BaseActivity<T: ViewDataBinding>(@LayoutRes private val layoutId: Int) : AppCompatActivity() {
     lateinit var binding: T
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
