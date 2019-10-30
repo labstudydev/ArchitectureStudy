@@ -21,7 +21,6 @@ data class ProductResponse @JvmOverloads constructor(
 
         Thread(Runnable {
 
-
             val priceFormat = DecimalFormat("###,###원")
 
             try {

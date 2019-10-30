@@ -1,13 +1,14 @@
 package com.exam.elevenstreet.view.product
 
 import android.util.Log
-import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.exam.elevenstreet.data.model.ProductItem
 import com.exam.elevenstreet.data.repository.ProductRepository
 import com.exam.elevenstreet.data.repository.ProductRepositoryImpl
 
 
-class ProductViewModel(private val productRepository: ProductRepository) {
+class ProductViewModel(private val productRepository: ProductRepository) : ViewModel() {
 
 
     private var isProductLastPrevious: Boolean = false
@@ -15,7 +16,8 @@ class ProductViewModel(private val productRepository: ProductRepository) {
     private var pageNum = 1
     private var totalCount = 0
 
-    val productItem = ObservableField<ProductItem>()
+
+    val productItem = MutableLiveData<ProductItem>()
 
 
     fun searchByKeyword(keyword: String) {
@@ -46,13 +48,16 @@ class ProductViewModel(private val productRepository: ProductRepository) {
                     Log.d("Error", "검색 결과가 없습니다.")
                 } else {
 
+
                     productResponse.forEach {
                         it.toProductItem { productItem ->
 
-                            this.productItem.set(productItem)
+                            this.productItem.postValue(productItem)
                         }
 
+
                     }
+
 
                 }
             }

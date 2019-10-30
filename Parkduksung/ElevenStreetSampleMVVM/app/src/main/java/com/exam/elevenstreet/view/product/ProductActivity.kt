@@ -3,8 +3,7 @@ package com.exam.elevenstreet.view.product
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.Observable
-import androidx.databinding.ObservableField
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.exam.elevenstreet.R
@@ -57,22 +56,12 @@ class ProductActivity : AppCompatActivity() {
             adapter = productAdapter
 
 
-            productViewModel
-
-
-
-            productViewModel.productItem.addOnPropertyChangedCallback(object :
-                Observable.OnPropertyChangedCallback() {
-                override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                    (sender as? ObservableField<ProductItem>)?.get()?.let {
-                        showProductList(it)
-
-                    }
-
-
-                }
-
+            productViewModel.productItem.observe(this@ProductActivity, Observer {
+                showProductList(it)
             })
+
+
+
 
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -99,3 +88,5 @@ class ProductActivity : AppCompatActivity() {
         private const val TAG = "ProductActivity"
     }
 }
+
+
