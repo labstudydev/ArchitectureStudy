@@ -46,7 +46,7 @@ class ProductAdapter :
         items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listener!!, items[position])//null 체크
+        holder.bind(listener, items[position])
     }
 
     class ViewHolder(
