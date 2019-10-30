@@ -38,13 +38,13 @@ class ProductActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main
     private fun setupView() {
         val layoutManager = LinearLayoutManager(this@ProductActivity)
 
-        activityMainBinding.recyclerViewProduct.run {
+        binding.recyclerViewProduct.run {
             this.layoutManager = layoutManager
             adapter = productAdapter
         }
 
-        activityMainBinding.btnSearch.setOnClickListener {
-            productViewModel.searchByKeyword("${activityMainBinding.editSearch.text}")
+        binding.btnSearch.setOnClickListener {
+            productViewModel.searchByKeyword("${binding.editSearch.text}")
         }
     }
 

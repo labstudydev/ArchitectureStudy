@@ -8,13 +8,12 @@ import androidx.databinding.ViewDataBinding
 
 abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
     AppCompatActivity() {
-    protected lateinit var activityMainBinding: T
+    protected lateinit var binding: T
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        activityMainBinding = DataBindingUtil.setContentView(this, layoutId)
+        binding = DataBindingUtil.setContentView(this, layoutId)
 
-        activityMainBinding.lifecycleOwner =
-            this
+        binding.lifecycleOwner = this
     }
 }
