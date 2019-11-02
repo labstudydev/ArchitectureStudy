@@ -1,9 +1,8 @@
 package com.exam.elevenstreet.data.source.local
 
 import com.exam.elevenstreet.MyApplication
-import com.example.elevenstreet.ProductXmlPullParserHandler
-import com.exam.elevenstreet.data.Callback
 import com.example.elevenstreet.ProductResponse
+import com.example.elevenstreet.ProductXmlPullParserHandler
 
 class ProductLocalDataSource : ProductLocalDataSourceInterface {
 

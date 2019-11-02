@@ -1,12 +1,10 @@
 package com.exam.elevenstreet.data.source.remote
 
-import android.os.Handler
-import android.os.Looper
+
 import com.exam.elevenstreet.network.ElevenStreetApi
 import com.example.elevenstreet.ProductResponse
 import com.example.elevenstreet.ProductXmlPullParserHandler
 import java.net.URL
-import android.os.StrictMode
 
 
 class ProductRemoteDataSource(private val api: ElevenStreetApi) : ProductRemoteDataSourceInterface {
@@ -33,8 +31,8 @@ class ProductRemoteDataSource(private val api: ElevenStreetApi) : ProductRemoteD
     }
 
     companion object {
-        val APIKEY = "914cbc30d94291e219043cfd76ab6916"
-        val APICODE = "Productsearch"
+        const val APIKEY = "914cbc30d94291e219043cfd76ab6916"
+        const val APICODE = "ProductSearch"
 
         private var instance: ProductRemoteDataSource? = null
 

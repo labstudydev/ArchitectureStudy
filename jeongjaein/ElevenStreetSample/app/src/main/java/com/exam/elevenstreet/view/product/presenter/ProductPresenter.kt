@@ -22,6 +22,7 @@ class ProductPresenter(
 
     private fun databind(keyword: String, pageNum: Int) {
         productRepository.getProductItem(keyword, pageNum) { productList ->
+            for(productResponse in productList)
             productView.showProduct(productList)
         }
 

@@ -40,6 +40,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     kapt "android.arch.lifecycle:compiler:1.0.0"
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'org.koin:koin-androidx-scope:2.0.1'
+    implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
+    implementation 'org.koin:koin-androidx-ext:2.0.1'
 }
 repositories {
     mavenCentral()
