@@ -1,13 +1,14 @@
 package com.exam.elevenstreet.viewmodel
 
-import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.exam.elevenstreet.data.ProductCallback
 import com.exam.elevenstreet.data.repository.ProductRepository
 import com.exam.elevenstreet.network.model.ProductResponse
 
-class ProductViewModel(private val productRepository: ProductRepository){
+class ProductViewModel(private val productRepository: ProductRepository) : ViewModel() {
 
-    val productItemList = ObservableField<List<ProductResponse>>()
+    val productItemList = MutableLiveData<List<ProductResponse>>()
 
     fun searchByKeyword(keyword: String) {
         productRepository.getProductList(keyword, object : ProductCallback {
@@ -16,7 +17,7 @@ class ProductViewModel(private val productRepository: ProductRepository){
             }
 
             override fun onSuccess(productList: List<ProductResponse>) {
-                productItemList.set(productList)
+                productItemList.value = productList
             }
         })
     }

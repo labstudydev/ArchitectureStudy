@@ -40,4 +40,5 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 }
