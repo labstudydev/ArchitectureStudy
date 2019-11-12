@@ -8,10 +8,13 @@ interface MainContract {
     interface View : BaseView<Presenter> {
         fun showProduct(productList: List<ProductResponse>)
         fun setupView()
+        fun endDataLoad()
     }
 
     interface Presenter : BasePresenter {
         fun searchByKeyword(keyword: String)
+        fun nextProduct(count: Int)
+        fun checkProductEnd(itemCount: Int)
 
     }
 }

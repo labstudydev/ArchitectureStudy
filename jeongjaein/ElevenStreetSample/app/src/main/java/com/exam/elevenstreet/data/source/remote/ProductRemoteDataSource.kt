@@ -37,11 +37,11 @@ class ProductRemoteDataSource(private val api: ElevenStreetApi) : ProductRemoteD
         private var instance: ProductRemoteDataSource? = null
 
         fun getInstance(elevenStreetApi: ElevenStreetApi): ProductRemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: ProductRemoteDataSource(elevenStreetApi).also {
-                    instance = it
-                }
 
+            instance ?: ProductRemoteDataSource(elevenStreetApi).also {
+                instance = it
             }
+
+
     }
 }

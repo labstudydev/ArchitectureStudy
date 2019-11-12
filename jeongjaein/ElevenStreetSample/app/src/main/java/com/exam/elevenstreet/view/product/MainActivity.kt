@@ -3,6 +3,7 @@ package com.exam.elevenstreet.view.product
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.exam.elevenstreet.R
 import com.exam.elevenstreet.data.repository.ProductRepository
 import com.exam.elevenstreet.data.source.local.ProductLocalDataSource
@@ -23,16 +24,10 @@ class MainActivity : MainContract.View, AppCompatActivity() {
     private val productRecyclerViewAdapter by lazy { ProductRecyclerViewAdapter() }
 
 
-    override fun showProduct(productList: List<ProductResponse>) {
-        runOnUiThread {
-            productRecyclerViewAdapter.addData(productList)
-        }
-
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         runOnUiThread {
             presenter = ProductPresenter(
                 ProductRepository.getInstance(
@@ -49,15 +44,37 @@ class MainActivity : MainContract.View, AppCompatActivity() {
 
     }
 
+    override fun showProduct(productList: List<ProductResponse>) {
+        runOnUiThread {
+            productRecyclerViewAdapter.addData(productList)
+        }
+
+    }
+
     override fun setupView() {
         rv_product_list.run {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = productRecyclerViewAdapter
-        }
 
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                        if(!recyclerView.canScrollVertically(1)){
+                            adapter?.itemCount?.let { presenter.nextProduct(it) }
+                        }
+
+                }
+            })
+        }
         search_button.setOnClickListener {
             productRecyclerViewAdapter.replaceAll()
             presenter.searchByKeyword("${search_src_text.text}")
+        }
+    }
+
+    override fun endDataLoad() {
+        runOnUiThread{
+            presenter.checkProductEnd(productRecyclerViewAdapter.itemCount)
         }
     }
 

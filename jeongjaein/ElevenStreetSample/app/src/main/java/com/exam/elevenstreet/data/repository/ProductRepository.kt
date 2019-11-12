@@ -11,11 +11,7 @@ class ProductRepository(
     private val productLocalDataSource: ProductLocalDataSourceInterface
 ) : ProductRepositoryInterface {
 
-    override fun getProductItem(
-        keyWord: String,
-        pageNum: Int,
-        callback: (product: List<ProductResponse>) -> Unit
-    ) {
+    override fun getProductItem(keyWord: String, pageNum: Int, callback: (product: List<ProductResponse>) -> Unit) {
 
         if (MyApplication.instance.context().isConnectedToNetwork()) {
             productRemoteDataSource.getProductList(keyWord, pageNum, callback)
