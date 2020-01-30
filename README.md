@@ -1,6 +1,6 @@
 # ArchitectureStudy
 
-- [11번가 OPEN API](http://openapi.11st.co.kr/openapi/OpenApiServiceIntroduce.tmall?introduceType=PRODUCT)
+[11번가 OPEN API](http://openapi.11st.co.kr/openapi/OpenApiServiceIntroduce.tmall?introduceType=PRODUCT)
 
 - 원우석 [wswon](https://github.com/wswon)
 [공간](https://github.com/StudyFork/GoogryAndroidArchitectureStudy/tree/master/wswon)
