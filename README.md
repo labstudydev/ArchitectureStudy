@@ -1,5 +1,5 @@
 # ArchitectureStudy
-
+[커리큘럼](https://github.com/labstudydev/ArchitectureStudy/blob/master/curriculum.md)
 [11번가 OPEN API](http://openapi.11st.co.kr/openapi/OpenApiServiceIntroduce.tmall?introduceType=PRODUCT)
 
 - 원우석 [wswon](https://github.com/wswon)
