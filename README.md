@@ -1,4 +1,6 @@
 # ArchitectureStudy
+11번가 API를 사용한 상품 검색 앱을 만들고 이를 MVP, MVVM 패턴을 적용해보면서 다양한 학습을 진행한다.
+
 [커리큘럼](https://github.com/labstudydev/ArchitectureStudy/blob/master/curriculum.md)
 
 [11번가 OPEN API](http://openapi.11st.co.kr/openapi/OpenApiServiceIntroduce.tmall?introduceType=PRODUCT)
